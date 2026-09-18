@@ -17,7 +17,8 @@
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\" --ignore-path ./.prettierignore",
     "check": "npm run stylelint:fix && npm run lint && npm run format",
     "commit": "npm run check && cz",
-    "prepare": "husky"
+    "prepare": "husky",
+    "version": "standard-version"
   },
   "keywords": [],
   "author": "",
@@ -73,7 +74,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./frontend/node_modules/cz-conventional-changelog"
     }
   }
 }
