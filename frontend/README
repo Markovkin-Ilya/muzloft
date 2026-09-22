@@ -1,0 +1,165 @@
+# Frontend "Muzloft"
+
+Стек: HTML, SCSS, React, Webpack
+
+Структура:
+- public/ - публичные файлы
+- src/ — исходные файлы 
+- src/components/ — папка с JS компонентами бизнес логики
+- src/components-ui/ — папка с JS компонентами визуальной части
+- src/pages/ — папка со страницами проекта
+- src/services/ — папка со слайсами и глобальным стором
+- src/utils/ — папка с константами, файлами типизации
+
+
+## Установка и запуск
+Для установки и запуска проекта необходимо выполнить команды
+
+```
+npm install
+npm run start
+```
+
+или
+
+```
+yarn
+yarn start
+```
+## Сборка
+
+```
+npm run build
+```
+
+или
+
+```
+yarn build
+```
+
+## Данные и типы данных, используемые в приложении
+
+База
+
+```
+interface IBase {
+  id:string; // ID базы
+  title:string // название базы
+  description:string; // описание базы
+  image:string[];  // картинки базы
+  address:string; // адрес базы
+  phone:string; // Телефон для связи с базой
+  ownerid:string; // ID владельца
+  rooms:room[]; // комнаты для репетицый
+  instruments:instrument[]; // инструменты в общем доступе
+  comments:comment[]; // отзывы о базе от посетителей
+}
+```
+
+Комната
+
+```
+interface IRoom {
+  id:string; // ID комнаты
+  title:string // название комнаты
+  description:string; // описание комнаты
+  image:string[];  // картинки комнаты
+  slots:slot[]; // слоты для бронирования
+  instruments:instrument[]; // инструменты в комнате
+}
+```
+
+Слот
+
+```
+interface ISlot {
+  date:string; // время начала слота
+  prise:string; // стоимость слота
+}
+```
+
+Владелец
+
+```
+interface IOwner {
+  id:string; // ID владельца
+  login:string; // Логин
+  pasword:string; // Пароль 
+  name:string; // Имя владельца
+  email:string; // Почта
+  phone:string; // Телефон
+  image:string;  // Фото владельца
+  bases:string[]; // ID баз во владении
+}
+```
+
+Музыкант
+
+```
+interface IArtist {
+  id:string; // ID музыканта
+  login:string; // Логин
+  pasword:string; // Пароль 
+  name:string; // Имя музыканта
+  email:string; // Почта
+  phone:string; // Телефон 
+  image:string;  // Фото музыканта
+  orders:order[]; // Данные о забронированных слотах
+}
+```
+
+Инструмент
+
+```
+interface IInstrument {
+  id:string; // ID инструмента
+  title:string // название инструмента
+  category:string; // Категория инструмента
+  description:string; // описание инструмента
+  image:string;  // картинка инструмента
+  slots:slot[]; // слоты для бронирования
+  binding:boolean; // привязан инструмент к комнате или нет
+}
+```
+
+Отзыв
+
+interface IComment {
+  id:string; // ID отзыва
+  artistid:string; // ID музыканта
+  scores: number; // оценка репбазы
+  comment: string; // комментарий к отзыву
+}
+
+Данные о бронировании для сервера
+
+```
+interface IOrder {
+  artistid:string; // ID музыканта
+  baseid:string; // ID базы
+  roomid:string; // ID комнаты
+  instrumentsid:string[]; // ID инструмента
+  slots:slot[]; // слоты для бронирования
+  payment:string; // способ оплаты
+  total: number // сумма заказа
+}
+```
+
+Данные о бронировании от сервера
+
+```
+interface IOrderResult {
+  id:string; // ID заказа
+}
+```
+
+
+## Архитектура приложения
+
+Код приложения разделен на слои согласно парадигме MVP: 
+- слой представления, отвечает за отображение данных на странице;
+- слой данных, отвечает за хранение и изменение данных;
+- стор, отвечает за связь представления и данных.
+
+### Базовый код
