@@ -1,0 +1,6 @@
+@import url('./utils/variables.css');
+
+html,
+body {
+  margin: 0;
+}
