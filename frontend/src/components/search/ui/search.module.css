@@ -7,7 +7,7 @@
   font-family: "Geologica", sans-serif;
   background-color: var(--active-background);
   border: 3px solid var(--active-background);
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: text;
   transition: 0.3s;
 }
@@ -82,12 +82,29 @@ input:-webkit-autofill:active {
 
 .inputError {
   display: block;
+  max-width: 100%;
   margin-top: 4px;
   color: var(--colors-interface-error);
+  font-size: 12px;
   font-family: "Geologica", sans-serif;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .inputDefault {
-  width: 480px;
+  width: 100%;
   min-height: 45px;
+}
+
+.inputSmall {
+  width: 100%;
+  min-height: 28px;
+}
+
+.inputSmall .inputTextfield {
+  font-size: 16px;
+}
+
+.inputSmall .inputTextfield::placeholder {
+  font-size: 16px;
 }

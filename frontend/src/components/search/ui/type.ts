@@ -5,6 +5,7 @@ export type TSearchUIProps = {
   disabled?: boolean;
   error?: string;
   size?: "default" | "small";
+  type?: "text" | "password";
   icon?: React.ReactNode;
   onIconClick?: () => void;
 };

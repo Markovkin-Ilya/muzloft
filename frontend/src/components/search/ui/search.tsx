@@ -7,6 +7,8 @@ export type TSearchUIProps = {
   placeholder?: string;
   disabled?: boolean;
   error?: string;
+  size?: "default" | "small";
+  type?: "text" | "password";
   icon?: React.ReactNode;
   onIconClick?: () => void;
 };
@@ -17,6 +19,8 @@ export const SearchUI: FC<TSearchUIProps> = ({
   placeholder = "",
   disabled = false,
   error,
+  size = "default",
+  type = "text",
   icon,
   onIconClick,
 }) => {
@@ -44,12 +48,12 @@ export const SearchUI: FC<TSearchUIProps> = ({
   return (
     <div>
       <div
-        className={`${styles.input} ${styles.inputDefault} ${isActive ? styles.inputStatusActive : ""} ${error ? styles.inputStatusError : ""} ${isDisabled ? styles.inputStatusDisabled : ""}`}
+        className={`${styles.input} ${size === "small" ? styles.inputSmall : styles.inputDefault} ${isActive ? styles.inputStatusActive : ""} ${error ? styles.inputStatusError : ""} ${isDisabled ? styles.inputStatusDisabled : ""}`}
       >
         <div className={styles.inputContainer} onClick={handleContainerClick}>
           <input
             ref={inputRef}
-            type="text"
+            type={type}
             className={`${styles.inputTextfield} ${isDisabled ? styles.inputTextfieldDisabled : ""}`}
             value={value}
             onChange={handleChange}
