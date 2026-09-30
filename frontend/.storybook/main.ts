@@ -37,10 +37,11 @@ const config: StorybookConfig = {
               mode: 'local',
               localIdentName: '[name]__[local]--[hash:base64:5]',
               namedExport: false,
-              auto: /\.module\.\w+$/i,
             },
+            importLoaders: 2,
           },
         },
+        'postcss-loader',
       ],
     });
 
@@ -57,7 +58,8 @@ const config: StorybookConfig = {
     if (config.resolve) {
       config.resolve.alias = {
         ...config.resolve.alias,
-        '@': path.resolve(__dirname, '../src')
+        '@': path.resolve(__dirname, '../src'),
+        '@assets': path.resolve(__dirname, '../src/assets')
       };
     }
     return config;

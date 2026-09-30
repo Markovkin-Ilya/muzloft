@@ -1,7 +1,11 @@
 :root {
+  --dark-background: #000000;
+  --text-primary-color: #ffffff;
   --background: #cc1b3b;
   --active-background: #861227;
-  --text-primary-color: #ffffff;
   --navigation-link-padding: 5px 10px;
-  
+  --colors-interface-accent: #3b82f6;
+  --colors-interface-error: #ef4444;
+  --text-inactive-color: #6b7280;
+  --offset-base-variable: 1px;
 }

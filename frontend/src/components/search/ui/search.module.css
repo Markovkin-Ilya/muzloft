@@ -1,0 +1,94 @@
+.input {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  font-family: "Geologica", sans-serif;
+  background-color: var(--active-background);
+  border: 3px solid var(--active-background);
+  border-radius: 10px;
+  cursor: text;
+  transition: 0.3s;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active
+{
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-box-shadow: 0 0 0 30px var(--background-element) inset !important;
+}
+
+.inputStatusActive {
+  border: 3px solid var(--colors-interface-accent);
+}
+
+.inputStatusError {
+  border: 3px solid var(--colors-interface-error);
+}
+
+.inputStatusDisabled {
+  cursor: not-allowed;
+}
+
+.inputIcon {
+  line-height: 0;
+  cursor: pointer;
+}
+
+.inputIconDisabled {
+  cursor: not-allowed;
+}
+
+.inputTextfield {
+  display: block;
+  width: 100%;
+  color: var(--text-primary-color);
+  font-weight: 600;
+  font-size: 21px;
+  font-family: "Geologica", sans-serif;
+  background-color: transparent;
+  border: none;
+  cursor: text;
+}
+
+.inputTextfield::placeholder {
+  color: var(--text-primary-color);
+  font-size: 21px;
+}
+
+.inputTextfield:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-primary-color) !important;
+}
+
+.inputTextfield:focus {
+  outline: none;
+}
+
+.inputContainer {
+  width: 100%;
+  text-align: left;
+}
+
+.inputTextfieldDisabled {
+  color: var(--text-inactive-color);
+  cursor: not-allowed;
+}
+
+.inputTextfieldDisabled:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-inactive-color) !important;
+}
+
+.inputError {
+  display: block;
+  margin-top: 4px;
+  color: var(--colors-interface-error);
+  font-family: "Geologica", sans-serif;
+}
+
+.inputDefault {
+  width: 480px;
+  min-height:45px;
+}

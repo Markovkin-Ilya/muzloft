@@ -18,7 +18,6 @@
   padding: var(--navigation-link-padding);
   color: var(--text-primary-color);
   text-decoration: none;
-  
 }
 
 .linkActive {
@@ -37,7 +36,7 @@
   margin: 2px;
   font-weight: 800;
   font-size: 13px;
-   font-family: 'Geologica', sans-serif;
+  font-family: "Geologica", sans-serif;
 }
 
 .icon {

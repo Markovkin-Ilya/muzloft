@@ -15,7 +15,11 @@
         "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
         "resolveJsonModule": true,
         "allowJs": true /* Allow javascript files to be compiled. Useful when migrating JS to TS */,
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
+        "paths": {
+            "@assets/*": ["src/assets/*"]
+        }
     },
     "outDir": "./dist/",
     "include": ["src/**/*"]
