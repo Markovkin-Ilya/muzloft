@@ -1,4 +1,4 @@
-import { FC } from "react"
-import { HeaderUI} from './ui/header'
+import { FC } from "react";
+import { HeaderUI } from "./ui/header";
 
-export const Header : FC = () => < HeaderUI />
+export const Header: FC = () => <HeaderUI />;

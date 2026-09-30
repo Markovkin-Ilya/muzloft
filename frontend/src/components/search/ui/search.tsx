@@ -43,7 +43,9 @@ export const SearchUI: FC<TSearchUIProps> = ({
 
   return (
     <div>
-      <div className={`${styles.input} ${styles.inputDefault} ${isActive ? styles.inputStatusActive : ""} ${error ? styles.inputStatusError : ""} ${isDisabled ? styles.inputStatusDisabled : ""}`}>
+      <div
+        className={`${styles.input} ${styles.inputDefault} ${isActive ? styles.inputStatusActive : ""} ${error ? styles.inputStatusError : ""} ${isDisabled ? styles.inputStatusDisabled : ""}`}
+      >
         <div className={styles.inputContainer} onClick={handleContainerClick}>
           <input
             ref={inputRef}

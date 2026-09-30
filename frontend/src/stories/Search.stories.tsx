@@ -21,7 +21,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     placeholder: "Поиск по названию базы...",
-    value: ""
+    value: "",
   },
 };
 
@@ -51,10 +51,8 @@ export const WithIcon: Story = {
   args: {
     placeholder: "Поиск по названию базы...",
 
-    icon: (
-       <img src={Icon}/>
-    ),
+    icon: <img src={Icon} />,
 
-    error: ""
+    error: "",
   },
 };

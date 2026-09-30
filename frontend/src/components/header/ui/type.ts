@@ -1,1 +1,1 @@
-export type THeaderUIProps = Record<string, never>
+export type THeaderUIProps = Record<string, never>;
