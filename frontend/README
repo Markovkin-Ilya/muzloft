@@ -74,6 +74,7 @@ interface IRoom {
 
 ```
 interface ISlot {
+  artistid:string; // ID музыканта за кем закреплен слот
   date:string; // время начала слота
   prise:string; // стоимость слота
 }
@@ -101,7 +102,6 @@ interface IArtist {
   id:string; // ID музыканта
   login:string; // Логин
   pasword:string; // Пароль 
-  name:string; // Имя музыканта
   email:string; // Почта
   phone:string; // Телефон 
   image:string;  // Фото музыканта
@@ -151,6 +151,15 @@ interface IOrder {
 ```
 interface IOrderResult {
   id:string; // ID заказа
+}
+```
+
+Репетиция
+```
+interface IRepetition {
+  artistid:string; // ID музыканта
+  base:IBase; // база
+  payment:string; // способ оплаты
 }
 ```
 

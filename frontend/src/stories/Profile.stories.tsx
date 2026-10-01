@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { ProfileUI } from "../components/profile/ui/profile";
-import guitaristAvatar from "../assets/images/storise/profile/guitarist.jpg";
+import { Profile } from "../components/profile/profile";
+import guitaristAvatar from "./assets/profile/guitarist.jpg";
 
 const meta = {
   title: "components/profile",
-  component: ProfileUI,
+  component: Profile,
   tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof ProfileUI>;
+} satisfies Meta<typeof Profile>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

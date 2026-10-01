@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  font-family: "Geologica", sans-serif;
+  font-family: var(--main-font-family);
   background-color: var(--active-background);
   border: 3px solid var(--active-background);
   border-radius: 8px;
@@ -47,7 +47,7 @@ input:-webkit-autofill:active {
   color: var(--text-primary-color);
   font-weight: 600;
   font-size: 21px;
-  font-family: "Geologica", sans-serif;
+  font-family: var(--main-font-family);
   background-color: transparent;
   border: none;
   cursor: text;
@@ -86,7 +86,7 @@ input:-webkit-autofill:active {
   margin-top: 4px;
   color: var(--colors-interface-error);
   font-size: 12px;
-  font-family: "Geologica", sans-serif;
+  font-family: var(--main-font-family);
   white-space: normal;
   overflow-wrap: break-word;
 }

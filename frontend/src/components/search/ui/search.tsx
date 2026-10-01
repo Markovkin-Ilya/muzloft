@@ -1,17 +1,6 @@
 import { FC, useState, useRef } from "react";
 import styles from "./search.module.css";
-
-export type TSearchUIProps = {
-  value?: string;
-  onChange?: (value: string) => void;
-  placeholder?: string;
-  disabled?: boolean;
-  error?: string;
-  size?: "default" | "small";
-  type?: "text" | "password";
-  icon?: React.ReactNode;
-  onIconClick?: () => void;
-};
+import { TSearchUIProps } from "./type";
 
 export const SearchUI: FC<TSearchUIProps> = ({
   value = "",

@@ -1,2 +1,2 @@
 export { ProfileUI } from "./profile";
-export * from "./type";
+export type { TProfileUIProps } from "./type";

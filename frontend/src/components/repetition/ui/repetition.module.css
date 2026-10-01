@@ -1,0 +1,86 @@
+.repetition {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: var(--dark-background);
+    border-radius: 20px;
+}
+
+.header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    font-size: 24px;
+    font-family: var(--main-font-family);
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 15px;
+    font-family: var(--main-font-family);
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.date {
+    padding-right: 15px;
+    color: var(--text-primary-color);
+    font-weight: 700;
+}
+
+.time {
+    color: var(--text-inactive-color);
+    font-weight: 500;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.value {
+    color: var(--text-primary-color);
+    font-weight: 400;
+    font-size: 20px;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+.label {
+    color: var(--text-inactive-color);
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.payment {
+    display: flex;
+    justify-content: start;
+}
+
+.unpaid {
+    padding: 0 10px;
+    background-color: var(--active-background);
+    border-radius: 10px;
+}
+
+.paid {
+    padding: 0 10px;
+    background-color: var(--colors-interface-accent);
+    border-radius: 10px;
+}
+
+.text {
+    color: var(--text-primary-color);
+    font-weight: 200;
+    font-size: 16px;
+}
+
+.icon {
+    height: 44px;
+}
