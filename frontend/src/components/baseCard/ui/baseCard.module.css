@@ -1,0 +1,91 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: var(--dark-background);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.image {
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: var(--main-font-family);
+}
+
+.name {
+    color: var(--text-primary-color);
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.address {
+    color: var(--text-inactive-color);
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    font-family: var(--main-font-family);
+    border-radius: 10px;
+}
+
+.ratingHigh {
+    background-color: #2d5a27;
+}
+
+.ratingMedium {
+    background-color: #c9a200;
+}
+
+.ratingLow {
+    background-color: #a63d40;
+}
+
+.starIcon {
+    width: 26px;
+    height: 26px;
+}
+
+.ratingValue {
+    color: var(--text-primary-color);
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.mapBtn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.mapIcon {
+    width: 45px;
+    height: 40px;
+}

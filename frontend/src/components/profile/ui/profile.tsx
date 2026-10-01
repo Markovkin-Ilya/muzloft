@@ -1,97 +1,53 @@
-import { FC, useState, useRef } from "react";
+import { FC } from "react";
 import styles from "./profile.module.css";
 import { ButtonUI } from "../../button/ui/button";
 import { SearchUI } from "../../search/ui/search";
-import pencilIcon from "@/assets/images/button/pancil.svg";
+import pencilIcon from "@assets/images/icons/pancil.svg";
+import { TProfileUIProps } from "./type";
 
-export type TProfileProps = {
-  avatar?: string;
-  phone?: string;
-  email?: string;
-  login?: string;
-  password?: string;
-  errors?: {
-    phone?: string;
-    email?: string;
-    login?: string;
-    password?: string;
-  };
-  initiallyEditing?: boolean;
-  onAvatarChange?: (file: File) => void;
-};
-
-export const ProfileUI: FC<TProfileProps> = ({
+export const ProfileUI: FC<TProfileUIProps> = ({
   avatar,
   phone = "",
   email = "",
   login = "",
   password = "",
   errors = {},
-  initiallyEditing = false,
-  onAvatarChange,
+  isEditing,
+  onEdit,
+  onSave,
+  onCancel,
+  avatarRef,
+  onAvatarClick,
+  onPhoneChange,
+  onEmailChange,
+  onLoginChange,
+  onPasswordChange,
+  onFileChange,
 }) => {
-  const [isEditing, setIsEditing] = useState(initiallyEditing);
-  const [formData, setFormData] = useState({
-    phone,
-    email,
-    login,
-    password,
-  });
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleSave = () => {
-    setIsEditing(false);
-  };
-
-  const handleCancel = () => {
-    setFormData({
-      phone,
-      email,
-      login,
-      password,
-    });
-    setIsEditing(false);
-  };
-
-  const handleInputChange = (field: keyof typeof formData, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
-
-  const handleAvatarClick = () => {
-    if (!isEditing) return;
-    fileInputRef.current?.click();
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file && onAvatarChange) {
-      onAvatarChange(file);
-    }
-  };
-
   return (
     <div className={styles.profile}>
       <div className={styles.header}>
         <div
           className={`${styles.avatarWrapper} ${isEditing ? styles.editing : ""}`}
-          onClick={handleAvatarClick}
+          onClick={onAvatarClick}
         >
           {avatar && <img src={avatar} alt={login} className={styles.avatar} />}
           {isEditing && (
             <div className={styles.overlay}>
-              <img src={pencilIcon} alt="Изменить аватар" className={styles.overlayIcon} />
+              <img
+                src={pencilIcon}
+                alt="Изменить аватар"
+                className={styles.overlayIcon}
+              />
             </div>
           )}
         </div>
         <input
-          ref={fileInputRef}
+          ref={avatarRef}
           type="file"
           accept="image/*"
           style={{ display: "none" }}
-          onChange={handleFileChange}
+          onChange={onFileChange}
         />
         <span className={styles.login}>{login}</span>
       </div>
@@ -102,8 +58,8 @@ export const ProfileUI: FC<TProfileProps> = ({
           {isEditing ? (
             <SearchUI
               size="small"
-              value={formData.phone}
-              onChange={(value) => handleInputChange("phone", value)}
+              value={phone}
+              onChange={onPhoneChange}
               placeholder="Введите телефон"
               error={errors.phone}
             />
@@ -117,8 +73,8 @@ export const ProfileUI: FC<TProfileProps> = ({
           {isEditing ? (
             <SearchUI
               size="small"
-              value={formData.email}
-              onChange={(value) => handleInputChange("email", value)}
+              value={email}
+              onChange={onEmailChange}
               placeholder="Введите почту"
               error={errors.email}
             />
@@ -132,8 +88,8 @@ export const ProfileUI: FC<TProfileProps> = ({
           {isEditing ? (
             <SearchUI
               size="small"
-              value={formData.login}
-              onChange={(value) => handleInputChange("login", value)}
+              value={login}
+              onChange={onLoginChange}
               placeholder="Введите логин"
               error={errors.login}
             />
@@ -147,8 +103,8 @@ export const ProfileUI: FC<TProfileProps> = ({
           {isEditing ? (
             <SearchUI
               size="small"
-              value={formData.password}
-              onChange={(value) => handleInputChange("password", value)}
+              value={password}
+              onChange={onPasswordChange}
               placeholder="Введите пароль"
               type="password"
               error={errors.password}
@@ -162,17 +118,21 @@ export const ProfileUI: FC<TProfileProps> = ({
       <div className={styles.footer}>
         {isEditing ? (
           <>
-            <ButtonUI size="small" onClick={handleSave}>
+            <ButtonUI size="small" onClick={onSave}>
               Сохранить
             </ButtonUI>
-            <ButtonUI size="small" onClick={handleCancel}>
+            <ButtonUI size="small" onClick={onCancel}>
               Отмена
             </ButtonUI>
           </>
         ) : (
-          <ButtonUI size="large" onClick={() => setIsEditing(true)}>
+          <ButtonUI size="large" onClick={onEdit}>
             Редактировать
-            <img src={pencilIcon} alt="Редактировать" className={styles.pencilIcon} />
+            <img
+              src={pencilIcon}
+              alt="Редактировать"
+              className={styles.pencilIcon}
+            />
           </ButtonUI>
         )}
       </div>

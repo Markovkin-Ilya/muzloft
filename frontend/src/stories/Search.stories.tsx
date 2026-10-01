@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { SearchUI } from "../components/search/ui/search";
-import Icon from "@/assets/images/search/magnifier.svg";
+import Icon from "@/assets/images/icons/magnifier.svg";
 
 const meta = {
   title: "components/search",
@@ -54,5 +54,46 @@ export const WithIcon: Story = {
     icon: <img src={Icon} />,
 
     error: "",
+  },
+};
+
+export const Small: Story = {
+  args: {
+    placeholder: "Поиск по названию базы...",
+    value: "",
+    size: "small",
+  },
+};
+
+export const SmallFilled: Story = {
+  args: {
+    value: "Значение",
+    placeholder: "Поиск по названию базы...",
+    size: "small",
+  },
+};
+
+export const SmallWithError: Story = {
+  args: {
+    placeholder: "Поиск по названию базы...",
+    size: "small",
+    error: "Ошибка ввода",
+  },
+};
+
+export const SmallDisabled: Story = {
+  args: {
+    value: "Заблокировано",
+    placeholder: "Поиск по названию базы...",
+    size: "small",
+    disabled: true,
+  },
+};
+
+export const SmallWithIcon: Story = {
+  args: {
+    placeholder: "Поиск по названию базы...",
+    size: "small",
+    icon: <img src={Icon} />,
   },
 };
