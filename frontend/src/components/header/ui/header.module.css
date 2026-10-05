@@ -2,7 +2,7 @@
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-  padding: 5px 0;
+  padding: 0;
   background-color: var(--dark-background);
 }
 
@@ -14,8 +14,9 @@
 }
 
 .logo {
-  width: auto;
-  max-width: 100%;
+  display: block;
+  width: 100%;
+  max-width: 800px;
   height: auto;
-  max-height: 250px;
+  object-fit: contain;
 }

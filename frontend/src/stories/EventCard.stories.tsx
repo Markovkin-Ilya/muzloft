@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { EventCardUI } from "../components/eventCard/ui/eventCard";
+import { EventCardUI } from "@components/eventCard/ui/eventCard";
 import guitarImage from "./assets/eventCard/гитарист с электрогитарой.jpg";
 
 const meta = {

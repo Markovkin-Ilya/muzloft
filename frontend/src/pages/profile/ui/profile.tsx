@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styles from "./profile.module.css";
-import { ButtonUI } from "../../button/ui/button";
-import { SearchUI } from "../../search/ui/search";
+import { ButtonUI } from "@components/button/ui/button";
+import { SearchUI } from "@components/search/ui/search";
 import pencilIcon from "@assets/images/icons/pancil.svg";
 import { TProfileUIProps } from "./type";
 
@@ -13,6 +13,7 @@ export const ProfileUI: FC<TProfileUIProps> = ({
   password = "",
   errors = {},
   isEditing,
+  isFormChanged,
   onEdit,
   onSave,
   onCancel,
@@ -118,7 +119,11 @@ export const ProfileUI: FC<TProfileUIProps> = ({
       <div className={styles.footer}>
         {isEditing ? (
           <>
-            <ButtonUI size="small" onClick={onSave}>
+            <ButtonUI
+              size="small"
+              onClick={onSave}
+              disabled={!isFormChanged}
+            >
               Сохранить
             </ButtonUI>
             <ButtonUI size="small" onClick={onCancel}>

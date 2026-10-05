@@ -2,6 +2,7 @@ const path = require('path'); // для того чтобы превратить
 const HTMLWebpackPlugins = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack'); //подключаем webpack для использования встроенного плагина EnvironmentPlugin
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 //в зависимости от того, какой скрипт мы запустили
 // переменная production получит либо false, либо true
@@ -87,6 +88,7 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx', '.tsx', '.ts', '.json'], // указываем файлы, с которыми будет работать webpack
+        plugins: [new TsconfigPathsPlugin()],
     },
     plugins: [
         new HTMLWebpackPlugins({
