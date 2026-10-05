@@ -9,7 +9,8 @@ import profileIcon from "@/assets/images/navigation/profile.png";
 
 export const NavigationUI: FC<TNavigationUIProps> = () => (
   <div className={styles.navigate}>
-    <nav className={`${styles.menu} p-4`}>
+    <div className={styles.conteiner}>
+      <nav className={styles.menu}>
       <NavLink
         to="/new"
         className={({ isActive }) =>
@@ -82,5 +83,6 @@ export const NavigationUI: FC<TNavigationUIProps> = () => (
         )}
       </NavLink>
     </nav>
+    </div>
   </div>
 );

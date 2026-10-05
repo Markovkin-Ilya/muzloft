@@ -11,6 +11,7 @@ export type TProfileUIProps = {
     password?: string;
   };
   isEditing: boolean;
+  isFormChanged?: boolean;
   onEdit?: () => void;
   onSave?: () => void;
   onCancel?: () => void;

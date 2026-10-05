@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
-import { HeaderUI } from "../components/header/ui/header";
+import { HeaderUI } from "@components/header/ui/header";
 
 const meta = {
   title: "components/header",

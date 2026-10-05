@@ -116,7 +116,6 @@ interface IInstrument {
   id:string; // ID инструмента
   title:string // название инструмента
   category:string; // Категория инструмента
-  description:string; // описание инструмента
   image:string;  // картинка инструмента
   slots:slot[]; // слоты для бронирования
   binding:boolean; // привязан инструмент к комнате или нет
@@ -128,7 +127,9 @@ interface IInstrument {
 interface IComment {
   id:string; // ID отзыва
   artistid:string; // ID музыканта
+  roomid:string; // ID комнаты
   scores: number; // оценка репбазы
+  date: string; // дата отзыва
   comment: string; // комментарий к отзыву
 }
 
