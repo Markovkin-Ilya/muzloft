@@ -1,27 +1,28 @@
 //import { useEffect } from 'react';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import styles from './app.module.css';
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import styles from "./app.module.css";
 
 //import { useDispatch } from '../../services/store';
 //import { checkUserAuth } from '../../services/user/actions';
 
-import { Header } from '@components/header/header';
+import { Header } from "@components/header/header";
 import { Navigation } from "@components/navigation/navigation";
-import { Modal } from '@components/modal/modal';
+import { Modal } from "@components/modal/modal";
 
-import { Protected } from "../../components/protected"
+import { Protected } from "../../components/protected";
 //import { Login } from '../../pages/login/login'
 //import { Register } from '../../pages/register/register'
 
-import { Profile } from '@pages/profile'
+import { Profile } from "@pages/profile";
+import { Repetitions } from "@pages/repetitions/repetitions";
 //import { EventDetails } from '@pages/eventDetails'
 //import { NotFound404 } from '../../pages/not-fount-404/not-fount-404'
 
 const App = () => {
   const location = useLocation();
-  const navigate = useNavigate()
-  const backgroundLocation = location.state?.background
-/*
+  const navigate = useNavigate();
+  const backgroundLocation = location.state?.background;
+  /*
   const dispatch = useDispatch();
   const profileMatch = useMatch('/profile/orders/:number');
 
@@ -34,17 +35,30 @@ const App = () => {
       <Header />
       <div className={styles.page}>
         <Routes location={backgroundLocation || location}>
-          <Route path='/profile' element={<Protected component={<Profile />} />} />
+          <Route
+            path="/profile"
+            element={<Protected component={<Profile />} />}
+          />
+          <Route
+            path="/repetitions"
+            element={<Protected component={<Repetitions />} />}
+          />
         </Routes>
       </div>
-      <Navigation />
-
-      {backgroundLocation && <Routes>
-        <Route path='/events/:eventId' element={<Modal onClose={() => navigate(-1)} ></Modal>} />
-      </Routes>
-      }
+      <div className={styles.footer}>
+        <Navigation/>
+      </div>
+      
+      {backgroundLocation && (
+        <Routes>
+          <Route
+            path="/events/:eventId"
+            element={<Modal onClose={() => navigate(-1)}></Modal>}
+          />
+        </Routes>
+      )}
     </div>
-  )
+  );
 };
 
 export default App;

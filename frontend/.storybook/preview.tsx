@@ -3,9 +3,8 @@ import type { Preview } from '@storybook/react-webpack5'
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from '@services/store';
-import '../src/utils/variables.css';
-import '../src/utils/styles.css';
-import '../src/assets/fonts/fonts.css';
+import '@utils/variables.css';
+import '@assets/fonts/fonts.css';
 
 const preview: Preview = {
   parameters: {
@@ -21,13 +20,16 @@ const preview: Preview = {
     (Story) => (
       <BrowserRouter>
         <Provider store={store}>
-          <div style={{ padding: 20, width: 'fit-content' }}>
+          <div style={{ margin: 0, padding: 0, height: '100%', overflow: 'hidden' }}>
             <Story />
           </div>
         </Provider>
       </BrowserRouter>
     )
-  ]
+  ],
+  initialGlobals: {
+    layout: 'fullscreen',
+  }
 };
 
 export default preview;

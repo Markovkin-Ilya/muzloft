@@ -46,7 +46,7 @@ input:-webkit-autofill:active {
   width: 100%;
   color: var(--text-primary-color);
   font-weight: 600;
-  font-size: 21px;
+  font-size: clamp(16px, 3vw, 21px);
   font-family: var(--main-font-family);
   background-color: transparent;
   border: none;
@@ -55,7 +55,7 @@ input:-webkit-autofill:active {
 
 .inputTextfield::placeholder {
   color: var(--text-primary-color);
-  font-size: 21px;
+  font-size: clamp(16px, 3vw, 21px);
 }
 
 .inputTextfield:-webkit-autofill {
@@ -85,7 +85,7 @@ input:-webkit-autofill:active {
   max-width: 100%;
   margin-top: 4px;
   color: var(--colors-interface-error);
-  font-size: 12px;
+  font-size: clamp(9px, 3vw, 12px);
   font-family: var(--main-font-family);
   white-space: normal;
   overflow-wrap: break-word;
@@ -98,13 +98,12 @@ input:-webkit-autofill:active {
 
 .inputSmall {
   width: 100%;
-  min-height: 28px;
 }
 
 .inputSmall .inputTextfield {
-  font-size: 16px;
+  font-size: clamp(12px, 4vw, 18px);
 }
 
 .inputSmall .inputTextfield::placeholder {
-  font-size: 16px;
+  font-size: clamp(12px, 4vw, 18px);
 }

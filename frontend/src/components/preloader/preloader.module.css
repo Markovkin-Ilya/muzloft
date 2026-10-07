@@ -1,13 +1,12 @@
 .preloader {
-    display: flex;
+  display: flex;
   flex-grow: 1;
   justify-content: center;
   align-items: center;
-  
 }
 
 .preloader_circle {
-    position: relative;
+  position: relative;
   inset: 0;
   display: block;
   width: 74px;

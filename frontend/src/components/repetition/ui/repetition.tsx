@@ -10,6 +10,7 @@ export const RepetitionUI: FC<TRepetitionUIProps> = ({
   base,
   address,
   room,
+  price,
   payment,
   onInstruments,
   onMap,
@@ -38,9 +39,9 @@ export const RepetitionUI: FC<TRepetitionUIProps> = ({
         >
           <span className={styles.text}>
             {payment === "cash"
-              ? "оплата наличными на базе"
+              ? `оплата наличными на базе ${price}.00`
               : payment === "card"
-                ? "оплата картой на базе"
+                ? `оплата картой на базе ${price}.00`
                 : payment === "online"
                   ? "оплачено"
                   : ""}

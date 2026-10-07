@@ -33,7 +33,7 @@ export const ProfileUI: FC<TProfileUIProps> = ({
           onClick={onAvatarClick}
         >
           {avatar && <img src={avatar} alt={login} className={styles.avatar} />}
-          {isEditing && (
+          {isEditing && avatar &&  (
             <div className={styles.overlay}>
               <img
                 src={pencilIcon}
@@ -119,11 +119,7 @@ export const ProfileUI: FC<TProfileUIProps> = ({
       <div className={styles.footer}>
         {isEditing ? (
           <>
-            <ButtonUI
-              size="small"
-              onClick={onSave}
-              disabled={!isFormChanged}
-            >
+            <ButtonUI size="small" onClick={onSave} disabled={!isFormChanged}>
               Сохранить
             </ButtonUI>
             <ButtonUI size="small" onClick={onCancel}>
