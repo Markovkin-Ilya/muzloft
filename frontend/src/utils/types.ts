@@ -12,23 +12,58 @@ export type TRepetition = {
   base: string; // название базы
   address: string; // адрес базы
   room: string; // название комнаты
-  slot: ISlot; // забронированный слот
-  instruments: IInstrument[]; // инструмент
+  slot: TSlot; // забронированный слот
+  instruments: TInstrument[]; // инструмент
   payment: "online" | "card" | "cash"; // способ оплаты
 };
 
-export type ISlot = {
+export type TSlot = {
   _id: string;
   date: Date; // дата и время начала слота
   period: string; // продолжительность слота
   price: number; // цена слота
 };
 
-export type IInstrument = {
+export type TInstrument = {
   _id: string; // ID инструмента
   title: string; // название инструмента
   category: string; // Категория инструмента
   image: string; // картинка инструмента
-  slot: ISlot; // забронированный слот
+  slot: TSlot; // забронированный слот
   binding: boolean; // привязан инструмент к комнате или нет
 };
+
+export type TBase = {
+  _id: string; // ID базы
+  title: string; // название базы
+  description:string; // описание базы
+  image:string; // аватар базы
+  address:string; // адрес базы
+  phone:string; // Телефон для связи с базой
+  ownerid:string; // ID владельца
+  rooms:TRoom[]; // комнаты для репетицый
+  instruments:TInstrument[]; // инструменты в общем доступе
+  comments:TComment[]; // отзывы о базе от посетителей
+};
+
+export type TRoom = {
+  _id:string; // ID комнаты
+  title:string // название комнаты
+  description:string; // описание комнаты
+  image:string[];  // картинки комнаты
+  slots:TSlot[]; // слоты для бронирования
+  instruments:TInstrument[]; // инструменты в комнате
+}
+
+export type TComment = {
+  _id: string; // ID отзыва
+  artistid:string; // ID музыканта
+  author?: {
+    login: string;
+    avatar?: string;
+  }; // данные автора отзыва
+  room:string; // название комнаты
+  scores: number; // оценка репбазы
+  date: string; // дата отзыва в формате YYYY-MM-DD
+  comment: string; // комментарий к отзыву
+}

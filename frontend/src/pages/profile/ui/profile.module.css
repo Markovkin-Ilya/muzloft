@@ -17,9 +17,24 @@
 }
 
 .avatar {
+  display: block;
+  width: clamp(60px, 18vw, 90px);
   height: clamp(60px, 18vw, 90px);
   border-radius: 50%;
   object-fit: cover;
+}
+
+.avatarFallback {
+  display: grid;
+  place-items: center;
+  width: clamp(60px, 18vw, 90px);
+  height: clamp(60px, 18vw, 90px);
+  color: var(--text-primary-color);
+  font-weight: 700;
+  font-size: clamp(28px, 9vw, 42px);
+  font-family: var(--main-font-family);
+  background-color: var(--text-inactive-color);
+  border-radius: 50%;
 }
 
 .avatarWrapper {

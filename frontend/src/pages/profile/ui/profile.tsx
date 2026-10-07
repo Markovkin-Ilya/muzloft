@@ -25,6 +25,8 @@ export const ProfileUI: FC<TProfileUIProps> = ({
   onPasswordChange,
   onFileChange,
 }) => {
+  const avatarInitial = login.trim().charAt(0).toLocaleUpperCase("ru-RU") || "?";
+
   return (
     <div className={styles.profile}>
       <div className={styles.header}>
@@ -32,8 +34,14 @@ export const ProfileUI: FC<TProfileUIProps> = ({
           className={`${styles.avatarWrapper} ${isEditing ? styles.editing : ""}`}
           onClick={onAvatarClick}
         >
-          {avatar && <img src={avatar} alt={login} className={styles.avatar} />}
-          {isEditing && avatar && (
+          {avatar ? (
+            <img src={avatar} alt={login} className={styles.avatar} />
+          ) : (
+            <span className={styles.avatarFallback} aria-hidden="true">
+              {avatarInitial}
+            </span>
+          )}
+          {isEditing && (
             <div className={styles.overlay}>
               <img
                 src={pencilIcon}

@@ -1,0 +1,116 @@
+.card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 7px;
+  border-radius: 22px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  color: var(--text-primary-color);
+  font-family: var(--main-font-family);
+  background-color: var(--dark-background);
+  border-radius: 16px;
+}
+
+.title {
+  margin: 0;
+  color: var(--background);
+  font-weight: 800;
+  font-size: clamp(22px, 8vw, 34px);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.description {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(12px, 4vw, 18px);
+  line-height: 1.3;
+  text-align: justify;
+  overflow-wrap: anywhere;
+}
+
+.images {
+  display: flex;
+  gap: 10px;
+  overflow: auto hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.images::-webkit-scrollbar {
+  display: none;
+}
+
+.image {
+  flex: 0 0 clamp(180px, 45%, 280px);
+  width: clamp(180px, 45%, 280px);
+  height: clamp(100px, 16vw, 150px);
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.equipment,
+.price {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: var(--text-inactive-color);
+  font-weight: 600;
+  font-size: clamp(12px, 4.25vw, 16px);
+}
+
+.equipmentButton {
+  align-self: flex-start;
+  min-width: 65%;
+  border-radius: 24px;
+}
+
+.priceValue {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(18px, 6.5vw, 26px);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.bookButton {
+  margin-top: 8px;
+}
+
+@media (width <= 480px) {
+  .description {
+    line-height: 1.25;
+    text-align: left;
+  }
+
+  .images {
+    gap: 8px;
+  }
+
+  .image {
+    flex-basis: 45%;
+    width: 45%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (width >= 768px) {
+  .image {
+    flex-basis: 45%;
+    width: 50%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}

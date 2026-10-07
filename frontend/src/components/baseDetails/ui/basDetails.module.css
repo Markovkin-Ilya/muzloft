@@ -1,0 +1,204 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 12px;
+  color: var(--text-primary-color);
+  font-family: var(--main-font-family);
+  background-color: var(--dark-background);
+  border-radius: 22px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  margin: 0;
+  color: var(--background);
+  font-weight: 800;
+  font-size: clamp(24px, 8vw, 34px);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.address {
+  margin: 0;
+  color: var(--text-inactive-color);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.description {
+  margin: 0;
+  color: var(--text-primary-color);
+  font-weight: 500;
+  font-size: clamp(14px, 1.5vw, 18px);
+  line-height: 1.3;
+  text-align: justify;
+  overflow-wrap: anywhere;
+}
+
+.phone {
+  align-self: flex-start;
+  max-width: 100%;
+  color: var(--text-primary-color);
+  font-weight: 700;
+  font-size: clamp(14px, 1.5vw, 18px);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.images {
+  display: flex;
+  gap: 10px;
+  overflow: auto hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.images::-webkit-scrollbar {
+  display: none;
+}
+
+.image {
+  flex: 0 0 clamp(180px, 45%, 280px);
+  width: clamp(180px, 45%, 280px);
+  height: clamp(100px, 16vw, 150px);
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.bookButton,
+.rentButton {
+  width: 100%;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: var(--text-inactive-color);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.rooms,
+.rent {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.roomList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.roomButton {
+  border-radius: 24px;
+}
+
+.rating {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: flex-start;
+  padding: 3px 10px;
+  color: var(--text-primary-color);
+  font-family: var(--main-font-family);
+  line-height: 1;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.rating::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--colors-interface-success);
+  border-radius: 12px;
+  content: "";
+  transition: opacity 0.2s;
+}
+
+.rating > * {
+  position: relative;
+  z-index: 1;
+}
+
+.rating:disabled {
+  cursor: not-allowed;
+}
+
+.rating:disabled::before {
+  opacity: 0.5;
+}
+
+.rating:hover:not(:disabled)::before {
+  opacity: 0.8;
+}
+
+.ratingScore {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ratingValue {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.starIcon {
+  width: 26px;
+  height: 24px;
+}
+
+.reviewCount {
+  font-weight: 300;
+  font-size: 16px;
+}
+
+@media (width <= 480px) {
+  .description {
+    font-size: 14px;
+    line-height: 1.25;
+    text-align: left;
+  }
+
+  .phone {
+    font-size: 15px;
+  }
+
+  .images {
+    gap: 8px;
+  }
+
+  .image {
+    flex-basis: 45%;
+    width: 45%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (width >= 768px) {
+  .description {
+    line-height: 1.4;
+  }
+
+  .image {
+    flex-basis: 45%;
+    width: 45%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
