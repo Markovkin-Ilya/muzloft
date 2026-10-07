@@ -3,6 +3,9 @@ export type TMenuItem = {
   to: string;
 };
 
+export type TMenuMode = "default" | "compact";
+
 export type TMenuProps = {
   items: TMenuItem[];
+  mode?: TMenuMode;
 };

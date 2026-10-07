@@ -18,7 +18,7 @@ export const Default: Story = {
     items: [
       { label: "Все", to: "/" },
       { label: "События", to: "/events" },
-      { label: "Брони", to: "/booking" },
+      { label: "Бронирование", to: "/booking" },
       { label: "Репетиции", to: "/rehearsals" },
       { label: "Избранное", to: "/favorites" },
       { label: "Профиль", to: "/profile" },

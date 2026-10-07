@@ -1,11 +1,27 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect, useRef, WheelEvent as ReactWheelEvent } from "react";
 import { Link } from "react-router-dom";
 import styles from "./menu.module.css";
 import { TMenuUIProps } from "./type";
 
-export const MenuUI: FC<TMenuUIProps> = ({ items, activeIndex }) => {
+export const MenuUI: FC<TMenuUIProps> = ({
+  items,
+  activeIndex,
+  mode = "default",
+}) => {
   const viewportRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Array<HTMLAnchorElement | null>>([]);
+
+  const handleWheel = (event: ReactWheelEvent<HTMLDivElement>) => {
+    const viewport = event.currentTarget;
+
+    if (
+      viewport.scrollWidth > viewport.clientWidth &&
+      Math.abs(event.deltaY) > Math.abs(event.deltaX)
+    ) {
+      event.preventDefault();
+      viewport.scrollLeft += event.deltaY;
+    }
+  };
 
   useEffect(() => {
     const viewport = viewportRef.current;
@@ -39,7 +55,7 @@ export const MenuUI: FC<TMenuUIProps> = ({ items, activeIndex }) => {
 
   return (
     <nav className={styles.menu} aria-label="Разделы">
-      <div className={styles.viewport} ref={viewportRef}>
+      <div className={styles.viewport} ref={viewportRef} onWheel={handleWheel}>
         <div className={styles.track}>
           {items.map((item, index) => {
             const isActive = index === activeIndex;
@@ -51,7 +67,7 @@ export const MenuUI: FC<TMenuUIProps> = ({ items, activeIndex }) => {
                   itemRefs.current[index] = element;
                 }}
                 to={item.to}
-                className={`${styles.item} ${isActive ? styles.itemActive : ""}`}
+                className={`${styles.item} ${mode === "compact" ? styles.itemCompact : ""} ${isActive ? styles.itemActive : ""}`}
                 aria-current={isActive ? "page" : undefined}
               >
                 {item.label}

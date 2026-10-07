@@ -3,9 +3,9 @@ import { matchPath, useLocation } from "react-router-dom";
 import { MenuUI } from "./ui/menu";
 import { TMenuProps } from "./type";
 
-export type { TMenuItem, TMenuProps } from "./type";
+export type { TMenuItem, TMenuMode, TMenuProps } from "./type";
 
-export const Menu: FC<TMenuProps> = ({ items }) => {
+export const Menu: FC<TMenuProps> = ({ items, mode = "default" }) => {
   const { pathname } = useLocation();
 
   const matchedIndex = items.reduce(
@@ -24,5 +24,5 @@ export const Menu: FC<TMenuProps> = ({ items }) => {
   );
   const activeIndex = matchedIndex === -1 && items.length > 0 ? 0 : matchedIndex;
 
-  return <MenuUI items={items} activeIndex={activeIndex} />;
+  return <MenuUI items={items} activeIndex={activeIndex} mode={mode} />;
 };
