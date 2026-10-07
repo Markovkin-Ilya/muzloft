@@ -1,9 +1,6 @@
 .navigate {
-  width: 100%;
-}
-
-.conteiner {
-  margin: 10px ;
+  max-width: 600px;
+  margin: 0 auto;
   background-color: var(--background);
   border-radius: 30px;
 }
@@ -12,8 +9,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: clamp(4px 10px 16px);
-  box-sizing: border-box;
   width: 100%;
 }
 
@@ -21,7 +16,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5px 10px;
+  padding: 5px;
   color: var(--text-primary-color);
   text-decoration: none;
 }
@@ -30,7 +25,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5px 10px;
+  padding: 5px;
   color: var(--text-primary-color);
   text-decoration: none;
   background-color: var(--active-background);
@@ -39,13 +34,12 @@
 
 .text {
   margin: 2px;
-  font-weight: 800;
-  font-size: clamp(9px 11px 13px);
+  font-weight: 600;
+  font-size: clamp(8px, 3vw, 18px);
   font-family: var(--main-font-family);
-  white-space: nowrap;
 }
 
 .icon {
-  height: clamp(20px 25px 30px);
+  height: clamp(20px, 4vw, 30px);
   margin: 2px;
 }

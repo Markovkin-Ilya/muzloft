@@ -6,7 +6,7 @@
   box-sizing: border-box;
   color: var(--text-primary-color);
   font-weight: 600;
-  font-size: 20px;
+  font-size: clamp(12px, 4vw, 20px);
   font-family: var(--main-font-family);
   background-color: var(--background);
   border: none;

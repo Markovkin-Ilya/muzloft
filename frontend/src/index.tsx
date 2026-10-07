@@ -1,12 +1,11 @@
 import React from "react";
 import * as ReactDOMClient from "react-dom/client";
-import App from "./components/app/app";
+import App from "./pages/app/app";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./services/store";
 
-import "./index.scss";
-import "./utils/styles.css";
+import "./index.css";
 import "./assets/fonts/fonts.css";
 
 const container = document.getElementById("root") as HTMLElement;

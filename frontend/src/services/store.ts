@@ -1,17 +1,17 @@
-import { configureStore, combineSlices } from '@reduxjs/toolkit';
-import { userSlice } from './user/slice'
+import { configureStore, combineSlices } from "@reduxjs/toolkit";
+import { userSlice } from "./user/slice";
 
 import {
   TypedUseSelectorHook,
   useDispatch as dispatchHook,
-  useSelector as selectorHook
-} from 'react-redux';
+  useSelector as selectorHook,
+} from "react-redux";
 
-const rootReducer = combineSlices( userSlice)
+const rootReducer = combineSlices(userSlice);
 
 export const store = configureStore({
   reducer: rootReducer,
-  devTools: process.env.NODE_ENV !== 'production'
+  devTools: process.env.NODE_ENV !== "production",
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

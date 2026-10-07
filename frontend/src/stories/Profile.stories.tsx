@@ -46,3 +46,19 @@ export const InEditingMode: Story = {
     initiallyEditing: true,
   },
 };
+
+export const AllErrors: Story = {
+  args: {
+    avatar: guitaristAvatar,
+    phone: "+7 (999) 000-00-00",
+    email: "invalid-email",
+    login: "ab",
+    initiallyEditing: true,
+    errors: {
+      phone: "Введите корректный номер телефона",
+      email: "Введите корректный email",
+      login: "Логин должен содержать минимум 3 символа",
+      password: "Пароль должен содержать минимум 8 символов",
+    },
+  },
+};
