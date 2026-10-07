@@ -4,7 +4,7 @@ export type TUser = {
   email: string;
   phone: string;
   avatar?: string;
-  repetitions:TRepetition[]; // Данные о забронированных репетициях
+  repetitions: TRepetition[]; // Данные о забронированных репетициях
 };
 
 export type TRepetition = {
@@ -13,7 +13,7 @@ export type TRepetition = {
   address: string; // адрес базы
   room: string; // название комнаты
   slot: ISlot; // забронированный слот
-  instruments:IInstrument[]; // инструмент
+  instruments: IInstrument[]; // инструмент
   payment: "online" | "card" | "cash"; // способ оплаты
 };
 
@@ -25,10 +25,10 @@ export type ISlot = {
 };
 
 export type IInstrument = {
-  _id:string; // ID инструмента
-  title:string // название инструмента
-  category:string; // Категория инструмента
-  image:string;  // картинка инструмента
-  slot:ISlot; // забронированный слот
-  binding:boolean; // привязан инструмент к комнате или нет
-}
+  _id: string; // ID инструмента
+  title: string; // название инструмента
+  category: string; // Категория инструмента
+  image: string; // картинка инструмента
+  slot: ISlot; // забронированный слот
+  binding: boolean; // привязан инструмент к комнате или нет
+};

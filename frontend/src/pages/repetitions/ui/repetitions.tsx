@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import { FC } from "react";
 
-import { RepetitionsUIProps } from './type';
-import { Repetition } from '@components/repetition/repetition';
+import { RepetitionsUIProps } from "./type";
+import { Repetition } from "@components/repetition/repetition";
 
 export const RepetitionsUI: FC<RepetitionsUIProps> = ({ repetitions }) => (
   <div>

@@ -6,10 +6,12 @@
   overflow: hidden;
   background-color: #0f0f0f;
   background-image:
-    url('@assets/images/app/pattern for background.svg'),
-    url('@assets/images/app/pattern for background.svg');
+    url("@assets/images/app/pattern for background.svg"),
+    url("@assets/images/app/pattern for background.svg");
   background-repeat: no-repeat, no-repeat;
-  background-position: left top, right bottom;
+  background-position:
+    left top,
+    right bottom;
 }
 
 .page {

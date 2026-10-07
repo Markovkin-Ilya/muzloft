@@ -33,7 +33,7 @@ export const ProfileUI: FC<TProfileUIProps> = ({
           onClick={onAvatarClick}
         >
           {avatar && <img src={avatar} alt={login} className={styles.avatar} />}
-          {isEditing && avatar &&  (
+          {isEditing && avatar && (
             <div className={styles.overlay}>
               <img
                 src={pencilIcon}

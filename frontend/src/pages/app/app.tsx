@@ -46,9 +46,9 @@ const App = () => {
         </Routes>
       </div>
       <div className={styles.footer}>
-        <Navigation/>
+        <Navigation />
       </div>
-      
+
       {backgroundLocation && (
         <Routes>
           <Route
