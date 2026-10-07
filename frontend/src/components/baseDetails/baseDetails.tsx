@@ -18,16 +18,10 @@ export const BaseDetails: FC<TBaseDetailsProps> = ({
   onShowReviews,
 }) => {
   const reviewCount = base.comments.length;
-  const rating =
-    reviewCount === 0
-      ? 0
-      : base.comments.reduce((sum, comment) => sum + comment.scores, 0) /
-        reviewCount;
 
   return (
     <BasDetailsUI
       base={base}
-      rating={rating}
       reviewCount={reviewCount}
       onBook={onBook}
       onRoomSelect={onRoomSelect}

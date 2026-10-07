@@ -36,34 +36,35 @@ export type TInstrument = {
 export type TBase = {
   _id: string; // ID базы
   title: string; // название базы
-  description:string; // описание базы
-  image:string; // аватар базы
-  address:string; // адрес базы
-  phone:string; // Телефон для связи с базой
-  ownerid:string; // ID владельца
-  rooms:TRoom[]; // комнаты для репетицый
-  instruments:TInstrument[]; // инструменты в общем доступе
-  comments:TComment[]; // отзывы о базе от посетителей
+  description: string; // описание базы
+  image: string; // аватар базы
+  address: string; // адрес базы
+  rating: number; // средний рейтинг базы
+  phone: string; // Телефон для связи с базой
+  ownerid: string; // ID владельца
+  rooms: TRoom[]; // комнаты для репетицый
+  instruments: TInstrument[]; // инструменты в общем доступе
+  comments: TComment[]; // отзывы о базе от посетителей
 };
 
 export type TRoom = {
-  _id:string; // ID комнаты
-  title:string // название комнаты
-  description:string; // описание комнаты
-  image:string[];  // картинки комнаты
-  slots:TSlot[]; // слоты для бронирования
-  instruments:TInstrument[]; // инструменты в комнате
-}
+  _id: string; // ID комнаты
+  title: string; // название комнаты
+  description: string; // описание комнаты
+  image: string[]; // картинки комнаты
+  slots: TSlot[]; // слоты для бронирования
+  instruments: TInstrument[]; // инструменты в комнате
+};
 
 export type TComment = {
   _id: string; // ID отзыва
-  artistid:string; // ID музыканта
+  artistid: string; // ID музыканта
   author?: {
     login: string;
     avatar?: string;
   }; // данные автора отзыва
-  room:string; // название комнаты
+  room: string; // название комнаты
   scores: number; // оценка репбазы
   date: string; // дата отзыва в формате YYYY-MM-DD
   comment: string; // комментарий к отзыву
-}
+};

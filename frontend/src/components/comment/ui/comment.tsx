@@ -39,11 +39,7 @@ export const CommentUI: FC<TCommentUIProps> = ({ comment }) => {
 
       <div className={styles.author}>
         {comment.author?.avatar ? (
-          <img
-            className={styles.avatar}
-            src={comment.author.avatar}
-            alt=""
-          />
+          <img className={styles.avatar} src={comment.author.avatar} alt="" />
         ) : (
           <span className={styles.avatarFallback} aria-hidden="true">
             {authorInitial}

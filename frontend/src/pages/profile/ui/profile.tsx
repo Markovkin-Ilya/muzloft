@@ -25,7 +25,8 @@ export const ProfileUI: FC<TProfileUIProps> = ({
   onPasswordChange,
   onFileChange,
 }) => {
-  const avatarInitial = login.trim().charAt(0).toLocaleUpperCase("ru-RU") || "?";
+  const avatarInitial =
+    login.trim().charAt(0).toLocaleUpperCase("ru-RU") || "?";
 
   return (
     <div className={styles.profile}>

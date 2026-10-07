@@ -21,7 +21,6 @@ const getReviewLabel = (count: number) => {
 
 export const BasDetailsUI: FC<TBasDetailsUIProps> = ({
   base,
-  rating,
   reviewCount,
   onBook,
   onRoomSelect,
@@ -124,12 +123,12 @@ export const BasDetailsUI: FC<TBasDetailsUIProps> = ({
         <button
           className={styles.rating}
           onClick={onShowReviews}
-          aria-label={`Рейтинг ${rating.toFixed(1)}, ${reviewCount} ${getReviewLabel(reviewCount)}`}
+          aria-label={`Рейтинг ${base.rating.toFixed(1)}, ${reviewCount} ${getReviewLabel(reviewCount)}`}
           type="button"
         >
           <div className={styles.ratingScore}>
             <span className={styles.ratingValue}>
-              {rating.toFixed(1).replace(".", ",")}
+              {base.rating.toFixed(1).replace(".", ",")}
             </span>
             <img
               src={starIcon}
