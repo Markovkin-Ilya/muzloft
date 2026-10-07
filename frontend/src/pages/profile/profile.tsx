@@ -1,21 +1,24 @@
-import { FC, useState, useRef, useMemo, useCallback } from 'react';
-import { useSelector } from '@services/store';
-import { useDispatch } from '@services/store';
-import { selectUser } from '@services/user/slice';
-import { update } from '@services/user/actions';
+import { FC, useState, useRef, useMemo, useCallback } from "react";
+import { useSelector } from "@services/store";
+import { useDispatch } from "@services/store";
+import { selectUser } from "@services/user/slice";
+import { update } from "@services/user/actions";
 
-import { ProfileUI } from './ui';
-import { TProfileUIProps } from './ui/type';
+import { ProfileUI } from "./ui";
+import { TProfileUIProps } from "./ui/type";
 
-export type TProfileProps = Omit<TProfileUIProps, 'isEditing' | 'isFormChanged'> & {
+export type TProfileProps = Omit<
+  TProfileUIProps,
+  "isEditing" | "isFormChanged"
+> & {
   initiallyEditing?: boolean;
 };
 
 export const Profile: FC<TProfileProps> = ({
   avatar,
-  phone = '',
-  email = '',
-  login = '',
+  phone = "",
+  email = "",
+  login = "",
   errors = {},
   initiallyEditing = false,
 }) => {
@@ -27,18 +30,20 @@ export const Profile: FC<TProfileProps> = ({
     phone: user?.phone || phone,
     email: user?.email || email,
     login: user?.login || login,
-    password: '',
+    password: "",
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = useCallback(() => {
-    dispatch(update({
-      email: formData.email,
-      name: formData.login,
-      password: formData.password,
-      phone: formData.phone,
-      login: formData.login,
-    }));
+    dispatch(
+      update({
+        email: formData.email,
+        name: formData.login,
+        password: formData.password,
+        phone: formData.phone,
+        login: formData.login,
+      }),
+    );
     setIsEditing(false);
   }, [dispatch, formData]);
 
@@ -47,7 +52,7 @@ export const Profile: FC<TProfileProps> = ({
       phone: user?.phone || phone,
       email: user?.email || email,
       login: user?.login || login,
-      password: '',
+      password: "",
     });
     setIsEditing(false);
   };
@@ -74,7 +79,18 @@ export const Profile: FC<TProfileProps> = ({
       formData.email !== (user?.email || email) ||
       formData.login !== (user?.login || login) ||
       !!formData.password,
-    [formData.phone, formData.email, formData.login, formData.password, user?.phone, user?.email, user?.login, phone, email, login]
+    [
+      formData.phone,
+      formData.email,
+      formData.login,
+      formData.password,
+      user?.phone,
+      user?.email,
+      user?.login,
+      phone,
+      email,
+      login,
+    ],
   );
 
   return (
@@ -92,10 +108,10 @@ export const Profile: FC<TProfileProps> = ({
       onCancel={handleCancel}
       avatarRef={fileInputRef}
       onAvatarClick={handleAvatarClick}
-      onPhoneChange={(value) => handleInputChange('phone', value)}
-      onEmailChange={(value) => handleInputChange('email', value)}
-      onLoginChange={(value) => handleInputChange('login', value)}
-      onPasswordChange={(value) => handleInputChange('password', value)}
+      onPhoneChange={(value) => handleInputChange("phone", value)}
+      onEmailChange={(value) => handleInputChange("email", value)}
+      onLoginChange={(value) => handleInputChange("login", value)}
+      onPasswordChange={(value) => handleInputChange("password", value)}
       onFileChange={handleFileChange}
     />
   );

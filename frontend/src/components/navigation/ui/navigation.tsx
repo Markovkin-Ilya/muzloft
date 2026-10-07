@@ -9,8 +9,7 @@ import profileIcon from "@/assets/images/navigation/profile.png";
 
 export const NavigationUI: FC<TNavigationUIProps> = () => (
   <div className={styles.navigate}>
-    <div className={styles.conteiner}>
-      <nav className={styles.menu}>
+    <nav className={styles.menu}>
       <NavLink
         to="/new"
         className={({ isActive }) =>
@@ -48,7 +47,7 @@ export const NavigationUI: FC<TNavigationUIProps> = () => (
       </NavLink>
 
       <NavLink
-        to="/schedule"
+        to="/repetitions"
         className={({ isActive }) =>
           isActive ? styles.linkActive : styles.link
         }
@@ -83,6 +82,5 @@ export const NavigationUI: FC<TNavigationUIProps> = () => (
         )}
       </NavLink>
     </nav>
-    </div>
   </div>
 );

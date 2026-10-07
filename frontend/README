@@ -74,9 +74,9 @@ interface IRoom {
 
 ```
 interface ISlot {
-  artistid:string; // ID музыканта за кем закреплен слот
-  date:string; // время начала слота
-  prise:string; // стоимость слота
+  start: string; // дата и время начала брони
+  end: string; // дата и время окончания брони
+  prise:string; // стоимость брони
 }
 ```
 
@@ -105,7 +105,7 @@ interface IArtist {
   email:string; // Почта
   phone:string; // Телефон 
   image:string;  // Фото музыканта
-  orders:order[]; // Данные о забронированных слотах
+  repetitions:IRepetition[]; // Данные о забронированных репетициях
 }
 ```
 
@@ -136,14 +136,14 @@ interface IComment {
 Данные о бронировании для сервера
 
 ```
-interface IOrder {
-  artistid:string; // ID музыканта
-  baseid:string; // ID базы
-  roomid:string; // ID комнаты
-  instrumentsid:string[]; // ID инструмента
-  slots:slot[]; // слоты для бронирования
+interface IRepetition {
+  base:string; // название базы
+  address:string; // адрес базы
+  room:string; // название комнаты
+  instruments:IInstrument[]; // инструмент
+  slots:slot[]; // забронированные слоты
   payment:string; // способ оплаты
-  total: number // сумма заказа
+  price: number // сумма заказа
 }
 ```
 
@@ -152,15 +152,6 @@ interface IOrder {
 ```
 interface IOrderResult {
   id:string; // ID заказа
-}
-```
-
-Репетиция
-```
-interface IRepetition {
-  artistid:string; // ID музыканта
-  base:IBase; // база
-  payment:string; // способ оплаты
 }
 ```
 

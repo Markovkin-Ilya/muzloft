@@ -1,6 +1,8 @@
 .repetition {
   display: flex;
   flex-direction: column;
+  max-width: 700px;
+  margin: 5px auto;
   padding: 10px;
   background-color: var(--dark-background);
   border-radius: 20px;
@@ -60,7 +62,6 @@
 
 .payment {
   display: flex;
-  justify-content: start;
 }
 
 .unpaid {
@@ -77,7 +78,7 @@
 
 .text {
   color: var(--text-primary-color);
-  font-weight: 200;
+  font-weight: 400;
   font-size: 16px;
 }
 

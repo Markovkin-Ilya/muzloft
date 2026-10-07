@@ -107,6 +107,21 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: 'tag'
-  }
+  },
+  core: {
+    disableTelemetry: true,
+  },
+  staticDirs: [],
+  previewHead: (head) => `
+    ${head}
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+    </style>
+  `
 };
 export default config;
