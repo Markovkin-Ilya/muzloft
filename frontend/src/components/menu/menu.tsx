@@ -8,21 +8,18 @@ export type { TMenuItem, TMenuMode, TMenuProps } from "./type";
 export const Menu: FC<TMenuProps> = ({ items, mode = "default" }) => {
   const { pathname } = useLocation();
 
-  const matchedIndex = items.reduce(
-    (currentIndex, item, index) => {
-      if (
-        matchPath({ path: item.to, end: false }, pathname) &&
-        (currentIndex === -1 ||
-          item.to.length > items[currentIndex].to.length)
-      ) {
-        return index;
-      }
+  const matchedIndex = items.reduce((currentIndex, item, index) => {
+    if (
+      matchPath({ path: item.to, end: false }, pathname) &&
+      (currentIndex === -1 || item.to.length > items[currentIndex].to.length)
+    ) {
+      return index;
+    }
 
-      return currentIndex;
-    },
-    -1,
-  );
-  const activeIndex = matchedIndex === -1 && items.length > 0 ? 0 : matchedIndex;
+    return currentIndex;
+  }, -1);
+  const activeIndex =
+    matchedIndex === -1 && items.length > 0 ? 0 : matchedIndex;
 
   return <MenuUI items={items} activeIndex={activeIndex} mode={mode} />;
 };
