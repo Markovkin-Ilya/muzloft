@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/Markovkin-Ilya/muzloft/compare/v2.1.0...v2.2.0) (2026-10-08)
+
+
+### Features
+
+* создан eventsSlice, EventDetails, TEvent и соответствующие stories ([2cd5a12](https://github.com/Markovkin-Ilya/muzloft/commit/2cd5a1295a639eecc3a76d526008599a9b617957))
+
 ## [2.1.0](https://github.com/Markovkin-Ilya/muzloft/compare/v2.0.1...v2.1.0) (2026-10-08)
 
 
