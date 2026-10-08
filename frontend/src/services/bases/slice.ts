@@ -72,9 +72,5 @@ export const basesSlice = createSlice({
 
 export const { selectBases, selectBaseId, selectBaseDetails } =
   basesSlice.selectors;
-export const {
-  setBases,
-  setBaseId,
-  setBaseDetails,
-  clearBase,
-} = basesSlice.actions;
+export const { setBases, setBaseId, setBaseDetails, clearBase } =
+  basesSlice.actions;

@@ -10,3 +10,9 @@
   src: url("./Rubik/Rubik.ttf") format("truetype");
   font-weight: 200 800;
 }
+
+@font-face {
+  font-family: "Extenda";
+  src: url("./Extenda/Extenda.otf") format("truetype");
+  font-weight: 200 800;
+}
