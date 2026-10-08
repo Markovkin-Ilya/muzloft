@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { TRoom } from "@utils/types";
-import { selectSelectedBaseDetails } from "@services/bases/slice";
+import { selectBaseDetails } from "@services/bases/slice";
 import { useSelector } from "@services/store";
 import { BasDetailsUI } from "./ui/basDetails";
 import { Preloader } from "@components/preloader/preloader";
@@ -18,7 +18,7 @@ export const BaseDetails: FC<TBaseDetailsProps> = ({
   onRentInstruments,
   onShowReviews,
 }) => {
-  const base = useSelector(selectSelectedBaseDetails);
+  const base = useSelector(selectBaseDetails);
 
   if (!base) {
     return <Preloader />;

@@ -9,14 +9,14 @@ export type TBaseCardData = Pick<
 
 type TBasesState = {
   bases: TBaseCardData[];
-  selectedBaseId: string | null;
-  selectedBaseDetails: TBase | null;
+  baseId: string | null;
+  baseDetails: TBase | null;
 };
 
 export const initialState: TBasesState = {
   bases: [],
-  selectedBaseId: null,
-  selectedBaseDetails: null,
+  baseId: null,
+  baseDetails: null,
 };
 
 export const basesSlice = createSlice({
@@ -26,17 +26,17 @@ export const basesSlice = createSlice({
     setBases: (state, action: PayloadAction<TBaseCardData[]>) => {
       state.bases = action.payload;
     },
-    setSelectedBaseId: (state, action: PayloadAction<string | null>) => {
-      state.selectedBaseId = action.payload;
-      state.selectedBaseDetails = null;
+    setBaseId: (state, action: PayloadAction<string | null>) => {
+      state.baseId = action.payload;
+      state.baseDetails = null;
     },
-    setSelectedBaseDetails: (state, action: PayloadAction<TBase | null>) => {
-      state.selectedBaseDetails = action.payload;
-      state.selectedBaseId = action.payload?._id ?? null;
+    setBaseDetails: (state, action: PayloadAction<TBase | null>) => {
+      state.baseDetails = action.payload;
+      state.baseId = action.payload?._id ?? null;
     },
-    clearSelectedBase: (state) => {
-      state.selectedBaseId = null;
-      state.selectedBaseDetails = null;
+    clearBase: (state) => {
+      state.baseId = null;
+      state.baseDetails = null;
     },
   },
   extraReducers: (builder) => {
@@ -53,28 +53,28 @@ export const basesSlice = createSlice({
         );
       })
       .addCase(fetchBaseDetails.pending, (state, action) => {
-        state.selectedBaseId = action.meta.arg;
-        state.selectedBaseDetails = null;
+        state.baseId = action.meta.arg;
+        state.baseDetails = null;
       })
       .addCase(fetchBaseDetails.fulfilled, (state, action) => {
-        if (state.selectedBaseId !== action.meta.arg) {
+        if (state.baseId !== action.meta.arg) {
           return;
         }
-        state.selectedBaseDetails = action.payload;
+        state.baseDetails = action.payload;
       });
   },
   selectors: {
     selectBases: (state) => state.bases,
-    selectSelectedBaseId: (state) => state.selectedBaseId,
-    selectSelectedBaseDetails: (state) => state.selectedBaseDetails,
+    selectBaseId: (state) => state.baseId,
+    selectBaseDetails: (state) => state.baseDetails,
   },
 });
 
-export const { selectBases, selectSelectedBaseId, selectSelectedBaseDetails } =
+export const { selectBases, selectBaseId, selectBaseDetails } =
   basesSlice.selectors;
 export const {
   setBases,
-  setSelectedBaseId,
-  setSelectedBaseDetails,
-  clearSelectedBase,
+  setBaseId,
+  setBaseDetails,
+  clearBase,
 } = basesSlice.actions;

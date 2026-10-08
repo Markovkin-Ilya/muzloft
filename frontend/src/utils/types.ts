@@ -68,3 +68,14 @@ export type TComment = {
   date: string; // дата отзыва в формате YYYY-MM-DD
   comment: string; // комментарий к отзыву
 };
+
+export type TEvent = {
+  id:string; // ID ивента
+  title:string // название ивента
+  subtitle?:string // подзагаловок ивента
+  text: string;
+  description:string; // описание ивента
+  image:string[];  // картинки ивента
+  promoсode?:string; // промокод ивента
+  basesid?:string[]; // ID баз участвующих в акции
+}

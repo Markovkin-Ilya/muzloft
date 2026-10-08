@@ -114,8 +114,10 @@ const config: StorybookConfig = {
       }
 
       #storybook-root {
+        box-sizing: border-box;
         width: 100%;
         height: 100%;
+        padding: 0 !important;
       }
     </style>
   `,

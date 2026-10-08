@@ -2,7 +2,7 @@ import React from "react";
 import type { Preview } from "@storybook/react-webpack5";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { storyStore } from "../src/stories/pages/data/store";
+import store from "../src/services/store";
 import "@utils/variables.css";
 import "@assets/fonts/fonts.css";
 
@@ -19,7 +19,7 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <MemoryRouter>
-        <Provider store={storyStore}>
+        <Provider store={store}>
           <div
             style={{
               margin: 0,

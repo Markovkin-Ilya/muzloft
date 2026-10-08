@@ -9,6 +9,7 @@ import { Header } from "@components/header/header";
 import { Navigation } from "@components/navigation/navigation";
 import { Modal } from "@components/modal/modal";
 import { BaseDetails } from "@components/baseDetails";
+import { EventDetails } from "@components/eventDetails";
 
 import { Protected } from "../../components/protected";
 //import { Login } from '../../pages/login/login'
@@ -18,7 +19,9 @@ import { Profile } from "@pages/profile";
 import { Repetitions } from "@pages/repetitions/repetitions";
 import { Bases } from "@pages/bases";
 import { useDispatch } from "@services/store";
-import { clearSelectedBase } from "@services/bases/slice";
+import { clearBase } from "@services/bases/slice";
+import { Events } from "@pages/events";
+import { clearEvent } from "@services/events/slice";
 import { checkUserAuth } from "@services/user/actions";
 //import { EventDetails } from '@pages/eventDetails'
 //import { NotFound404 } from '../../pages/not-fount-404/not-fount-404'
@@ -48,6 +51,7 @@ const App = () => {
               element={<Protected component={<Repetitions />} />}
             />
             <Route path="/bases" element={<Bases />} />
+            <Route path="/events" element={<Events />} />
           </Routes>
         </div>
       </div>
@@ -58,14 +62,23 @@ const App = () => {
         <Routes>
           <Route
             path="/events/:eventId"
-            element={<Modal onClose={() => navigate(-1)}></Modal>}
+            element={
+              <Modal
+                onClose={() => {
+                  dispatch(clearEvent());
+                  navigate(-1);
+                }}
+              >
+                <EventDetails />
+              </Modal>
+            }
           />
           <Route
             path="/bases/:baseId"
             element={
               <Modal
                 onClose={() => {
-                  dispatch(clearSelectedBase());
+                  dispatch(clearBase());
                   navigate(-1);
                 }}
               >

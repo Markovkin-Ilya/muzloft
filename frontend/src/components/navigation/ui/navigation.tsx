@@ -11,7 +11,7 @@ export const NavigationUI: FC<TNavigationUIProps> = () => (
   <div className={styles.navigate}>
     <nav className={styles.menu}>
       <NavLink
-        to="/new"
+        to="/events"
         className={({ isActive }) =>
           isActive ? styles.linkActive : styles.link
         }

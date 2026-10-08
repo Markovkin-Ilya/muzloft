@@ -1,5 +1,5 @@
 import { setCookie, getCookie } from "./cookie";
-import { TBase, TUser } from "./types";
+import { TBase, TEvent, TUser } from "./types";
 
 const URL = process.env.BURGER_API_URL;
 
@@ -12,6 +12,8 @@ type TServerResponse<T> = {
 
 type TBasesResponse = TServerResponse<{ bases: TBase[] }>;
 type TBaseResponse = TServerResponse<{ base: TBase }>;
+type TEventsResponse = TServerResponse<{ events: TEvent[] }>;
+type TEventResponse = TServerResponse<{ event: TEvent }>;
 
 type TRefreshResponse = TServerResponse<{
   refreshToken: string;
@@ -256,6 +258,26 @@ export const getBaseByIdApi = (baseId: string) =>
     .then((data) => {
       if (data.success) {
         return data.base;
+      }
+      return Promise.reject(data);
+    });
+
+export const getEventsApi = () =>
+  fetch(`${URL}/events`)
+    .then((res) => checkResponse<TEventsResponse>(res))
+    .then((data) => {
+      if (data.success) {
+        return data.events;
+      }
+      return Promise.reject(data);
+    });
+
+export const getEventByIdApi = (eventId: string) =>
+  fetch(`${URL}/events/${encodeURIComponent(eventId)}`)
+    .then((res) => checkResponse<TEventResponse>(res))
+    .then((data) => {
+      if (data.success) {
+        return data.event;
       }
       return Promise.reject(data);
     });

@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import App from "@pages/app/app";
-import { storyUser } from "./data/store";
+import { storyBases } from "./data/bases";
+import { storyEvents } from "./data/events";
+import { storyUser } from "./data/user";
 import { StoryPageSetup } from "./data/storyPageSetup";
 
 const meta: Meta<typeof App> = {
@@ -12,7 +14,12 @@ const meta: Meta<typeof App> = {
   },
   decorators: [
     (Story) => (
-      <StoryPageSetup path="/profile" user={storyUser}>
+      <StoryPageSetup
+        path="/events"
+        user={storyUser}
+        bases={storyBases}
+        events={storyEvents}
+      >
         <Story />
       </StoryPageSetup>
     ),

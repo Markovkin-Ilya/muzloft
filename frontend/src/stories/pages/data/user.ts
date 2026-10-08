@@ -1,12 +1,5 @@
-import { combineSlices, configureStore } from "@reduxjs/toolkit";
-import {
-  basesSlice,
-  initialState as initialBasesState,
-} from "@services/bases/slice";
-import { userSlice } from "@services/user/slice";
 import { TUser } from "@utils/types";
 import guitaristAvatar from "../../assets/profile/guitarist.jpg";
-import { storyBases } from "./bases";
 
 export const storyUser: TUser = {
   _id: "1",
@@ -45,27 +38,3 @@ export const storyUser: TUser = {
     },
   ],
 };
-
-const rootReducer = combineSlices(userSlice, basesSlice);
-
-export const storyStore = configureStore({
-  reducer: rootReducer,
-  preloadedState: {
-    user: {
-      user: null,
-      isAuthChecked: true,
-    },
-    bases: {
-      ...initialBasesState,
-      bases: storyBases.map(({ _id, title, image, address, rating }) => ({
-        _id,
-        title,
-        image,
-        address,
-        rating,
-      })),
-      selectedBaseId: storyBases[0]._id,
-      selectedBaseDetails: storyBases[0],
-    },
-  },
-});

@@ -1,9 +1,10 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 100%;
   min-width: 220px;
+  max-width: 700px;
   min-height: 400px;
+  margin: 0 auto;
   padding: 15px;
   background-color: var(--dark-background);
   border-radius: 20px;
@@ -19,8 +20,8 @@
 }
 
 .image {
-  width: 200px;
-  min-height: 220px;
+  width: clamp(200px, 40cqi, 320px);
+  min-height: clamp(220px, 44cqi, 352px);
   border-radius: 12px;
   object-fit: cover;
 }
@@ -34,7 +35,7 @@
 .title {
   color: var(--background);
   font-weight: 600;
-  font-size: 24px;
+  font-size: clamp(24px, calc(10px + 4cqi), 38px);
   font-family: var(--lage-font-family);
   text-align: center;
 }
@@ -42,7 +43,7 @@
 .subtitle {
   color: var(--text-primary-color);
   font-weight: 600;
-  font-size: 16px;
+  font-size: clamp(16px, calc(8px + 2cqi), 24px);
   font-family: var(--main-font-family);
   text-align: center;
 }
@@ -51,7 +52,7 @@
   margin-top: 5px;
   color: var(--text-inactive-color);
   font-weight: 400;
-  font-size: 14px;
+  font-size: clamp(14px, calc(7px + 1.5cqi), 20px);
   font-family: var(--main-font-family);
   text-align: center;
 }

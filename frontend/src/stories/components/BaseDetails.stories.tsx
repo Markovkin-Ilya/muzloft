@@ -12,7 +12,7 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <StoryPageSetup base={storyBases[0]}>
+      <StoryPageSetup base={storyBases[0]} bases={storyBases}>
         <Story />
       </StoryPageSetup>
     ),
