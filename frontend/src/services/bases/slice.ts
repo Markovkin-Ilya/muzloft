@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TBase } from "@utils/types";
+import { fetchBaseDetails, fetchBases } from "./actions";
 
 export type TBaseCardData = Pick<
   TBase,
@@ -38,6 +39,30 @@ export const basesSlice = createSlice({
       state.selectedBaseDetails = null;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBases.fulfilled, (state, action) => {
+        state.bases = action.payload.map(
+          ({ _id, title, image, address, rating }) => ({
+            _id,
+            title,
+            image,
+            address,
+            rating,
+          }),
+        );
+      })
+      .addCase(fetchBaseDetails.pending, (state, action) => {
+        state.selectedBaseId = action.meta.arg;
+        state.selectedBaseDetails = null;
+      })
+      .addCase(fetchBaseDetails.fulfilled, (state, action) => {
+        if (state.selectedBaseId !== action.meta.arg) {
+          return;
+        }
+        state.selectedBaseDetails = action.payload;
+      });
+  },
   selectors: {
     selectBases: (state) => state.bases,
     selectSelectedBaseId: (state) => state.selectedBaseId,
@@ -45,11 +70,8 @@ export const basesSlice = createSlice({
   },
 });
 
-export const {
-  selectBases,
-  selectSelectedBaseId,
-  selectSelectedBaseDetails,
-} = basesSlice.selectors;
+export const { selectBases, selectSelectedBaseId, selectSelectedBaseDetails } =
+  basesSlice.selectors;
 export const {
   setBases,
   setSelectedBaseId,

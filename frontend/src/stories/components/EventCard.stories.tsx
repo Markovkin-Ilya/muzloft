@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { EventCardUI } from "@components/eventCard/ui/eventCard";
-import guitarImage from "./assets/eventCard/гитарист с электрогитарой.jpg";
+import guitarImage from "../assets/eventCard/гитарист с электрогитарой.jpg";
 
 const meta = {
-  title: "components/eventCard",
+  title: "Components/EventCard",
   component: EventCardUI,
   tags: ["autodocs"],
   parameters: {

@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { ButtonUI, TButtonUIProps } from "./ui/button";
+import { ButtonUI } from "./ui/button";
+import { TButtonUIProps } from "./ui/type";
 
 export type { TButtonUIProps };
 

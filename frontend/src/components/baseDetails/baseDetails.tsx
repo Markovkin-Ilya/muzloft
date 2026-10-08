@@ -1,9 +1,11 @@
 import { FC } from "react";
-import { TBase, TRoom } from "@utils/types";
+import { TRoom } from "@utils/types";
+import { selectSelectedBaseDetails } from "@services/bases/slice";
+import { useSelector } from "@services/store";
 import { BasDetailsUI } from "./ui/basDetails";
+import { Preloader } from "@components/preloader/preloader";
 
 export type TBaseDetailsProps = {
-  base: TBase;
   onBook?: () => void;
   onRoomSelect?: (room: TRoom) => void;
   onRentInstruments?: () => void;
@@ -11,12 +13,17 @@ export type TBaseDetailsProps = {
 };
 
 export const BaseDetails: FC<TBaseDetailsProps> = ({
-  base,
   onBook,
   onRoomSelect,
   onRentInstruments,
   onShowReviews,
 }) => {
+  const base = useSelector(selectSelectedBaseDetails);
+
+  if (!base) {
+    return <Preloader />;
+  }
+
   const reviewCount = base.comments.length;
 
   return (

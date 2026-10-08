@@ -12,7 +12,18 @@ export const BaseCardUI: FC<TBaseCardUIProps> = ({
   onClick,
   onMap,
 }) => (
-  <div className={styles.card} onClick={onClick}>
+  <article
+    className={styles.card}
+    onClick={onClick}
+    onKeyDown={(event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        onClick();
+      }
+    }}
+    role="button"
+    tabIndex={0}
+  >
     <div className={styles.top}>
       <div className={styles.info}>
         <span className={styles.name}>{name}</span>
@@ -24,18 +35,23 @@ export const BaseCardUI: FC<TBaseCardUIProps> = ({
       <div
         className={`${styles.rating} ${rating >= 4.7 ? styles.ratingHigh : rating >= 4.3 ? styles.ratingMedium : styles.ratingLow}`}
       >
+        <span className={styles.ratingValue}>
+          {rating.toFixed(1).replace(".", ",")}
+        </span>
         <img src={starIcon} alt="Рейтинг" className={styles.starIcon} />
-        <span className={styles.ratingValue}>{rating}</span>
       </div>
-      <div
+      <button
+        type="button"
         className={styles.mapBtn}
+        onKeyDown={(event) => event.stopPropagation()}
         onClick={(e) => {
           e.stopPropagation();
           onMap();
         }}
+        aria-label={`Показать ${name} на карте`}
       >
         <img src={mapIcon} alt="Показать на карте" className={styles.mapIcon} />
-      </div>
+      </button>
     </div>
-  </div>
+  </article>
 );

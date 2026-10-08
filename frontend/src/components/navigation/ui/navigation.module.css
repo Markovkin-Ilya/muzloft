@@ -19,6 +19,9 @@
   padding: 5px;
   color: var(--text-primary-color);
   text-decoration: none;
+  border-radius: 30px;
+  transition:
+    background-color 180ms ease;
 }
 
 .linkActive {
