@@ -70,14 +70,7 @@ export const eventsSlice = createSlice({
   },
 });
 
-export const {
-  selectEvents,
-  selectEventId,
-  selectEventDetails,
-} = eventsSlice.selectors;
-export const {
-  setEvents,
-  setEventId,
-  setEventDetails,
-  clearEvent,
-} = eventsSlice.actions;
+export const { selectEvents, selectEventId, selectEventDetails } =
+  eventsSlice.selectors;
+export const { setEvents, setEventId, setEventDetails, clearEvent } =
+  eventsSlice.actions;

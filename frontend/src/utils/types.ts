@@ -70,12 +70,12 @@ export type TComment = {
 };
 
 export type TEvent = {
-  id:string; // ID ивента
-  title:string // название ивента
-  subtitle?:string // подзагаловок ивента
+  id: string; // ID ивента
+  title: string; // название ивента
+  subtitle?: string; // подзагаловок ивента
   text: string;
-  description:string; // описание ивента
-  image:string[];  // картинки ивента
-  promoсode?:string; // промокод ивента
-  basesid?:string[]; // ID баз участвующих в акции
-}
+  description: string; // описание ивента
+  image: string[]; // картинки ивента
+  promoсode?: string; // промокод ивента
+  basesid?: string[]; // ID баз участвующих в акции
+};

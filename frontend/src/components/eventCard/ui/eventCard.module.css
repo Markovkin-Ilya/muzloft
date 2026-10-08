@@ -35,8 +35,9 @@
 .title {
   color: var(--background);
   font-weight: 600;
-  font-size: clamp(24px, calc(10px + 4cqi), 38px);
+  font-size: clamp(28px, calc(10px + 4cqi), 38px);
   font-family: var(--lage-font-family);
+  letter-spacing: 1px;
   text-align: center;
 }
 
