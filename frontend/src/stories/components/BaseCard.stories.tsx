@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { BaseCardUI } from "../components/baseCard/ui/baseCard";
-import Ava from "./assets/baseCard/гитары.jpg";
+import { BaseCardUI } from "@components/baseCard/ui/baseCard";
+import Ava from "../assets/baseCard/гитары.jpg";
 
 const meta = {
-  title: "components/baseCard",
+  title: "Components/BaseCard",
   component: BaseCardUI,
   tags: ["autodocs"],
   parameters: {

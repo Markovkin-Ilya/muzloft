@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { Menu } from "../components/menu";
+import { Menu } from "@components/menu";
 
 const meta = {
-  title: "components/menu",
+  title: "Components/Menu",
   component: Menu,
   tags: ["autodocs"],
   parameters: {

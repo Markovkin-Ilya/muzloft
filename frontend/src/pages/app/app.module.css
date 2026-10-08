@@ -15,14 +15,31 @@
 }
 
 .page {
+  position: relative;
   flex: 1;
   box-sizing: border-box;
   width: 100%;
   min-width: 250px;
+  min-height: 0;
   margin-top: 10px;
+  overflow: hidden;
+  background: var(--background);
+  isolation: isolate;
+}
+
+.pageContent {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 250px;
+  height: 100%;
   padding: 10px;
   overflow-y: auto;
-  background: var(--background);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.pageContent::-webkit-scrollbar {
+  display: none;
 }
 
 .footer {

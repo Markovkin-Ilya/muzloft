@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
-import { HeaderUI } from "@components/header/ui/header";
+import { NavigationUI } from "@components/navigation/ui/navigation";
 
 const meta = {
-  title: "components/header",
-  component: HeaderUI,
+  title: "Components/Navigation",
+  component: NavigationUI,
   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
   },
-} satisfies Meta<typeof HeaderUI>;
+} satisfies Meta<typeof NavigationUI>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

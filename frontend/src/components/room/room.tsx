@@ -8,11 +8,7 @@ export type TRoomProps = {
   onShowInstruments?: (room: TRoom) => void;
 };
 
-export const Room: FC<TRoomProps> = ({
-  room,
-  onBook,
-  onShowInstruments,
-}) => {
+export const Room: FC<TRoomProps> = ({ room, onBook, onShowInstruments }) => {
   const availableSlotPrices = room.slots.map((slot) => slot.price);
   const priceRange =
     availableSlotPrices.length > 0

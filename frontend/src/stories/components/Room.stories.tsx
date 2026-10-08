@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { Room } from "../components/room";
+import { Room } from "@components/room";
 import { TRoom } from "@utils/types";
-import RoomYellow from "./assets/baseDetails/Комната Yellow.jpg";
-import RoomGreen from "./assets/baseDetails/Комната Green.jpg";
-import RoomBlue from "./assets/baseDetails/Комната Blue.jpg";
+import RoomYellow from "../assets/baseDetails/Комната Yellow.jpg";
+import RoomGreen from "../assets/baseDetails/Комната Green.jpg";
+import RoomBlue from "../assets/baseDetails/Комната Blue.jpg";
 
 const room: TRoom = {
-  id: "yellow",
+  _id: "yellow",
   title: "Yellow",
   description:
     "Комната в отдельном здании от остальных. Хорошая звукоизоляция. Просторная. Подходит для любых музыкальных групп",
@@ -29,7 +29,7 @@ const room: TRoom = {
 };
 
 const meta = {
-  title: "components/room",
+  title: "Components/Room",
   component: Room,
   tags: ["autodocs"],
   parameters: {

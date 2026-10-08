@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { SearchUI, TSearchUIProps } from "./ui/search";
+import { SearchUI } from "./ui/search";
+import { TSearchUIProps } from "./ui/type";
 
 export type { TSearchUIProps };
 

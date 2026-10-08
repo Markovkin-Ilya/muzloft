@@ -1,43 +1,45 @@
 .modal {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 100;
-  margin: auto;
-  padding: 40px 40px 60px;
-  background-color: #1c1c21;
-  border-radius: 40px;
-  box-shadow:
-    0 24px 32px rgb(0 0 0 / 4%),
-    0 16px 24px rgb(0 0 0 / 4%),
-    0 4px 8px rgb(0 0 0 / 4%),
-    0 0 1px rgb(0 0 0 / 4%);
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: var(--background);
   transform: translate(-50%, -50%);
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  min-height: 64px;
-}
-
 .button {
+  position: fixed;
+  z-index: 102;
   display: flex;
-  width: 24px;
-  height: 24px;
-  margin-left: auto;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
   padding: 0;
-  background-color: rgb(0 0 0 / 0%);
-  outline: none;
+  background-color: transparent;
+  border: 0;
   cursor: pointer;
 }
 
-.img {
-  margin: auto;
+.button img {
+  width: 32px;
+  height: 32px;
 }
 
 .content {
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
+  min-height: 0;
+  padding: 10px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
 }

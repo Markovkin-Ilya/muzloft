@@ -124,6 +124,7 @@ interface IInstrument {
 
 Отзыв
 
+```
 interface IComment {
   id:string; // ID отзыва
   artistid:string; // ID музыканта
@@ -132,6 +133,21 @@ interface IComment {
   date: string; // дата отзыва
   comment: string; // комментарий к отзыву
 }
+```
+
+Ивент
+
+```
+interface IEvent {
+  id:string; // ID ивента
+  title:string // название ивента
+  subtitle?:string // подзагаловок ивента
+  description:string; // описание ивента
+  image:string[];  // картинки ивента
+  promoсode?:string; // промокод ивента
+  basesid?:string[]; // ID баз участвующих в акции
+}
+```
 
 Данные о бронировании для сервера
 

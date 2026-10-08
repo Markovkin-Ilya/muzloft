@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { Comment } from "../components/comment";
+import { Comment } from "@components/comment";
 import { TComment } from "@utils/types";
-import guitaristAvatar from "./assets/profile/guitarist.jpg";
+import guitaristAvatar from "../assets/profile/guitarist.jpg";
 
 const comment: TComment = {
   _id: "review-1",
@@ -17,7 +17,7 @@ const comment: TComment = {
 };
 
 const meta = {
-  title: "components/Comment",
+  title: "Components/Comment",
   component: Comment,
   tags: ["autodocs"],
   args: {

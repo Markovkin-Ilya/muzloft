@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { SearchUI } from "../components/search/ui/search";
+import { SearchUI } from "@components/search/ui/search";
 import Icon from "@/assets/images/icons/magnifier.svg";
 
 const meta = {
-  title: "components/search",
+  title: "Components/Search",
   component: SearchUI,
   tags: ["autodocs"],
   parameters: {

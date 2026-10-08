@@ -21,7 +21,6 @@ const getReviewLabel = (count: number) => {
 
 export const BasDetailsUI: FC<TBasDetailsUIProps> = ({
   base,
-  rating,
   reviewCount,
   onBook,
   onRoomSelect,
@@ -76,7 +75,7 @@ export const BasDetailsUI: FC<TBasDetailsUIProps> = ({
             {base.rooms.flatMap((room) =>
               room.image.map((image, index) => (
                 <img
-                  key={`${room.id}-${image}-${index}`}
+                  key={`${room._id}-${image}-${index}`}
                   className={styles.image}
                   src={image}
                   alt={`${room.title} — фото ${index + 1}`}
@@ -96,7 +95,7 @@ export const BasDetailsUI: FC<TBasDetailsUIProps> = ({
             <div className={styles.roomList}>
               {base.rooms.map((room) => (
                 <Button
-                  key={room.id}
+                  key={room._id}
                   size="small"
                   className={styles.roomButton}
                   onClick={() => onRoomSelect?.(room)}
@@ -124,12 +123,12 @@ export const BasDetailsUI: FC<TBasDetailsUIProps> = ({
         <button
           className={styles.rating}
           onClick={onShowReviews}
-          aria-label={`Рейтинг ${rating.toFixed(1)}, ${reviewCount} ${getReviewLabel(reviewCount)}`}
+          aria-label={`Рейтинг ${base.rating.toFixed(1)}, ${reviewCount} ${getReviewLabel(reviewCount)}`}
           type="button"
         >
           <div className={styles.ratingScore}>
             <span className={styles.ratingValue}>
-              {rating.toFixed(1).replace(".", ",")}
+              {base.rating.toFixed(1).replace(".", ",")}
             </span>
             <img
               src={starIcon}

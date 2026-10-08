@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { RepetitionUI } from "../components/repetition/ui/repetition";
+import { RepetitionUI } from "@components/repetition/ui/repetition";
 
 const meta = {
-  title: "components/repetition",
+  title: "Components/Repetition",
   component: RepetitionUI,
   tags: ["autodocs"],
   parameters: {

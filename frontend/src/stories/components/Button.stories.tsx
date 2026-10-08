@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { ButtonUI } from "../components/button/ui/button";
+import { ButtonUI } from "@components/button/ui/button";
 
 const meta = {
-  title: "components/button",
+  title: "Components/Button",
   component: ButtonUI,
   tags: ["autodocs"],
   parameters: {

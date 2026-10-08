@@ -2,7 +2,6 @@ import { TBase, TRoom } from "@utils/types";
 
 export type TBasDetailsUIProps = {
   base: TBase;
-  rating: number;
   reviewCount: number;
   onBook?: () => void;
   onRoomSelect?: (room: TRoom) => void;
