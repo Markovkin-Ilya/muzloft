@@ -1,0 +1,109 @@
+.input {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  font-family: var(--main-font-family);
+  background-color: var(--active-background);
+  border: 3px solid var(--active-background);
+  border-radius: 8px;
+  cursor: text;
+  transition: 0.3s;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-box-shadow: 0 0 0 30px var(--background-element) inset !important;
+}
+
+.inputStatusActive {
+  border: 3px solid var(--colors-interface-accent);
+}
+
+.inputStatusError {
+  border: 3px solid var(--colors-interface-error);
+}
+
+.inputStatusDisabled {
+  cursor: not-allowed;
+}
+
+.inputIcon {
+  line-height: 0;
+  cursor: pointer;
+}
+
+.inputIconDisabled {
+  cursor: not-allowed;
+}
+
+.inputTextfield {
+  display: block;
+  width: 100%;
+  color: var(--text-primary-color);
+  font-weight: 600;
+  font-size: clamp(16px, 3vw, 21px);
+  font-family: var(--main-font-family);
+  background-color: transparent;
+  border: none;
+  cursor: text;
+}
+
+.inputTextfield::placeholder {
+  color: var(--text-primary-color);
+  font-size: clamp(16px, 3vw, 21px);
+}
+
+.inputTextfield:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-primary-color) !important;
+}
+
+.inputTextfield:focus {
+  outline: none;
+}
+
+.inputContainer {
+  width: 100%;
+  text-align: left;
+}
+
+.inputTextfieldDisabled {
+  color: var(--text-inactive-color);
+  cursor: not-allowed;
+}
+
+.inputTextfieldDisabled:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-inactive-color) !important;
+}
+
+.inputError {
+  display: block;
+  max-width: 100%;
+  margin-top: 4px;
+  color: var(--colors-interface-error);
+  font-size: clamp(9px, 3vw, 12px);
+  font-family: var(--main-font-family);
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.inputDefault {
+  width: 100%;
+  min-height: 45px;
+}
+
+.inputSmall {
+  width: 100%;
+}
+
+.inputSmall .inputTextfield {
+  font-size: clamp(12px, 4vw, 18px);
+}
+
+.inputSmall .inputTextfield::placeholder {
+  font-size: clamp(12px, 4vw, 18px);
+}

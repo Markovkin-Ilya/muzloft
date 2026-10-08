@@ -1,0 +1,108 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  background-color: var(--dark-background);
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--text-primary-color);
+  outline-offset: 2px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.image {
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--main-font-family);
+}
+
+.name {
+  color: var(--text-primary-color);
+  font-weight: 700;
+  font-size: clamp(19px, 5vw, 24px);
+  overflow-wrap: anywhere;
+}
+
+.address {
+  color: var(--text-inactive-color);
+  font-weight: 600;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  font-family: var(--main-font-family);
+  border-radius: 10px;
+}
+
+.ratingHigh {
+  background-color: transparent;
+}
+
+.ratingMedium {
+  background-color: transparent;
+}
+
+.ratingLow {
+  background-color: transparent;
+}
+
+.starIcon {
+  width: 26px;
+  height: 26px;
+}
+
+.ratingValue {
+  color: var(--text-primary-color);
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.mapBtn {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.mapBtn:focus-visible {
+  outline: 2px solid var(--text-primary-color);
+  outline-offset: 2px;
+}
+
+.mapIcon {
+  width: 40px;
+  height: 36px;
+}

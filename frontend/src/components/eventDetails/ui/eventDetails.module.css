@@ -1,0 +1,104 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: clamp(16px, 4vw, 24px);
+  color: var(--text-primary-color);
+  font-family: var(--main-font-family);
+  background-color: var(--dark-background);
+  border-radius: 22px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  color: var(--background);
+  font-weight: 900;
+  font-size: clamp(26px, 7vw, 38px);
+  font-family: var(--lage-font-family);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--text-primary-color);
+  font-weight: 800;
+  font-size: clamp(18px, 4.5vw, 24px);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.description,
+.text p {
+  margin: 0;
+  color: var(--text-primary-color);
+  font-weight: 600;
+  font-size: clamp(15px, 3.8vw, 18px);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.images::-webkit-scrollbar {
+  display: none;
+}
+
+.image {
+  flex: 0 0 min(58vw, 280px);
+  width: min(58vw, 280px);
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.promoCode {
+  margin: 0;
+  font-weight: 800;
+  font-size: clamp(17px, 4.5vw, 22px);
+  overflow-wrap: anywhere;
+}
+
+.promoLabel {
+  color: var(--text-inactive-color);
+}
+
+.promoValue {
+  color: var(--background);
+  text-transform: uppercase;
+}
+
+@media (width <= 380px) {
+  .card {
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .image {
+    flex-basis: 60vw;
+    width: 60vw;
+  }
+}
