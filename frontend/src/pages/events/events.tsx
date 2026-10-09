@@ -1,10 +1,9 @@
 import { FC, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { EventCard } from "@components/eventCard";
 import { fetchEventDetails, fetchEvents } from "@services/events/actions";
 import { selectEvents } from "@services/events/slice";
 import { useDispatch, useSelector } from "@services/store";
-import styles from "./events.module.css";
+import { EventsUI } from "./ui";
 
 export const Events: FC = () => {
   const dispatch = useDispatch();
@@ -29,20 +28,5 @@ export const Events: FC = () => {
     });
   };
 
-  return (
-    <main className={styles.events}>
-      <section className={styles.list} aria-label="Список событий">
-        {events.map((event) => (
-          <EventCard
-            key={event.id}
-            title={event.title}
-            subtitle={event.subtitle ?? ""}
-            description={event.description}
-            image={event.image[0] ?? ""}
-            onClick={() => handleEventSelect(event.id)}
-          />
-        ))}
-      </section>
-    </main>
-  );
+  return <EventsUI events={events} onEventSelect={handleEventSelect} />;
 };

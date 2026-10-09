@@ -21,6 +21,7 @@ import { Bases } from "@pages/bases";
 import { useDispatch } from "@services/store";
 import { clearBase } from "@services/bases/slice";
 import { Events } from "@pages/events";
+import { Instruments } from "@pages/instruments";
 import { clearEvent } from "@services/events/slice";
 import { checkUserAuth } from "@services/user/actions";
 //import { EventDetails } from '@pages/eventDetails'
@@ -83,6 +84,14 @@ const App = () => {
                 }}
               >
                 <BaseDetails />
+              </Modal>
+            }
+          />
+          <Route
+            path="/repetitions/:repetitionId"
+            element={
+              <Modal onClose={() => navigate(-1)}>
+                <Instruments mode="repetition" />
               </Modal>
             }
           />

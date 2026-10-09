@@ -1,16 +1,21 @@
 import { FC, PropsWithChildren, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { setBaseDetails } from "@services/bases/slice";
+import {
+  clearOrderDraft,
+  setBaseDetails,
+  setOrderDraftSlot,
+} from "@services/bases/slice";
 import { setEventDetails, setEvents } from "@services/events/slice";
 import { setIsAuthChecked, setUser } from "@services/user/slice";
 import { useDispatch } from "@services/store";
-import { TBase, TEvent, TUser } from "@utils/types";
+import { TBase, TEvent, TOrderDraft, TUser } from "@utils/types";
 
 type TStoryPageSetupProps = PropsWithChildren<{
   path?: string;
   user?: TUser | null;
   bases?: TBase[];
   base?: TBase;
+  orderDraft?: TOrderDraft;
   events?: TEvent[];
   event?: TEvent;
 }>;
@@ -21,12 +26,14 @@ export const StoryPageSetup: FC<TStoryPageSetupProps> = ({
   user,
   bases,
   base,
+  orderDraft,
   events,
   event,
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const hasInitialized = useRef(false);
+  const hasNavigated = useRef(false);
 
   useEffect(() => {
     if (hasInitialized.current) {
@@ -35,10 +42,6 @@ export const StoryPageSetup: FC<TStoryPageSetupProps> = ({
 
     hasInitialized.current = true;
 
-    if (path) {
-      navigate(path, { replace: true });
-    }
-
     if (user !== undefined) {
       dispatch(setUser(user));
       dispatch(setIsAuthChecked(true));
@@ -46,7 +49,14 @@ export const StoryPageSetup: FC<TStoryPageSetupProps> = ({
     if (events) {
       dispatch(setEvents(events));
     }
-  }, [dispatch, events, navigate, path, user]);
+  }, [dispatch, events, user]);
+
+  useEffect(() => {
+    if (path && !hasNavigated.current) {
+      hasNavigated.current = true;
+      navigate(path, { replace: true });
+    }
+  }, [navigate, path]);
 
   useEffect(() => {
     const originalFetch = window.fetch;
@@ -115,6 +125,20 @@ export const StoryPageSetup: FC<TStoryPageSetupProps> = ({
       dispatch(setBaseDetails(base));
     }
   }, [base, dispatch]);
+
+  useEffect(() => {
+    if (orderDraft) {
+      dispatch(
+        setOrderDraftSlot({
+          roomid: orderDraft.roomid,
+          date: orderDraft.slot.date,
+          period: orderDraft.slot.period,
+        }),
+      );
+    } else {
+      dispatch(clearOrderDraft());
+    }
+  }, [dispatch, orderDraft]);
 
   useEffect(() => {
     if (event) {

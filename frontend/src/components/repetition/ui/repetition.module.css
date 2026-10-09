@@ -1,8 +1,10 @@
 .repetition {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
   max-width: 700px;
-  margin: 5px auto;
+  margin: 0 auto;
   padding: 10px;
   background-color: var(--dark-background);
   border-radius: 20px;
@@ -51,7 +53,7 @@
   font-weight: 400;
   font-size: 20px;
   white-space: normal;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 .label {
@@ -80,6 +82,7 @@
   color: var(--text-primary-color);
   font-weight: 400;
   font-size: 16px;
+  overflow-wrap: anywhere;
 }
 
 .icon {

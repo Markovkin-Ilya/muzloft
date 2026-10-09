@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TBase } from "@utils/types";
+import { TBase, TOrderDraft, TSlot } from "@utils/types";
 import { fetchBaseDetails, fetchBases } from "./actions";
 
 export type TBaseCardData = Pick<
@@ -11,12 +11,14 @@ type TBasesState = {
   bases: TBaseCardData[];
   baseId: string | null;
   baseDetails: TBase | null;
+  orderDraft: TOrderDraft | null;
 };
 
 export const initialState: TBasesState = {
   bases: [],
   baseId: null,
   baseDetails: null,
+  orderDraft: null,
 };
 
 export const basesSlice = createSlice({
@@ -33,6 +35,46 @@ export const basesSlice = createSlice({
     setBaseDetails: (state, action: PayloadAction<TBase | null>) => {
       state.baseDetails = action.payload;
       state.baseId = action.payload?._id ?? null;
+    },
+    setOrderDraftSlot: (
+      state,
+      action: PayloadAction<{
+        roomid: string;
+        date: string;
+        period: TSlot["period"];
+      }>,
+    ) => {
+      const slot = action.payload;
+      const hasSameSlot =
+        state.orderDraft?.roomid === slot.roomid &&
+        state.orderDraft?.slot.date === slot.date &&
+        state.orderDraft.slot.period === slot.period;
+
+      if (!hasSameSlot) {
+        state.orderDraft = {
+          roomid: slot.roomid,
+          slot: { date: slot.date, period: slot.period },
+          instrumentsId: [],
+        };
+      }
+    },
+    toggleOrderInstrument: (state, action: PayloadAction<string>) => {
+      if (!state.orderDraft) {
+        return;
+      }
+
+      const instrumentIndex = state.orderDraft.instrumentsId.indexOf(
+        action.payload,
+      );
+
+      if (instrumentIndex === -1) {
+        state.orderDraft.instrumentsId.push(action.payload);
+      } else {
+        state.orderDraft.instrumentsId.splice(instrumentIndex, 1);
+      }
+    },
+    clearOrderDraft: (state) => {
+      state.orderDraft = null;
     },
     clearBase: (state) => {
       state.baseId = null;
@@ -67,10 +109,22 @@ export const basesSlice = createSlice({
     selectBases: (state) => state.bases,
     selectBaseId: (state) => state.baseId,
     selectBaseDetails: (state) => state.baseDetails,
+    selectOrderDraft: (state) => state.orderDraft,
   },
 });
 
-export const { selectBases, selectBaseId, selectBaseDetails } =
-  basesSlice.selectors;
-export const { setBases, setBaseId, setBaseDetails, clearBase } =
-  basesSlice.actions;
+export const {
+  selectBases,
+  selectBaseId,
+  selectBaseDetails,
+  selectOrderDraft,
+} = basesSlice.selectors;
+export const {
+  setBases,
+  setBaseId,
+  setBaseDetails,
+  setOrderDraftSlot,
+  toggleOrderInstrument,
+  clearOrderDraft,
+  clearBase,
+} = basesSlice.actions;

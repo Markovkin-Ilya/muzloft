@@ -4,6 +4,7 @@ import BaseCardImage from "../../assets/baseCard/гитары.jpg";
 import RoomYellow from "../../assets/baseDetails/Комната Yellow.jpg";
 import RoomGreen from "../../assets/baseDetails/Комната Green.jpg";
 import RoomBlue from "../../assets/baseDetails/Комната Blue.jpg";
+import { storyInstruments } from "./instruments";
 
 export const storyBases: TBase[] = [
   {
@@ -23,7 +24,7 @@ export const storyBases: TBase[] = [
         description: "Светлая репетиционная комната.",
         image: [RoomYellow],
         slots: [],
-        instruments: [],
+        instruments: storyInstruments.slice(0, 4),
       },
       {
         _id: "green",
@@ -31,7 +32,7 @@ export const storyBases: TBase[] = [
         description: "Комната с профессиональной аппаратурой.",
         image: [RoomGreen],
         slots: [],
-        instruments: [],
+        instruments: storyInstruments.slice(1, 5),
       },
       {
         _id: "blue",
@@ -39,10 +40,10 @@ export const storyBases: TBase[] = [
         description: "Уютная комната для репетиций.",
         image: [RoomBlue],
         slots: [],
-        instruments: [],
+        instruments: storyInstruments.slice(2, 6),
       },
     ],
-    instruments: [],
+    instruments: storyInstruments,
     comments: [
       {
         _id: "review-1",

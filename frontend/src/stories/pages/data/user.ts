@@ -1,5 +1,6 @@
 import { TUser } from "@utils/types";
 import guitaristAvatar from "../../assets/profile/guitarist.jpg";
+import { storyBookedInstruments } from "./instruments";
 
 export const storyUser: TUser = {
   _id: "1",
@@ -19,7 +20,7 @@ export const storyUser: TUser = {
         period: "3",
         price: 4800,
       },
-      instruments: [],
+      instruments: storyBookedInstruments,
       payment: "online",
     },
     {

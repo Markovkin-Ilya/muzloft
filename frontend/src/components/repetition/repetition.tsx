@@ -1,8 +1,11 @@
 import { FC, memo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { TRepetitionProps } from "./type";
 import { RepetitionUI } from "./ui/repetition";
 
 export const Repetition: FC<TRepetitionProps> = memo(({ repetition }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const slotDate = new Date(repetition.slot.date);
   const date = slotDate.toLocaleDateString("ru-RU", {
     day: "2-digit",
@@ -15,8 +18,11 @@ export const Repetition: FC<TRepetitionProps> = memo(({ repetition }) => {
   const formatTime = (value: Date) =>
     `${String(value.getHours()).padStart(2, "0")}:${String(value.getMinutes()).padStart(2, "0")}`;
   const time = `${formatTime(slotDate)} - ${formatTime(slotEnd)}`;
-
-  const handleInstrument = () => {};
+  const handleInstrument = () => {
+    navigate(`/repetitions/${repetition._id}`, {
+      state: { background: location },
+    });
+  };
 
   const handleMap = () => {};
 
