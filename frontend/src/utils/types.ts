@@ -13,7 +13,7 @@ export type TRepetition = {
   address: string; // адрес базы
   room: string; // название комнаты
   slot: TSlot; // забронированный слот
-  instruments: TInstrument[]; // инструмент
+  instruments: TBookedInstrument[]; // инструменты забронированные из общего доступа базы
   payment: "online" | "card" | "cash"; // способ оплаты
 };
 
@@ -21,7 +21,7 @@ export type TSlot = {
   _id: string;
   date: Date; // дата и время начала слота
   period: string; // продолжительность слота
-  price: number; // цена слота
+  price: number; // цена за репетицию
 };
 
 export type TInstrument = {
@@ -29,8 +29,12 @@ export type TInstrument = {
   title: string; // название инструмента
   category: string; // Категория инструмента
   image: string; // картинка инструмента
-  slot: TSlot; // забронированный слот
-  binding: boolean; // привязан инструмент к комнате или нет
+  slots?: TSlot[]; // забронированные слоты (если инструмент в общем доступе)
+  price?: number; // цена за один слот (если инструмент в общем доступе)
+};
+
+export type TBookedInstrument = TInstrument & {
+  slot: TSlot; // слот бронирования инструмента
 };
 
 export type TBase = {
@@ -43,7 +47,7 @@ export type TBase = {
   phone: string; // Телефон для связи с базой
   ownerid: string; // ID владельца
   rooms: TRoom[]; // комнаты для репетицый
-  instruments: TInstrument[]; // инструменты в общем доступе
+  instruments: TInstrument[]; // ID инструментов в общем доступе
   comments: TComment[]; // отзывы о базе от посетителей
 };
 
@@ -52,7 +56,7 @@ export type TRoom = {
   title: string; // название комнаты
   description: string; // описание комнаты
   image: string[]; // картинки комнаты
-  slots: TSlot[]; // слоты для бронирования
+  slots: TSlot[]; // забронированные слоты
   instruments: TInstrument[]; // инструменты в комнате
 };
 
@@ -70,7 +74,7 @@ export type TComment = {
 };
 
 export type TEvent = {
-  id: string; // ID ивента
+  _id: string; // ID ивента
   title: string; // название ивента
   subtitle?: string; // подзагаловок ивента
   text: string;
@@ -78,4 +82,19 @@ export type TEvent = {
   image: string[]; // картинки ивента
   promoсode?: string; // промокод ивента
   basesid?: string[]; // ID баз участвующих в акции
+};
+
+export type TOrder = {
+  _id: string; // ID заказа
+  userId: string; // ID пользователя
+  baseid: string; // ID базы
+  roomid: string; // ID комнаты
+  slot: TSlot; // забронированный слот
+  instrumentsId: string[]; // ID инструментов забронированных из общего доступа
+  payment: "online" | "card" | "cash"; // способ оплаты
+};
+
+export type TOrderDraft = Pick<TOrder, "instrumentsId"> & {
+  roomid: TOrder["roomid"];
+  slot: { date: string; period: TSlot["period"] };
 };

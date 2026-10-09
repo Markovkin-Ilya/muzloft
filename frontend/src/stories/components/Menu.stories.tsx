@@ -23,5 +23,6 @@ export const Default: Story = {
       { label: "Избранное", to: "/favorites" },
       { label: "Профиль", to: "/profile" },
     ],
+    onSelect: () => {},
   },
 };

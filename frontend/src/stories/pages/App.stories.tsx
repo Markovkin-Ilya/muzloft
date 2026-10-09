@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import App from "@pages/app/app";
 import { storyBases } from "./data/bases";
 import { storyEvents } from "./data/events";
+import { storyInstruments } from "./data/instruments";
 import { storyUser } from "./data/user";
 import { StoryPageSetup } from "./data/storyPageSetup";
 
@@ -19,6 +20,10 @@ const meta: Meta<typeof App> = {
         user={storyUser}
         bases={storyBases}
         events={storyEvents}
+        base={{
+          ...storyBases[0],
+          instruments: storyInstruments,
+        }}
       >
         <Story />
       </StoryPageSetup>

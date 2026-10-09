@@ -1,5 +1,4 @@
 import { FC, useEffect, useRef, WheelEvent as ReactWheelEvent } from "react";
-import { Link } from "react-router-dom";
 import styles from "./menu.module.css";
 import { TMenuUIProps } from "./type";
 
@@ -7,9 +6,10 @@ export const MenuUI: FC<TMenuUIProps> = ({
   items,
   activeIndex,
   mode = "default",
+  onSelect,
 }) => {
   const viewportRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<Array<HTMLAnchorElement | null>>([]);
+  const itemRefs = useRef<Array<HTMLElement | null>>([]);
 
   const handleWheel = (event: ReactWheelEvent<HTMLDivElement>) => {
     const viewport = event.currentTarget;
@@ -60,18 +60,21 @@ export const MenuUI: FC<TMenuUIProps> = ({
           {items.map((item, index) => {
             const isActive = index === activeIndex;
 
+            const className = `${styles.item} ${mode === "compact" ? styles.itemCompact : ""} ${isActive ? styles.itemActive : ""}`;
+
             return (
-              <Link
+              <button
                 key={item.to}
                 ref={(element) => {
                   itemRefs.current[index] = element;
                 }}
-                to={item.to}
-                className={`${styles.item} ${mode === "compact" ? styles.itemCompact : ""} ${isActive ? styles.itemActive : ""}`}
-                aria-current={isActive ? "page" : undefined}
+                type="button"
+                className={className}
+                aria-pressed={isActive}
+                onClick={() => onSelect(index)}
               >
                 {item.label}
-              </Link>
+              </button>
             );
           })}
         </div>

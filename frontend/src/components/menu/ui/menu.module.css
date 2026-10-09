@@ -40,7 +40,10 @@
   text-align: center;
   text-decoration: none;
   overflow-wrap: anywhere;
+  background: transparent;
+  border: 0;
   border-radius: 30px;
+  cursor: pointer;
   transition:
     color 180ms ease,
     background-color 180ms ease;
