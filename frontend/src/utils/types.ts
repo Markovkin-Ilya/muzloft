@@ -74,7 +74,7 @@ export type TComment = {
 };
 
 export type TEvent = {
-  _id: string; // ID ивента
+  _id?: string; // ID ивента
   title: string; // название ивента
   subtitle?: string; // подзагаловок ивента
   text: string;

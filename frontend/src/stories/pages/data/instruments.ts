@@ -40,7 +40,7 @@ export const storyInstruments: TInstrument[] = [
   {
     _id: "instrument-bass",
     title: "Ibanez GSR205B",
-    category: "Бас-гитары",
+    category: "Бас гитары",
     image: BassImage,
     price: 350,
     slots: [],

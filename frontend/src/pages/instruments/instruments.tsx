@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useParams } from "react-router-dom";
-import { TInstrumentButtonState } from "@components/instrument";
+import { TInstrumentButtonState } from "@components/shared/instrument";
 import {
   selectBaseDetails,
   selectOrderDraft,
@@ -117,6 +117,7 @@ export const Instruments: FC<TInstrumentsProps> = ({ mode }) => {
     return {
       instrument,
       repetitionDate,
+      hideSlotPrice: mode === "booking",
       repetitionPrice:
         instrument.price !== undefined && validRepetition
           ? instrument.price * durationHours

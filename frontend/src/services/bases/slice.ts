@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TBase, TOrderDraft, TSlot } from "@utils/types";
+import { TBase, TOrderDraft, TSlot, TRoom } from "@utils/types";
 import { fetchBaseDetails, fetchBases } from "./actions";
 
 export type TBaseCardData = Pick<
@@ -12,6 +12,7 @@ type TBasesState = {
   baseId: string | null;
   baseDetails: TBase | null;
   orderDraft: TOrderDraft | null;
+  room: TRoom | null;
 };
 
 export const initialState: TBasesState = {
@@ -19,6 +20,7 @@ export const initialState: TBasesState = {
   baseId: null,
   baseDetails: null,
   orderDraft: null,
+  room: null,
 };
 
 export const basesSlice = createSlice({
@@ -110,6 +112,10 @@ export const basesSlice = createSlice({
     selectBaseId: (state) => state.baseId,
     selectBaseDetails: (state) => state.baseDetails,
     selectOrderDraft: (state) => state.orderDraft,
+    selectRoom: (state, roomId?: string | null) =>
+      roomId
+        ? state.baseDetails?.rooms.find((room) => room._id === roomId) ?? null
+        : null,
   },
 });
 
@@ -118,6 +124,7 @@ export const {
   selectBaseId,
   selectBaseDetails,
   selectOrderDraft,
+  selectRoom,
 } = basesSlice.selectors;
 export const {
   setBases,

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { Room } from "@components/room";
+import { Room } from "@components/base/room";
 import { TRoom } from "@utils/types";
 import RoomYellow from "../assets/baseDetails/Комната Yellow.jpg";
 import RoomGreen from "../assets/baseDetails/Комната Green.jpg";

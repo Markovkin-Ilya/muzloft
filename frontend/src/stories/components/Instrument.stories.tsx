@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { Instrument } from "@components/instrument";
+import { Instrument } from "@components/shared/instrument";
 import { TInstrument } from "@utils/types";
-import  cintezator  from "../assets/instrument/Cинтезатор ROLAND GAIA-2.jpg";
+import cintezator from "../assets/instrument/Cинтезатор ROLAND GAIA-2.jpg";
 import acousticGuitar from "../assets/instrument/Акустическая гитара IBANEZ AAD170CE LGS.jpg";
 import acousticDrums from "../assets/instrument/Акустическая ударная установка TAMA CL52KRS-TPB SUPERSTAR CLASSIC MAPLE.jpg";
 import guitarAmplifier from "../assets/instrument/Комбоусилитель MARSHALL DSL40 COMBO.jpg";

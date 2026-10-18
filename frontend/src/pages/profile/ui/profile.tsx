@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styles from "./profile.module.css";
-import { ButtonUI } from "@components/button/ui/button";
-import { SearchUI } from "@components/search/ui/search";
+import { ButtonUI } from "@components/shared/button/ui/button";
+import { SearchUI } from "@components/shared/search/ui/search";
 import pencilIcon from "@assets/images/icons/pancil.svg";
 import { TProfileUIProps } from "./type";
 
