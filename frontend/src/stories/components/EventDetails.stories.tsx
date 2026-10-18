@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { EventDetails } from "@components/eventDetails";
+import { EventDetails } from "@components/event/eventDetails";
 import { storyEvents } from "../pages/data/events";
 import { StoryPageSetup } from "../pages/data/storyPageSetup";
 

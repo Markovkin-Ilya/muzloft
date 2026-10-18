@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { RepetitionUI } from "@components/repetition/ui/repetition";
+import { RepetitionUI } from "@components/shared/repetition/ui/repetition";
 
 const meta = {
   title: "Components/Repetition",

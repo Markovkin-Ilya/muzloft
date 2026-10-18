@@ -1,7 +1,7 @@
 import { FC, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { BaseCard } from "@components/baseCard";
-import { Search } from "@components/search";
+import { BaseCard } from "@components/base/baseCard";
+import { Search } from "@components/shared/search";
 import magnifierIcon from "@assets/images/icons/magnifier.svg";
 import { fetchBaseDetails, fetchBases } from "@services/bases/actions";
 import { selectBases } from "@services/bases/slice";

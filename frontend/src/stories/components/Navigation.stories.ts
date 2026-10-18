@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
-import { NavigationUI } from "@components/navigation/ui/navigation";
+import { NavigationUI } from "@components/app/navigation/ui/navigation";
 
 const meta = {
   title: "Components/Navigation",

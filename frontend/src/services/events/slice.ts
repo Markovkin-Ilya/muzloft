@@ -4,7 +4,7 @@ import { fetchEventDetails, fetchEvents } from "./actions";
 
 export type TEventCardData = Pick<
   TEvent,
-  "id" | "title" | "subtitle" | "description" | "image"
+  "_id" | "title" | "subtitle" | "description" | "image"
 >;
 
 type TEventsState = {
@@ -32,7 +32,7 @@ export const eventsSlice = createSlice({
     },
     setEventDetails: (state, action: PayloadAction<TEvent | null>) => {
       state.eventDetails = action.payload;
-      state.eventId = action.payload?.id ?? null;
+      state.eventId = action.payload?._id ?? null;
     },
     clearEvent: (state) => {
       state.eventId = null;
@@ -43,8 +43,8 @@ export const eventsSlice = createSlice({
     builder
       .addCase(fetchEvents.fulfilled, (state, action) => {
         state.events = action.payload.map(
-          ({ id, title, subtitle, description, image }) => ({
-            id,
+          ({ _id, title, subtitle, description, image }) => ({
+            _id,
             title,
             subtitle,
             description,

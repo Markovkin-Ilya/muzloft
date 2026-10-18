@@ -1,5 +1,5 @@
 import { TInstrument } from "@utils/types";
-import { TInstrumentButtonState } from "@components/instrument";
+import { TInstrumentButtonState } from "@components/shared/instrument";
 
 export type TInstrumentsMode = "room" | "base" | "repetition" | "booking";
 

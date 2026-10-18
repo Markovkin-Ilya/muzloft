@@ -1,10 +1,12 @@
 import { TBase } from "@utils/types";
 import BaseImage from "../../assets/baseDetails/Гитары.png";
-import BaseCardImage from "../../assets/baseCard/гитары.jpg";
+import BaseCardNarvana from "../../assets/baseCard/Nirvana.jpg";
+import BaseCardBluze from "../../assets/baseCard/bluze.jpg";
 import RoomYellow from "../../assets/baseDetails/Комната Yellow.jpg";
 import RoomGreen from "../../assets/baseDetails/Комната Green.jpg";
 import RoomBlue from "../../assets/baseDetails/Комната Blue.jpg";
 import { storyInstruments } from "./instruments";
+import { storyComments } from "./comments";
 
 export const storyBases: TBase[] = [
   {
@@ -44,39 +46,14 @@ export const storyBases: TBase[] = [
       },
     ],
     instruments: storyInstruments,
-    comments: [
-      {
-        _id: "review-1",
-        artistid: "artist-1",
-        room: "Green",
-        scores: 5,
-        date: "2026-09-15",
-        comment: "Отличная база и удобные комнаты.",
-      },
-      {
-        _id: "review-2",
-        artistid: "artist-2",
-        room: "Yellow",
-        scores: 4.5,
-        date: "2026-09-10",
-        comment: "Хорошие инструменты и приятный персонал.",
-      },
-      {
-        _id: "review-3",
-        artistid: "artist-3",
-        room: "Blue",
-        scores: 5,
-        date: "2026-09-02",
-        comment: "Вернемся еще.",
-      },
-    ],
+    comments: storyComments,
   },
   {
     _id: "kurt-club",
     title: "KurtClub",
     description:
       "Комфортные комнаты для репетиций с оборудованием для групп любого состава.",
-    image: BaseCardImage,
+    image: BaseCardNarvana,
     address: "г. Москва, ул. Садовая, д. 61",
     rating: 4.6,
     phone: "8(495) 555-55-56",
@@ -90,7 +67,7 @@ export const storyBases: TBase[] = [
     title: "Bluzoff",
     description:
       "Уютные репетиционные комнаты и необходимое оборудование для музыкантов.",
-    image: BaseCardImage,
+    image: BaseCardBluze,
     address: "г. Москва, ул. Живописная, д. 84",
     rating: 4.3,
     phone: "8(495) 555-55-57",

@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
-import { Instrument } from "@components/instrument";
-import { Menu, TMenuItem } from "@components/menu";
+import { Instrument } from "@components/shared/instrument";
+import { Menu, TMenuItem } from "@components/shared/menu";
 import styles from "./instrumentsUI.module.css";
 import { TInstrumentsUIProps } from "./type";
 
@@ -15,6 +15,12 @@ export const InstrumentsUI: FC<TInstrumentsUIProps> = ({ categories }) => {
     label: name,
     to: name,
   }));
+
+  if (categories.length === 0) {
+    return (
+        <p className={styles.message}>Инструменты по данному направлению не найдены</p>
+    );
+  }
 
   return (
     <section className={styles.instruments} aria-label="Инструменты">

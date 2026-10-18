@@ -94,7 +94,7 @@ export const StoryPageSetup: FC<TStoryPageSetupProps> = ({
           ? decodeURIComponent(eventRoute[1])
           : null;
         const event = eventId
-          ? events.find((storyEvent) => storyEvent.id === eventId)
+          ? events.find((storyEvent) => storyEvent._id === eventId)
           : null;
 
         return new Response(
