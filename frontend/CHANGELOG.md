@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/Markovkin-Ilya/muzloft/compare/v2.2.0...v2.3.0) (2026-10-19)
+
+
+### Features
+
+* добавил page comments настроил отображение инструментов в room и реструктуризировал components ([3d009eb](https://github.com/Markovkin-Ilya/muzloft/commit/3d009ebad075939fac550f1abd7c7371a0bd8ce8))
+* добавлен шрифт Extenda ([e0e069b](https://github.com/Markovkin-Ilya/muzloft/commit/e0e069b6fdeccffcbc55dbcd24029b09540a9081))
+* создан компонент Instruments и соответствующий Story. Доработаны basesSlice и userSlice ([34930d4](https://github.com/Markovkin-Ilya/muzloft/commit/34930d4e0c1adf0eaaa6d816d3a11a44967136a8))
+
+
+### Bug Fixes
+
+* удален лишний файл в корневой папке ([2d313c8](https://github.com/Markovkin-Ilya/muzloft/commit/2d313c8a5295b685ee24fe6f1f03097bd8a12e2e))
+
 ## [2.2.0](https://github.com/Markovkin-Ilya/muzloft/compare/v2.1.0...v2.2.0) (2026-10-08)
 
 
