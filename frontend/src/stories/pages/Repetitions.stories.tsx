@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { Repetitions } from "@pages/repetitions/repetitions";
+import { RepetitionsPage } from "@pages/repetitions";
 import { storyUser } from "./data/user";
 import { StoryPageSetup } from "./data/storyPageSetup";
 
 const meta = {
   title: "Pages/Repetitions",
-  component: Repetitions,
+  component: RepetitionsPage,
   tags: ["autodocs"],
   decorators: [
     (Story) => (
@@ -14,7 +14,7 @@ const meta = {
       </StoryPageSetup>
     ),
   ],
-} satisfies Meta<typeof Repetitions>;
+} satisfies Meta<typeof RepetitionsPage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

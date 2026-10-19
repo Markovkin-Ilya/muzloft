@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { Bases } from "@pages/bases";
+import { BasesPage } from "@pages/bases";
 import { storyBases } from "./data/bases";
 import { StoryPageSetup } from "./data/storyPageSetup";
 
 const meta = {
   title: "Pages/Bases",
-  component: Bases,
+  component: BasesPage,
   tags: ["autodocs"],
   decorators: [
     (Story) => (
@@ -14,7 +14,7 @@ const meta = {
       </StoryPageSetup>
     ),
   ],
-} satisfies Meta<typeof Bases>;
+} satisfies Meta<typeof BasesPage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

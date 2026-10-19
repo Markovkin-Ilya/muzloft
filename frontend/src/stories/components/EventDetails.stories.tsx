@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { EventDetails } from "@components/event/eventDetails";
+import { EventDetailsUI } from "@entities/event";
 import { storyEvents } from "../pages/data/events";
 import { StoryPageSetup } from "../pages/data/storyPageSetup";
 
 const meta = {
   title: "Components/EventDetails",
-  component: EventDetails,
+  component: EventDetailsUI,
   tags: ["autodocs"],
   parameters: {
     layout: "centered",
@@ -17,9 +17,13 @@ const meta = {
       </StoryPageSetup>
     ),
   ],
-} satisfies Meta<typeof EventDetails>;
+} satisfies Meta<typeof EventDetailsUI>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    event: storyEvents[0],
+  },
+};

@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { Profile } from "@pages/profile/profile";
+import { ProfilePage } from "@pages/profile";
 import { StoryPageSetup } from "./data/storyPageSetup";
 import guitaristAvatar from "../assets/profile/guitarist.jpg";
 
 const meta = {
   title: "Pages/Profile",
-  component: Profile,
+  component: ProfilePage,
   tags: ["autodocs"],
   parameters: {
     layout: "centered",
@@ -17,7 +17,7 @@ const meta = {
       </StoryPageSetup>
     ),
   ],
-} satisfies Meta<typeof Profile>;
+} satisfies Meta<typeof ProfilePage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

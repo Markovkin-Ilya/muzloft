@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { EventCard } from "@components/event/eventCard";
+import { EventCard } from "@entities/event";
 import styles from "./events.module.css";
 import { TEventsUIProps } from "./type";
 

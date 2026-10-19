@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { Comments } from "@pages/comments";
+import { CommentsPage } from "@pages/comments";
 import { storyBases } from "./data/bases";
 import { storyComments } from "./data/comments";
 import { StoryPageSetup } from "./data/storyPageSetup";
 
 const meta = {
   title: "Pages/Comments",
-  component: Comments,
+  component: CommentsPage,
   tags: ["autodocs"],
   decorators: [
     (Story) => (
@@ -15,7 +15,7 @@ const meta = {
       </StoryPageSetup>
     ),
   ],
-} satisfies Meta<typeof Comments>;
+} satisfies Meta<typeof CommentsPage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

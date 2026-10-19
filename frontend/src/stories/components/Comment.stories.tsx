@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { Comment } from "@components/base/comment";
+import { Comment } from "@entities/comment";
 import { TComment } from "@utils/types";
 import guitaristAvatar from "../assets/profile/guitarist.jpg";
 
