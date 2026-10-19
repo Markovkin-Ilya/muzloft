@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { BaseDetails } from "@components/base/baseDetails";
+import { BaseDetailsUI } from "@entities/base";
 import { storyBases } from "../pages/data/bases";
 import { StoryPageSetup } from "../pages/data/storyPageSetup";
 
 const meta = {
-  title: "Components/BaseDetails",
-  component: BaseDetails,
+  title: "Entities/BaseDetails",
+  component: BaseDetailsUI,
   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
@@ -17,13 +17,14 @@ const meta = {
       </StoryPageSetup>
     ),
   ],
-} satisfies Meta<typeof BaseDetails>;
+} satisfies Meta<typeof BaseDetailsUI>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    base: storyBases[0],
     onBook: () => {},
     onRoomSelect: () => {},
     onRentInstruments: () => {},

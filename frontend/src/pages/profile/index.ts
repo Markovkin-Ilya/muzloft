@@ -1,2 +1,2 @@
-export { Profile } from "./profile";
-export type { TProfileProps } from "./profile";
+export { ProfilePage } from "./ProfilePage";
+export type { TProfilePageProps } from "./ProfilePage";

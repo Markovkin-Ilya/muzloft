@@ -18,11 +18,17 @@
         "allowSyntheticDefaultImports": true,
         "baseUrl": ".",
         "paths": {
+            "@app": ["src/app/index.ts"],
+            "@app/*": ["src/app/*"],
             "@assets/*": ["src/assets/*"],
-            "@components/*": ["src/components/*"],
+            "@entities/*": ["src/entities/*"],
+            "@features/*": ["src/features/*"],
             "@pages/*": ["src/pages/*"],
+            "@shared": ["src/shared/index.ts"],
+            "@shared/*": ["src/shared/*"],
             "@services/*": ["src/services/*"],
-            "@utils/*": ["src/utils/*"]
+            "@utils/*": ["src/utils/*"],
+            "@widgets/*": ["src/widgets/*"]
         }
     },
     "outDir": "./dist/",

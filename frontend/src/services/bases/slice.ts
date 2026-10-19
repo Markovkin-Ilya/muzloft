@@ -114,7 +114,7 @@ export const basesSlice = createSlice({
     selectOrderDraft: (state) => state.orderDraft,
     selectRoom: (state, roomId?: string | null) =>
       roomId
-        ? state.baseDetails?.rooms.find((room) => room._id === roomId) ?? null
+        ? (state.baseDetails?.rooms.find((room) => room._id === roomId) ?? null)
         : null,
   },
 });

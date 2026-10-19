@@ -1,9 +1,6 @@
 import React from "react";
 import * as ReactDOMClient from "react-dom/client";
-import App from "./pages/app/app";
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import { store } from "./services/store";
+import { App, AppProviders } from "@app";
 
 import "./index.css";
 import "./assets/fonts/fonts.css";
@@ -13,10 +10,8 @@ const root = ReactDOMClient.createRoot(container!);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <AppProviders>
+      <App />
+    </AppProviders>
   </React.StrictMode>,
 );

@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { Events } from "@pages/events";
+import { EventsPage } from "@pages/events";
 import { storyEvents } from "./data/events";
 import { StoryPageSetup } from "./data/storyPageSetup";
 
 const meta = {
   title: "Pages/Events",
-  component: Events,
+  component: EventsPage,
   tags: ["autodocs"],
   decorators: [
     (Story) => (
@@ -14,7 +14,7 @@ const meta = {
       </StoryPageSetup>
     ),
   ],
-} satisfies Meta<typeof Events>;
+} satisfies Meta<typeof EventsPage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

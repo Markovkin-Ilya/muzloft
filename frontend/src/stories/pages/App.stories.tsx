@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import App from "@pages/app/app";
+import { App } from "@app";
 import { storyBases } from "./data/bases";
 import { storyComments } from "./data/comments";
 import { storyEvents } from "./data/events";

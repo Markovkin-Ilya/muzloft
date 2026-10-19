@@ -1,1 +1,1 @@
-export { Comments } from "./comments";
+export { CommentsPage } from "./CommentsPage";
