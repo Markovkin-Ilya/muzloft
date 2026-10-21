@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/Markovkin-Ilya/muzloft/compare/v2.3.0...v2.4.0) (2026-10-21)
+
+
+### Features
+
+* создал BookingFlow, BookingPage, RegisterPage, LoginPage, AuthForm, RepetitionSelector ([e19b085](https://github.com/Markovkin-Ilya/muzloft/commit/e19b085090bc0cc4760f0edd4745118069bb41e2))
+
 ## [2.3.0](https://github.com/Markovkin-Ilya/muzloft/compare/v2.2.0...v2.3.0) (2026-10-19)
 
 
