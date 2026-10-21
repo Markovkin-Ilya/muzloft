@@ -18,7 +18,7 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
   avatar,
   phone = "",
   email = "",
-  login = "",
+  name = "",
   errors = {},
   initiallyEditing = false,
 }) => {
@@ -29,7 +29,7 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
   const [formData, setFormData] = useState({
     phone: user?.phone || phone,
     email: user?.email || email,
-    login: user?.login || login,
+    name: user?.name || name,
     password: "",
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -38,10 +38,9 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
     dispatch(
       update({
         email: formData.email,
-        name: formData.login,
+        name: formData.name,
         password: formData.password,
         phone: formData.phone,
-        login: formData.login,
       }),
     );
     setIsEditing(false);
@@ -51,7 +50,7 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
     setFormData({
       phone: user?.phone || phone,
       email: user?.email || email,
-      login: user?.login || login,
+      name: user?.name || name,
       password: "",
     });
     setIsEditing(false);
@@ -77,19 +76,19 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
     () =>
       formData.phone !== (user?.phone || phone) ||
       formData.email !== (user?.email || email) ||
-      formData.login !== (user?.login || login) ||
+      formData.name !== (user?.name || name) ||
       !!formData.password,
     [
       formData.phone,
       formData.email,
-      formData.login,
+      formData.name,
       formData.password,
       user?.phone,
       user?.email,
-      user?.login,
+      user?.name,
       phone,
       email,
-      login,
+      name,
     ],
   );
 
@@ -98,7 +97,7 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
       avatar={user?.avatar || avatar}
       phone={formData.phone}
       email={formData.email}
-      login={formData.login}
+      name={formData.name}
       password={formData.password}
       errors={errors}
       isEditing={isEditing}
@@ -110,7 +109,7 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
       onAvatarClick={handleAvatarClick}
       onPhoneChange={(value) => handleInputChange("phone", value)}
       onEmailChange={(value) => handleInputChange("email", value)}
-      onLoginChange={(value) => handleInputChange("login", value)}
+      onNameChange={(value) => handleInputChange("name", value)}
       onPasswordChange={(value) => handleInputChange("password", value)}
       onFileChange={handleFileChange}
     />

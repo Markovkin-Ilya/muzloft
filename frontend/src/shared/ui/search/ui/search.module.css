@@ -6,7 +6,7 @@
   box-sizing: border-box;
   font-family: var(--main-font-family);
   background-color: var(--active-background);
-  border: 3px solid var(--active-background);
+  border: 4px solid var(--active-background);
   border-radius: 8px;
   cursor: text;
   transition: 0.3s;
@@ -17,7 +17,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-box-shadow: 0 0 0 30px var(--background-element) inset !important;
+  -webkit-box-shadow: 0 0 0 30px var(--active-background) inset !important;
 }
 
 .inputStatusActive {
@@ -43,10 +43,12 @@ input:-webkit-autofill:active {
 
 .inputTextfield {
   display: block;
+  box-sizing: border-box;
   width: 100%;
   color: var(--text-primary-color);
+  caret-color: var(--text-primary-color);
   font-weight: 600;
-  font-size: clamp(16px, 3vw, 21px);
+  font-size: clamp(16px, 4vw, 21px);
   font-family: var(--main-font-family);
   background-color: transparent;
   border: none;
@@ -55,11 +57,12 @@ input:-webkit-autofill:active {
 
 .inputTextfield::placeholder {
   color: var(--text-primary-color);
-  font-size: clamp(16px, 3vw, 21px);
+  font-size: clamp(16px, 4vw, 21px);
 }
 
 .inputTextfield:-webkit-autofill {
   -webkit-text-fill-color: var(--text-primary-color) !important;
+  caret-color: var(--text-primary-color);
 }
 
 .inputTextfield:focus {
@@ -73,11 +76,13 @@ input:-webkit-autofill:active {
 
 .inputTextfieldDisabled {
   color: var(--text-inactive-color);
+  caret-color: var(--text-inactive-color);
   cursor: not-allowed;
 }
 
 .inputTextfieldDisabled:-webkit-autofill {
   -webkit-text-fill-color: var(--text-inactive-color) !important;
+  caret-color: var(--text-inactive-color);
 }
 
 .inputError {

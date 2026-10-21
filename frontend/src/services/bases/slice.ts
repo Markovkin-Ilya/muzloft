@@ -38,26 +38,49 @@ export const basesSlice = createSlice({
       state.baseDetails = action.payload;
       state.baseId = action.payload?._id ?? null;
     },
+    startOrderDraft: (
+      state,
+      action: PayloadAction<{ baseid: string; roomid?: string | null }>,
+    ) => {
+      state.orderDraft = {
+        baseid: action.payload.baseid,
+        roomid: action.payload.roomid ?? null,
+        slot: null,
+        instrumentsId: [],
+        payment: null,
+      };
+    },
+    setOrderDraftRoom: (state, action: PayloadAction<string>) => {
+      if (!state.orderDraft || state.orderDraft.roomid === action.payload) {
+        return;
+      }
+      state.orderDraft.roomid = action.payload;
+      state.orderDraft.slot = null;
+      state.orderDraft.instrumentsId = [];
+    },
     setOrderDraftSlot: (
       state,
       action: PayloadAction<{
-        roomid: string;
         date: string;
         period: TSlot["period"];
-      }>,
+      } | null>,
     ) => {
+      if (!state.orderDraft) {
+        return;
+      }
       const slot = action.payload;
-      const hasSameSlot =
-        state.orderDraft?.roomid === slot.roomid &&
-        state.orderDraft?.slot.date === slot.date &&
-        state.orderDraft.slot.period === slot.period;
-
-      if (!hasSameSlot) {
-        state.orderDraft = {
-          roomid: slot.roomid,
-          slot: { date: slot.date, period: slot.period },
-          instrumentsId: [],
-        };
+      const current = state.orderDraft.slot;
+      if (current?.date !== slot?.date || current?.period !== slot?.period) {
+        state.orderDraft.instrumentsId = [];
+      }
+      state.orderDraft.slot = slot;
+    },
+    setOrderDraftPayment: (
+      state,
+      action: PayloadAction<TOrderDraft["payment"]>,
+    ) => {
+      if (state.orderDraft) {
+        state.orderDraft.payment = action.payload;
       }
     },
     toggleOrderInstrument: (state, action: PayloadAction<string>) => {
@@ -130,7 +153,10 @@ export const {
   setBases,
   setBaseId,
   setBaseDetails,
+  startOrderDraft,
+  setOrderDraftRoom,
   setOrderDraftSlot,
+  setOrderDraftPayment,
   toggleOrderInstrument,
   clearOrderDraft,
   clearBase,

@@ -1,0 +1,18 @@
+.footer {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: min(700px, 100%);
+  margin: 0 auto;
+  padding: 0 clamp(16px, 5vw, 32px);
+  background-color: var(--active-background);
+}
+
+.finalActionButton {
+  margin: 15px 0 0 ;
+}
+
+.footer > div,
+.footer > button {
+  width: 100%;
+}

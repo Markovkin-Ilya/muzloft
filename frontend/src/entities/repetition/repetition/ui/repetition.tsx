@@ -14,6 +14,9 @@ export const RepetitionUI: FC<TRepetitionUIProps> = ({
   payment,
   onInstruments,
   onMap,
+  hasInstruments = true,
+  instrumentsLabel = "Инструменты",
+  showMap = true,
 }) => (
   <div className={styles.repetition}>
     <div className={styles.header}>
@@ -43,23 +46,25 @@ export const RepetitionUI: FC<TRepetitionUIProps> = ({
               : payment === "card"
                 ? `оплата картой на базе ${price}.00`
                 : payment === "online"
-                  ? "оплачено"
+                  ? `оплачено онлайн ${price}.00`
                   : ""}
           </span>
         </div>
       </div>
     </div>
     <div className={styles.footer}>
-      <ButtonUI size="small" onClick={onInstruments}>
-        Инструменты
+      <ButtonUI size="small" onClick={onInstruments} disabled={!hasInstruments}>
+        {hasInstruments ? instrumentsLabel : "Без инструмента"}
       </ButtonUI>
-      <div onClick={onMap}>
-        <img
-          src={Icon}
-          alt="Кнопка показывает на карте репбазу"
-          className={styles.icon}
-        />
-      </div>
+      {showMap && (
+        <div onClick={onMap}>
+          <img
+            src={Icon}
+            alt="Кнопка показывает на карте репбазу"
+            className={styles.icon}
+          />
+        </div>
+      )}
     </div>
   </div>
 );

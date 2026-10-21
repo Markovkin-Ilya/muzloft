@@ -1,14 +1,12 @@
-import type { TInstrument } from "@utils/types";
+import type { TInstrument, TRepetition } from "@utils/types";
 import { TInstrumentButtonState } from "@entities/instrument";
 
 export type TInstrumentSelectionMode =
-  | "room"
-  | "base"
-  | "repetition"
-  | "booking";
+  "room" | "base" | "repetition" | "booking";
 
 export type TInstrumentSelectionProps = {
   mode: TInstrumentSelectionMode;
+  repetition?: TRepetition;
 };
 
 export type TInstrumentCardProps = {

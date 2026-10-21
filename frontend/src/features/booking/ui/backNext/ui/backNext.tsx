@@ -7,23 +7,27 @@ export const BackNextUI: FC<TBackNextUIProps> = ({
   price,
   nextText,
   backText,
-  nextDesabled,
-  backDesabled,
+  onNext,
+  onBack,
+  nextDisabled,
+  backDisabled,
 }) => (
   <div className={styles.box}>
-    <p className={styles.price}>Сумма: {price}</p>
+    <p className={styles.price}>Сумма: {price.toLocaleString("ru-RU")}</p>
     <div className={styles.buttons}>
       <Button
         className={styles.backbutton}
-        size="large"
-        disabled={backDesabled}
+        size="small"
+        onClick={onBack}
+        disabled={backDisabled}
       >
         {backText}
       </Button>
       <Button
         className={styles.nextbutton}
-        size="large"
-        disabled={nextDesabled}
+        size="small"
+        onClick={onNext}
+        disabled={nextDisabled}
       >
         {nextText}
       </Button>

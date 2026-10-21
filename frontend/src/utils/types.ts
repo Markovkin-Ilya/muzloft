@@ -1,6 +1,6 @@
 export type TUser = {
   _id: string;
-  login: string;
+  name: string;
   email: string;
   phone: string;
   avatar?: string;
@@ -44,6 +44,7 @@ export type TBase = {
   image: string; // аватар базы
   address: string; // адрес базы
   rating: number; // средний рейтинг базы
+  workingHours?: TWorkingHours; // часы работы базы (по умолчанию 10:00-22:00)
   phone: string; // Телефон для связи с базой
   ownerid: string; // ID владельца
   rooms: TRoom[]; // комнаты для репетицый
@@ -58,6 +59,17 @@ export type TRoom = {
   image: string[]; // картинки комнаты
   slots: TSlot[]; // забронированные слоты
   instruments: TInstrument[]; // инструменты в комнате
+  basePrice: number; // цена часа по умолчанию
+  tariffs?: TTariff[]; // тарифы часа, применяется первый подходящий
+};
+
+export type TWorkingHours = { from: number; to: number } | "24h";
+
+export type TTariff = {
+  price: number; // цена одного часа
+  weekdays?: number[]; // дни недели (0 - вс), по умолчанию все
+  fromHour?: number; // с какого часа (включительно)
+  toHour?: number; // до какого часа (не включительно)
 };
 
 export type TComment = {
@@ -94,7 +106,10 @@ export type TOrder = {
   payment: "online" | "card" | "cash"; // способ оплаты
 };
 
-export type TOrderDraft = Pick<TOrder, "instrumentsId"> & {
-  roomid: TOrder["roomid"];
-  slot: { date: string; period: TSlot["period"] };
+export type TOrderDraft = {
+  baseid: string;
+  roomid: string | null;
+  slot: { date: string; period: TSlot["period"] } | null; // начало и число часов
+  instrumentsId: string[];
+  payment: TOrder["payment"] | null;
 };

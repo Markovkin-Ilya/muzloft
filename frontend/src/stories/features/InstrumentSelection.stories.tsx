@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { Route, Routes } from "react-router-dom";
 import { InstrumentSelection } from "@features/instrument-selection";
 import type { TInstrumentSelectionMode } from "@features/instrument-selection";
-import { storyBases } from "../pages/data/bases";
-import { storyUser } from "../pages/data/user";
-import { StoryPageSetup } from "../pages/data/storyPageSetup";
+import { storyBases } from "../fixtures/bases";
+import { storyUser } from "../fixtures/user";
+import { StoryPageSetup } from "../helpers/storyPageSetup";
 
 const getStoryPath = (mode: TInstrumentSelectionMode) => {
   if (mode === "room") {
@@ -43,12 +43,14 @@ const meta = {
         orderDraft={
           context.args.mode === "booking"
             ? {
+                baseid: "grunge-moscow",
                 roomid: "yellow",
                 slot: {
                   date: "2026-10-15T17:00:00",
                   period: "3",
                 },
                 instrumentsId: [],
+                payment: null,
               }
             : undefined
         }

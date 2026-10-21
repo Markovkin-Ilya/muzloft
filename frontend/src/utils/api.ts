@@ -1,10 +1,39 @@
-import { setCookie, getCookie } from "./cookie";
-import { TBase, TEvent, TUser } from "./types";
+import { getCookie } from "./cookie";
+import { getStoredRefreshToken, saveAuthTokens } from "./tokenStorage";
+import { TBase, TEvent, TUser, TOrder as TBookingOrder } from "./types";
 
 const URL = process.env.BURGER_API_URL;
 
-const checkResponse = <T>(res: Response): Promise<T> =>
-  res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
+export class ApiError extends Error {
+  constructor(
+    public readonly status: number,
+    message: string,
+    public readonly body: unknown,
+  ) {
+    super(message);
+    this.name = "ApiError";
+  }
+}
+
+const getResponseMessage = (body: unknown, status: number): string => {
+  if (
+    typeof body === "object" &&
+    body !== null &&
+    "message" in body &&
+    typeof body.message === "string"
+  ) {
+    return body.message;
+  }
+  return `Request failed with status ${status}`;
+};
+
+const checkResponse = async <T>(res: Response): Promise<T> => {
+  const body: unknown = await res.json();
+  if (!res.ok) {
+    throw new ApiError(res.status, getResponseMessage(body, res.status), body);
+  }
+  return body as T;
+};
 
 type TServerResponse<T> = {
   success: boolean;
@@ -20,25 +49,65 @@ type TRefreshResponse = TServerResponse<{
   accessToken: string;
 }>;
 
-export const refreshToken = (): Promise<TRefreshResponse> =>
-  fetch(`${URL}/auth/token`, {
+const requestRefreshToken = async (): Promise<TRefreshResponse> => {
+  const storedToken = getStoredRefreshToken();
+  if (!storedToken) {
+    throw new ApiError(401, "Refresh token is missing", null);
+  }
+
+  const refreshData = await fetch(`${URL}/auth/token`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
     },
-    body: JSON.stringify({
-      token: localStorage.getItem("refreshToken"),
-    }),
-  })
-    .then((res) => checkResponse<TRefreshResponse>(res))
-    .then((refreshData) => {
-      if (!refreshData.success) {
-        return Promise.reject(refreshData);
-      }
-      localStorage.setItem("refreshToken", refreshData.refreshToken);
-      setCookie("accessToken", refreshData.accessToken);
-      return refreshData;
+    body: JSON.stringify({ token: storedToken.token }),
+  }).then((res) => checkResponse<TRefreshResponse>(res));
+
+  if (!refreshData.success) {
+    throw new ApiError(401, "Refresh token was rejected", refreshData);
+  }
+  if (
+    typeof refreshData.refreshToken !== "string" ||
+    !refreshData.refreshToken ||
+    typeof refreshData.accessToken !== "string" ||
+    !refreshData.accessToken
+  ) {
+    throw new ApiError(
+      502,
+      "Token refresh response is incomplete",
+      refreshData,
+    );
+  }
+
+  saveAuthTokens(refreshData, storedToken.rememberMe);
+  return refreshData;
+};
+
+let refreshTokenPromise: Promise<TRefreshResponse> | null = null;
+
+export const refreshToken = (): Promise<TRefreshResponse> => {
+  if (!refreshTokenPromise) {
+    refreshTokenPromise = requestRefreshToken().finally(() => {
+      refreshTokenPromise = null;
     });
+  }
+  return refreshTokenPromise;
+};
+
+const getErrorMessage = (error: unknown): string | undefined => {
+  if (error instanceof Error) {
+    return error.message;
+  }
+  if (
+    typeof error === "object" &&
+    error !== null &&
+    "message" in error &&
+    typeof error.message === "string"
+  ) {
+    return error.message;
+  }
+  return undefined;
+};
 
 export const fetchWithRefresh = async <T>(
   url: RequestInfo,
@@ -48,50 +117,18 @@ export const fetchWithRefresh = async <T>(
     const res = await fetch(url, options);
     return await checkResponse<T>(res);
   } catch (err) {
-    if ((err as { message: string }).message === "jwt expired") {
+    if (getErrorMessage(err) === "jwt expired") {
       const refreshData = await refreshToken();
-      if (options.headers) {
-        (options.headers as { [key: string]: string }).authorization =
-          refreshData.accessToken;
-      }
-      const res = await fetch(url, options);
+      const headers = new Headers(options.headers);
+      headers.set("authorization", refreshData.accessToken);
+      const res = await fetch(url, { ...options, headers });
       return await checkResponse<T>(res);
-    } else {
-      return Promise.reject(err);
     }
+    throw err;
   }
 };
 
 /*
-type TIngredientsResponse = TServerResponse<{
-  data: TIngredient[];
-}>;
-
-export type TFeedsResponse = TServerResponse<{
-  orders: TOrder[];
-  total: number;
-  totalToday: number;
-}>;
-
-type TOrdersResponse = TServerResponse<{
-  data: TOrder[];
-}>;
-
-export const getIngredientsApi = () =>
-  fetch(`${URL}/ingredients`)
-    .then((res) => checkResponse<TIngredientsResponse>(res))
-    .then((data) => {
-      if (data?.success) return data.data;
-      return Promise.reject(data);
-    });
-
-export const getFeedsApi = () =>
-  fetch(`${URL}/orders/all`)
-    .then((res) => checkResponse<TFeedsResponse>(res))
-    .then((data) => {
-      if (data?.success) return data;
-      return Promise.reject(data);
-    });
 
 export const getOrdersApi = () =>
   fetchWithRefresh<TFeedsResponse>(`${URL}/orders`, {
@@ -142,7 +179,6 @@ export type TRegisterData = {
   name: string;
   password: string;
   phone?: string;
-  login?: string;
 };
 
 type TAuthResponse = TServerResponse<{
@@ -214,12 +250,18 @@ export const resetPasswordApi = (data: { password: string; token: string }) =>
 
 type TUserResponse = TServerResponse<{ user: TUser }>;
 
-export const getUserApi = () =>
-  fetchWithRefresh<TUserResponse>(`${URL}/auth/user`, {
+export const getUserApi = () => {
+  const accessToken = getCookie("accessToken");
+  if (!accessToken) {
+    throw new ApiError(401, "Access token is missing", null);
+  }
+
+  return fetchWithRefresh<TUserResponse>(`${URL}/auth/user`, {
     headers: {
-      authorization: getCookie("accessToken"),
-    } as HeadersInit,
+      authorization: accessToken,
+    },
   });
+};
 
 export const updateUserApi = (user: Partial<TRegisterData>) =>
   fetchWithRefresh<TUserResponse>(`${URL}/auth/user`, {
@@ -238,7 +280,7 @@ export const logoutApi = () =>
       "Content-Type": "application/json;charset=utf-8",
     },
     body: JSON.stringify({
-      token: localStorage.getItem("refreshToken"),
+      token: getStoredRefreshToken()?.token ?? null,
     }),
   }).then((res) => checkResponse<TServerResponse<Record<string, never>>>(res));
 
@@ -281,3 +323,23 @@ export const getEventByIdApi = (eventId: string) =>
       }
       return Promise.reject(data);
     });
+
+export type TCreateOrderData = Omit<TBookingOrder, "_id">;
+
+// Заглушка до появления бэкенда бронирования
+export const createOrderApi = (
+  order: TCreateOrderData,
+): Promise<{ success: true; order: TBookingOrder }> =>
+  new Promise((resolve) => {
+    setTimeout(
+      () =>
+        resolve({
+          success: true,
+          order: {
+            ...order,
+            _id: String(Math.floor(100000 + Math.random() * 900000)),
+          },
+        }),
+      600,
+    );
+  });

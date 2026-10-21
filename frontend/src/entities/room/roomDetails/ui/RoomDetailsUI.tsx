@@ -66,20 +66,18 @@ export const RoomDetailsUI: FC<TRoomDetailsUIProps> = ({
         </section>
 
         <section className={styles.price}>
-          <h2 className={styles.sectionTitle}>Стоимость слота</h2>
+          <h2 className={styles.sectionTitle}>Стоимость часа</h2>
           <p className={styles.priceValue}>
             {priceRange
-              ? `от ${priceRange.min.toFixed(2)} до ${priceRange.max.toFixed(2)}`
-              : "Нет доступных слотов"}
+              ? priceRange.min === priceRange.max
+                ? priceRange.min.toFixed(2)
+                : `от ${priceRange.min.toFixed(2)} до ${priceRange.max.toFixed(2)}`
+              : "Стоимость не указана"}
           </p>
         </section>
 
-        <Button
-          size="large"
-          className={styles.bookButton}
-          onClick={onBook}
-        >
-          Бронировать репетицию
+        <Button size="large" className={styles.bookButton} onClick={onBook}>
+          Бронировать в этой комнате
         </Button>
       </div>
     </article>

@@ -14,6 +14,20 @@
     right bottom;
 }
 
+.authApp {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--background);
+  background-image:
+    url("@assets/images/app/pattern for background.svg"),
+    url("@assets/images/app/pattern for background.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position:
+    left top,
+    right bottom;
+}
+
 .page {
   position: relative;
   flex: 1;
