@@ -31,6 +31,7 @@
   justify-content: center;
   align-items: center;
   max-width: clamp(150px, 40vw, 200px);
+  min-height: clamp(40px, 10vw, 60px);
   padding: 8px 20px;
   color: var(--text-inactive-color);
   font-weight: 600;

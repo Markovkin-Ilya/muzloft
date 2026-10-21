@@ -88,11 +88,7 @@ export const BaseDetailsUI: FC<TBaseDetailsUIProps> = ({
           </div>
         )}
 
-        <Button
-          size="large"
-          className={styles.bookButton}
-          onClick={onBook}
-        >
+        <Button size="large" className={styles.bookButton} onClick={onBook}>
           Бронировать репетицию
         </Button>
 

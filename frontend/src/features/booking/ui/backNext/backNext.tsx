@@ -6,14 +6,18 @@ export const BackNext: FC<TBackNextUIProps> = ({
   price,
   nextText,
   backText,
-  nextDesabled,
-  backDesabled,
+  onNext,
+  onBack,
+  nextDisabled,
+  backDisabled,
 }) => (
   <BackNextUI
     price={price}
     nextText={nextText}
     backText={backText}
-    nextDesabled={nextDesabled}
-    backDesabled={backDesabled}
+    onNext={onNext}
+    onBack={onBack}
+    nextDisabled={nextDisabled}
+    backDisabled={backDisabled}
   />
 );

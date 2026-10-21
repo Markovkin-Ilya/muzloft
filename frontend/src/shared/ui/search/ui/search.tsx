@@ -12,6 +12,14 @@ export const SearchUI: FC<TSearchUIProps> = ({
   type = "text",
   icon,
   onIconClick,
+  id,
+  name,
+  autoComplete,
+  required,
+  spellCheck,
+  minLength,
+  maxLength,
+  className,
 }) => {
   const [focused, setFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -37,12 +45,14 @@ export const SearchUI: FC<TSearchUIProps> = ({
   return (
     <div>
       <div
-        className={`${styles.input} ${size === "small" ? styles.inputSmall : styles.inputDefault} ${isActive ? styles.inputStatusActive : ""} ${error ? styles.inputStatusError : ""} ${isDisabled ? styles.inputStatusDisabled : ""}`}
+        className={`${styles.input} ${size === "small" ? styles.inputSmall : styles.inputDefault} ${isActive ? styles.inputStatusActive : ""} ${error ? styles.inputStatusError : ""} ${isDisabled ? styles.inputStatusDisabled : ""} ${className ?? ""}`}
       >
         <div className={styles.inputContainer} onClick={handleContainerClick}>
           <input
             ref={inputRef}
             type={type}
+            id={id}
+            name={name}
             className={`${styles.inputTextfield} ${isDisabled ? styles.inputTextfieldDisabled : ""}`}
             value={value}
             onChange={handleChange}
@@ -50,6 +60,12 @@ export const SearchUI: FC<TSearchUIProps> = ({
             onBlur={() => setFocused(false)}
             disabled={isDisabled}
             placeholder={placeholder}
+            autoComplete={autoComplete}
+            required={required}
+            spellCheck={spellCheck}
+            minLength={minLength}
+            maxLength={maxLength}
+            aria-invalid={error ? true : undefined}
           />
         </div>
         {icon && (

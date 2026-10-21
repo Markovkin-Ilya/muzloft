@@ -3,7 +3,7 @@ import { TRepetitionProps } from "./type";
 import { RepetitionUI } from "./ui/repetition";
 
 export const Repetition: FC<TRepetitionProps> = memo(
-  ({ repetition, onInstruments, onMap }) => {
+  ({ repetition, onInstruments, onMap, instrumentsLabel, showMap }) => {
     const slotDate = new Date(repetition.slot.date);
     const date = slotDate.toLocaleDateString("ru-RU", {
       day: "2-digit",
@@ -33,6 +33,9 @@ export const Repetition: FC<TRepetitionProps> = memo(
         payment={repetition.payment}
         onInstruments={onInstruments}
         onMap={onMap}
+        hasInstruments={repetition.instruments.length > 0}
+        instrumentsLabel={instrumentsLabel}
+        showMap={showMap}
       />
     );
   },

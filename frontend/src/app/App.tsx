@@ -8,26 +8,54 @@ import { RoomDetailsWidget } from "@widgets/room-details";
 import { CommentsPage } from "@pages/comments";
 import { EventsPage } from "@pages/events";
 import { BasesPage } from "@pages/bases";
+import { BookingPage } from "@pages/booking";
 import { ProfilePage } from "@pages/profile";
 import { RepetitionsPage } from "@pages/repetitions";
+import { LoginPage } from "@pages/login";
+import { RegisterPage } from "@pages/register";
 import { InstrumentSelection } from "@features/instrument-selection";
 import { ProtectedRoute } from "./router/ProtectedRoute";
 import { Modal } from "@shared/ui/modal";
-import { useDispatch } from "@services/store";
+import { useDispatch, useSelector } from "@services/store";
 import { clearBase } from "@services/bases/slice";
 import { clearEvent } from "@services/events/slice";
 import { checkUserAuth } from "@services/user/actions";
+import { selectIsAuthChecked } from "@services/user/slice";
 import styles from "./App.module.css";
 
 const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isAuthChecked = useSelector(selectIsAuthChecked);
   const backgroundLocation = location.state?.background;
 
   useEffect(() => {
-    dispatch(checkUserAuth());
-  }, [dispatch]);
+    if (!isAuthChecked) {
+      dispatch(checkUserAuth());
+    }
+  }, [dispatch, isAuthChecked]);
+
+  const isStandaloneAuthRoute = ["/login", "/register"].includes(
+    location.pathname,
+  );
+
+  if (isStandaloneAuthRoute) {
+    return (
+      <div className={styles.authApp}>
+        <Routes>
+          <Route
+            path="/login"
+            element={<ProtectedRoute onlyUnAuth component={<LoginPage />} />}
+          />
+          <Route
+            path="/register"
+            element={<ProtectedRoute onlyUnAuth component={<RegisterPage />} />}
+          />
+        </Routes>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.app}>
@@ -85,7 +113,11 @@ const App = () => {
           />
           <Route
             path="/bases/:baseId/book"
-            element={<Modal onClose={() => navigate(-1)} dop={<div />} />}
+            element={<ProtectedRoute component={<BookingPage />} />}
+          />
+          <Route
+            path="/bases/:baseId/:roomId/book"
+            element={<ProtectedRoute component={<BookingPage />} />}
           />
           <Route
             path="/bases/:baseId/instruments"

@@ -8,4 +8,7 @@ export type TRepetitionUIProps = {
   price: number; // цена репетиции
   onInstruments: () => void;
   onMap?: () => void;
+  hasInstruments?: boolean; // без инструментов кнопка блокируется
+  instrumentsLabel?: string;
+  showMap?: boolean;
 };

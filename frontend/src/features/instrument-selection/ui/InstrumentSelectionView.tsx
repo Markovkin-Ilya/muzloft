@@ -4,9 +4,9 @@ import { Menu, TMenuItem } from "@shared/ui/menu";
 import styles from "./InstrumentSelectionView.module.css";
 import { TInstrumentSelectionViewProps } from "./type";
 
-export const InstrumentSelectionView: FC<
-  TInstrumentSelectionViewProps
-> = ({ categories }) => {
+export const InstrumentSelectionView: FC<TInstrumentSelectionViewProps> = ({
+  categories,
+}) => {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
   const activeIndex = Math.min(
     activeCategoryIndex,

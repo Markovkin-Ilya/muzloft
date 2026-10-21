@@ -14,12 +14,18 @@ export const RoomDetailsWidget: FC = () => {
     return null;
   }
 
-  const availableSlotPrices = room.slots.map((slot) => slot.price);
+  const configuredPrices = [
+    room.basePrice,
+    ...(room.tariffs ?? []).map((tariff) => tariff.price),
+  ].filter(
+    (price): price is number =>
+      typeof price === "number" && Number.isFinite(price),
+  );
   const priceRange =
-    availableSlotPrices.length > 0
+    configuredPrices.length > 0
       ? {
-          min: Math.min(...availableSlotPrices),
-          max: Math.max(...availableSlotPrices),
+          min: Math.min(...configuredPrices),
+          max: Math.max(...configuredPrices),
         }
       : null;
   const background = location.state?.background ?? location;
@@ -29,7 +35,7 @@ export const RoomDetailsWidget: FC = () => {
       room={room}
       priceRange={priceRange}
       onBook={() =>
-        navigate(`/bases/${baseId}/book`, {
+        navigate(`/bases/${baseId}/${room._id}/book`, {
           state: { background },
         })
       }

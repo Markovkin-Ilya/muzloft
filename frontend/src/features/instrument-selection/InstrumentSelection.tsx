@@ -46,6 +46,7 @@ const hasTimeConflict = (
 
 export const InstrumentSelection: FC<TInstrumentSelectionProps> = ({
   mode,
+  repetition: repetitionProp,
 }) => {
   const { roomId, repetitionId } = useParams();
   const dispatch = useDispatch();
@@ -55,31 +56,31 @@ export const InstrumentSelection: FC<TInstrumentSelectionProps> = ({
 
   const repetition =
     mode === "repetition"
-      ? repetitions.find((item) => item._id === repetitionId)
+      ? (repetitionProp ??
+        repetitions.find((item) => item._id === repetitionId))
       : undefined;
   const room =
     mode === "room"
       ? baseDetails?.rooms.find((item) => item._id === roomId)
-      : mode === "booking"
-        ? baseDetails?.rooms.find((item) => item._id === orderDraft?.roomid)
-        : undefined;
+      : undefined;
   const instruments =
     mode === "repetition"
       ? (repetition?.instruments ?? [])
-      : mode === "room" || mode === "booking"
+      : mode === "room"
         ? (room?.instruments ?? [])
         : (baseDetails?.instruments ?? []);
+  const draftSlot = mode === "booking" ? orderDraft?.slot : null;
   const repetitionDate =
     mode === "repetition" && repetition
       ? toDate(repetition.slot.date)
-      : mode === "booking" && orderDraft
-        ? toDate(orderDraft.slot.date)
+      : draftSlot
+        ? toDate(draftSlot.date)
         : undefined;
   const durationHours =
     mode === "repetition" && repetition
       ? Number(repetition.slot.period)
-      : mode === "booking" && orderDraft
-        ? Number(orderDraft.slot.period)
+      : draftSlot
+        ? Number(draftSlot.period)
         : Number.NaN;
   const validRepetition =
     repetitionDate !== undefined &&

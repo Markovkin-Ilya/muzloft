@@ -1,16 +1,25 @@
 import { TUser, TRepetition } from "@utils/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { login, logout, register, update, addRepetition } from "./actions";
-import { setCookie } from "@utils/cookie";
+import {
+  checkUserAuth,
+  login,
+  logout,
+  register,
+  update,
+  addRepetition,
+} from "./actions";
+import { saveAuthTokens } from "@utils/tokenStorage";
 
 type TUserState = {
   user: TUser | null;
   isAuthChecked: boolean;
+  authCheckError: string | null;
 };
 
 export const initialState: TUserState = {
   user: null,
   isAuthChecked: false,
+  authCheckError: null,
 };
 
 export const userSlice = createSlice({
@@ -19,6 +28,9 @@ export const userSlice = createSlice({
   reducers: {
     setIsAuthChecked: (state, action: PayloadAction<boolean>) => {
       state.isAuthChecked = action.payload;
+    },
+    setAuthCheckError: (state, action: PayloadAction<string | null>) => {
+      state.authCheckError = action.payload;
     },
     setUser: (state, action: PayloadAction<TUser | null>) => {
       state.user = action.payload;
@@ -30,15 +42,19 @@ export const userSlice = createSlice({
   selectors: {
     selectUser: (state) => state.user,
     selectIsAuthChecked: (state) => state.isAuthChecked,
+    selectAuthCheckError: (state) => state.authCheckError,
     selectRepetitions: (state) => state.user?.repetitions ?? [],
   },
   extraReducers: (builder) => {
     builder
+      .addCase(checkUserAuth.rejected, (state, action) => {
+        state.authCheckError =
+          action.error.message ?? "Unable to check authentication";
+      })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isAuthChecked = true;
-        localStorage.setItem("refreshToken", action.payload.refreshToken);
-        setCookie("accessToken", action.payload.accessToken);
+        saveAuthTokens(action.payload, action.payload.rememberMe);
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
@@ -46,8 +62,7 @@ export const userSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isAuthChecked = true;
-        localStorage.setItem("refreshToken", action.payload.refreshToken);
-        setCookie("accessToken", action.payload.accessToken);
+        saveAuthTokens(action.payload, action.payload.rememberMe);
       })
       .addCase(update.fulfilled, (state, action) => {
         state.user = action.payload.user;
@@ -60,4 +75,6 @@ export const userSlice = createSlice({
 
 export const { selectUser, selectIsAuthChecked, selectRepetitions } =
   userSlice.selectors;
-export const { setIsAuthChecked, setUser, setRepetitions } = userSlice.actions;
+export const { selectAuthCheckError } = userSlice.selectors;
+export const { setAuthCheckError, setIsAuthChecked, setUser, setRepetitions } =
+  userSlice.actions;

@@ -20,9 +20,29 @@ const config: StorybookConfig = {
     config.module.rules = config.module.rules.filter(
       (rule: { test?: RegExp | string | (RegExp | string)[] }) => {
         if (!rule.test) return true;
-        if (rule.test instanceof RegExp && rule.test.test("test.module.css")) {
+        const tests = Array.isArray(rule.test) ? rule.test : [rule.test];
+        const matchesFile = (filename: string) =>
+          tests.some((test) => {
+            if (test instanceof RegExp) {
+              test.lastIndex = 0;
+              return test.test(filename);
+            }
+
+            return filename.includes(test);
+          });
+
+        if (matchesFile("test.module.css")) {
           return false;
         }
+
+        if (
+          ["test.svg", "test.png", "test.jpg", "test.jpeg", "test.gif", "test.webp"].some(
+            matchesFile,
+          )
+        ) {
+          return false;
+        }
+
         return true;
       },
     );
@@ -56,7 +76,7 @@ const config: StorybookConfig = {
 
     // Add image support (matching webpack.common.js)
     config.module.rules.unshift({
-      test: /\.(png|jpg|gif|webp)$/,
+      test: /\.(png|jpe?g|gif|webp)$/i,
       type: "asset",
       parser: {
         dataUrlCondition: {
@@ -66,6 +86,12 @@ const config: StorybookConfig = {
       generator: {
         filename: "static/images/[hash][ext][query]",
       },
+    });
+
+    config.module.rules.unshift({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: ["@svgr/webpack", "url-loader"],
     });
 
     if (config.resolve) {
