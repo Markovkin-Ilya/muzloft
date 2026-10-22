@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { BaseCard } from "@entities/base";
-import { Search } from "@shared/ui/search";
+import { Input } from "@shared/ui/input";
 import magnifierIcon from "@assets/images/icons/magnifier.svg";
 import styles from "./BaseListUI.module.css";
 import { TBaseListUIProps } from "./type";
@@ -12,7 +12,7 @@ export const BaseListUI: FC<TBaseListUIProps> = ({
   onBaseSelect,
 }) => (
   <main className={styles.bases}>
-    <Search
+    <Input
       value={searchValue}
       onChange={onSearchChange}
       placeholder="Поиск по названию базы..."

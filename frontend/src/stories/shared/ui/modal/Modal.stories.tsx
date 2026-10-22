@@ -10,7 +10,9 @@ const ModalDemo = () => {
   }, []);
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "var(--dark-background)" }}>
+    <div
+      style={{ minHeight: "100vh", backgroundColor: "var(--dark-background)" }}
+    >
       <div
         id="app-page"
         style={{

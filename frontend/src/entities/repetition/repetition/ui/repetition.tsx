@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styles from "./repetition.module.css";
 import { TRepetitionUIProps } from "./type";
-import { ButtonUI } from "@shared/ui/button";
+import { Button } from "@shared/ui/button";
 import Icon from "@assets/images/icons/map.svg";
 
 export const RepetitionUI: FC<TRepetitionUIProps> = ({
@@ -53,9 +53,9 @@ export const RepetitionUI: FC<TRepetitionUIProps> = ({
       </div>
     </div>
     <div className={styles.footer}>
-      <ButtonUI size="small" onClick={onInstruments} disabled={!hasInstruments}>
+      <Button size="small" onClick={onInstruments} disabled={!hasInstruments}>
         {hasInstruments ? instrumentsLabel : "Без инструмента"}
-      </ButtonUI>
+      </Button>
       {showMap && (
         <div onClick={onMap}>
           <img

@@ -17,9 +17,28 @@ import { ModalOverlayUI } from "./ui/modal-overlay/modal-overlay";
 export const Modal: FC<TModalProps> = memo(({ onClose, children, dop }) => {
   const location = useLocation();
   const contentRef = useRef<HTMLDivElement>(null);
+  const [modalTargets, setModalTargets] = useState<{
+    modalRoot: HTMLElement;
+    overlayRoot: HTMLElement;
+    page: HTMLElement;
+  } | null>(null);
   const [modalStyle, setModalStyle] = useState<CSSProperties>();
   const [dopStyle, setDopStyle] = useState<CSSProperties>();
   const [closeButtonStyle, setCloseButtonStyle] = useState<CSSProperties>();
+
+  useLayoutEffect(() => {
+    const modalRoot = document.getElementById("modals");
+    const overlayRoot = document.getElementById("modal-overlay");
+    const page = document.getElementById("app-page");
+
+    if (!modalRoot || !overlayRoot || !page) {
+      throw new Error(
+        'Modal roots "modals", "modal-overlay", or page element "app-page" were not found.',
+      );
+    }
+
+    setModalTargets({ modalRoot, overlayRoot, page });
+  }, []);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -34,15 +53,12 @@ export const Modal: FC<TModalProps> = memo(({ onClose, children, dop }) => {
     };
   }, [onClose]);
 
-  const modalRoot = document.getElementById("modals");
-  const overlayRoot = document.getElementById("modal-overlay");
-  const page = document.getElementById("app-page");
-
   useLayoutEffect(() => {
     contentRef.current?.scrollTo(0, 0);
   }, [location.key]);
 
   useLayoutEffect(() => {
+    const page = modalTargets?.page;
     if (!page) {
       return;
     }
@@ -91,12 +107,10 @@ export const Modal: FC<TModalProps> = memo(({ onClose, children, dop }) => {
       window.removeEventListener("resize", updateModalBounds);
       window.removeEventListener("scroll", updateModalBounds, true);
     };
-  }, [page]);
+  }, [modalTargets]);
 
-  if (!modalRoot || !overlayRoot || !page) {
-    throw new Error(
-      'Modal roots "modals", "modal-overlay", or page element "app-page" were not found.',
-    );
+  if (!modalTargets) {
+    return null;
   }
 
   return (
@@ -112,9 +126,12 @@ export const Modal: FC<TModalProps> = memo(({ onClose, children, dop }) => {
         >
           {children}
         </ModalUI>,
-        modalRoot,
+        modalTargets.modalRoot,
       )}
-      {ReactDOM.createPortal(<ModalOverlayUI onClick={onClose} />, overlayRoot)}
+      {ReactDOM.createPortal(
+        <ModalOverlayUI onClick={onClose} />,
+        modalTargets.overlayRoot,
+      )}
     </>
   );
 });

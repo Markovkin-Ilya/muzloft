@@ -1,8 +1,8 @@
 import { FC, useState, useRef } from "react";
-import styles from "./search.module.css";
-import { TSearchUIProps } from "./type";
+import styles from "./input.module.css";
+import { TInputProps } from "./type";
 
-export const SearchUI: FC<TSearchUIProps> = ({
+export const Input: FC<TInputProps> = ({
   value = "",
   onChange,
   placeholder = "",

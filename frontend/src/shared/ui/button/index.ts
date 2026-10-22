@@ -1,3 +1,2 @@
 export { Button } from "./button";
-export { ButtonUI } from "./ui";
-export type { TButtonUIProps, TButtonSize } from "./ui";
+export type { TButtonProps, TButtonSize } from "./type";

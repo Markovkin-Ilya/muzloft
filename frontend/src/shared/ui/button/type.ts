@@ -1,6 +1,6 @@
 export type TButtonSize = "large" | "small";
 
-export type TButtonUIProps = {
+export type TButtonProps = {
   size?: TButtonSize;
   children?: React.ReactNode;
   onClick?: () => void;

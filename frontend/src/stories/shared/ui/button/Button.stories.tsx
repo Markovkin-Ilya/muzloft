@@ -1,14 +1,14 @@
+import { Button } from "@shared/ui/button";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { ButtonUI } from "@shared/ui/button";
 
 const meta = {
   title: "Shared/Button",
-  component: ButtonUI,
+  component: Button,
   tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof ButtonUI>;
+} satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

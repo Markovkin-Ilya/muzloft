@@ -1,4 +1,4 @@
-export type TSearchUIProps = {
+export type TInputProps = {
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;

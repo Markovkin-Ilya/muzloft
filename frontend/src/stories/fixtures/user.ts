@@ -4,7 +4,7 @@ import { storyBookedInstruments } from "./instruments";
 
 export const storyUser: TUser = {
   _id: "1",
-  login: "Test User",
+  name: "Test User",
   avatar: guitaristAvatar,
   phone: "+7 (999) 123-45-67",
   email: "user@example.com",

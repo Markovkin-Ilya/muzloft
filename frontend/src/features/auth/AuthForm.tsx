@@ -2,12 +2,14 @@ import { FormEvent, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "@services/store";
 import { Button } from "@shared/ui/button";
-import { Search } from "@shared/ui/search";
+import { Input } from "@shared/ui/input";
 import {
   login as loginUser,
   register as registerUser,
 } from "@services/user/actions";
 import { ApiError } from "@utils/api";
+import backIcon from "@assets/images/icons/back.svg";
+import eyeIcon from "@assets/images/icons/eye.svg";
 import styles from "./AuthForm.module.css";
 
 type TAuthFormProps = {
@@ -138,9 +140,19 @@ export const AuthForm = ({ mode }: TAuthFormProps) => {
   return (
     <main className={styles.page}>
       <section className={styles.card} aria-labelledby="auth-title">
-        <h1 id="auth-title" className={styles.title}>
-          {isRegister ? "Регистрация" : "Вход"}
-        </h1>
+        <div className={styles.titleRow}>
+          <button
+            className={styles.backButton}
+            type="button"
+            onClick={() => navigate(-1)}
+            aria-label="Назад"
+          >
+            <img src={backIcon} alt="" aria-hidden="true" />
+          </button>
+          <h1 id="auth-title" className={styles.title}>
+            {isRegister ? "Регистрация" : "Вход"}
+          </h1>
+        </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
           {isRegister && (
@@ -148,7 +160,7 @@ export const AuthForm = ({ mode }: TAuthFormProps) => {
               <label className={styles.visuallyHidden} htmlFor="auth-name">
                 Имя
               </label>
-              <Search
+              <Input
                 id="auth-name"
                 className={styles.searchInput}
                 type="text"
@@ -170,7 +182,7 @@ export const AuthForm = ({ mode }: TAuthFormProps) => {
             <label className={styles.visuallyHidden} htmlFor="auth-email">
               E-mail
             </label>
-            <Search
+            <Input
               id="auth-email"
               type="email"
               name="email"
@@ -191,7 +203,7 @@ export const AuthForm = ({ mode }: TAuthFormProps) => {
             <label className={styles.visuallyHidden} htmlFor="auth-password">
               Пароль
             </label>
-            <Search
+            <Input
               id="auth-password"
               className={`${styles.searchInput} ${styles.passwordInput}`}
               type={showPassword ? "text" : "password"}
@@ -215,9 +227,7 @@ export const AuthForm = ({ mode }: TAuthFormProps) => {
               aria-pressed={showPassword}
               disabled={isSubmitting}
             >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 5c-5.2 0-9.3 4.1-10.8 6.2a1.3 1.3 0 0 0 0 1.6C2.7 14.9 6.8 19 12 19s9.3-4.1 10.8-6.2a1.3 1.3 0 0 0 0-1.6C21.3 9.1 17.2 5 12 5Zm0 11.2a4.2 4.2 0 1 1 0-8.4 4.2 4.2 0 0 1 0 8.4Zm0-2.2a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
-              </svg>
+              <img src={eyeIcon} alt="" aria-hidden="true" />
             </button>
           </div>
 
@@ -229,7 +239,7 @@ export const AuthForm = ({ mode }: TAuthFormProps) => {
               >
                 Повторите пароль
               </label>
-              <Search
+              <Input
                 id="auth-confirmation"
                 className={`${styles.searchInput} ${styles.passwordInput}`}
                 type={showConfirmation ? "text" : "password"}
@@ -257,9 +267,7 @@ export const AuthForm = ({ mode }: TAuthFormProps) => {
                 aria-pressed={showConfirmation}
                 disabled={isSubmitting}
               >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 5c-5.2 0-9.3 4.1-10.8 6.2a1.3 1.3 0 0 0 0 1.6C2.7 14.9 6.8 19 12 19s9.3-4.1 10.8-6.2a1.3 1.3 0 0 0 0-1.6C21.3 9.1 17.2 5 12 5Zm0 11.2a4.2 4.2 0 1 1 0-8.4 4.2 4.2 0 0 1 0 8.4Zm0-2.2a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
-                </svg>
+                <img src={eyeIcon} alt="" aria-hidden="true" />
               </button>
             </div>
           )}
@@ -298,7 +306,7 @@ export const AuthForm = ({ mode }: TAuthFormProps) => {
           {isRegister ? (
             <p>
               Уже зарегистрированы?{" "}
-              <Link to={nextPath} state={location.state}>
+              <Link to={nextPath} replace state={location.state}>
                 Войти
               </Link>
             </p>
@@ -306,7 +314,7 @@ export const AuthForm = ({ mode }: TAuthFormProps) => {
             <>
               <p>
                 Вы — новый пользователь?{" "}
-                <Link to={nextPath} state={location.state}>
+                <Link to={nextPath} replace state={location.state}>
                   Зарегистрироваться
                 </Link>
               </p>

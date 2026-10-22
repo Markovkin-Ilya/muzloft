@@ -28,13 +28,15 @@ export const WithBases: Story = {};
 export const SearchResults: Story = {
   args: {
     searchValue: "grunge",
-    bases: storyBases.slice(0, 1).map(({ _id, title, image, address, rating }) => ({
-      _id,
-      title,
-      image,
-      address,
-      rating,
-    })),
+    bases: storyBases
+      .slice(0, 1)
+      .map(({ _id, title, image, address, rating }) => ({
+        _id,
+        title,
+        image,
+        address,
+        rating,
+      })),
   },
 };
 
