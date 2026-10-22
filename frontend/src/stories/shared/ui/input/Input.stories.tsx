@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { SearchUI } from "@shared/ui/search";
+import { Input } from "@shared/ui/input";
 import Icon from "@/assets/images/icons/magnifier.svg";
 
 const meta = {
-  title: "Shared/Search",
-  component: SearchUI,
+  title: "Shared/Input",
+  component: Input,
   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
@@ -13,7 +13,7 @@ const meta = {
     onChange: () => {},
     onIconClick: () => {},
   },
-} satisfies Meta<typeof SearchUI>;
+} satisfies Meta<typeof Input>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

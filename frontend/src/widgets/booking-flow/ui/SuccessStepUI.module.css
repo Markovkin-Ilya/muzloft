@@ -16,34 +16,43 @@
 .title {
   margin: 0;
   color: var(--background);
-  font-size: clamp(24px, 7vw, 34px);
+  font-size: clamp(24px, 7vw, 45px);
   font-family: var(--lage-font-family);
+  line-height: 1.2;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .check {
-  width: 120px;
-  height: 120px;
-  margin: 8px 0;
+  width: clamp(80px, 15vw, 150px);
+  height: clamp(80px, 15vw, 150px);
+}
+
+.bookingInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .label {
   margin: 0;
   font-weight: 600;
-  font-size: 22px;
+  font-size: clamp(16px, 4vw, 26px);
   font-family: var(--main-font-family);
 }
 
 .number {
   margin: 0;
   color: var(--background);
-  font-size: 40px;
+  font-size: clamp(30px, 8vw, 60px);
   font-family: var(--lage-font-family);
+  line-height: 1;
 }
 
 .text {
-  margin: 16px 0 0;
+  margin: 10px 0 0;
   font-weight: 600;
-  font-size: 20px;
+  font-size: clamp(16px, 4vw, 26px);
   font-family: var(--main-font-family);
 }

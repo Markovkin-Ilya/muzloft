@@ -27,7 +27,7 @@ export const Default: Story = {
     avatar: guitaristAvatar,
     phone: "+7 (999) 123-45-67",
     email: "user@example.com",
-    login: "user123",
+    name: "user123",
   },
 };
 
@@ -35,13 +35,13 @@ export const WithoutAvatar: Story = {
   args: {
     phone: "+7 (999) 987-65-43",
     email: "user456@example.com",
-    login: "user456",
+    name: "user456",
   },
 };
 
 export const Minimal: Story = {
   args: {
-    login: "guest",
+    name: "guest",
   },
 };
 
@@ -50,7 +50,7 @@ export const InEditingMode: Story = {
     avatar: guitaristAvatar,
     phone: "+7 (999) 123-45-67",
     email: "user@example.com",
-    login: "user123",
+    name: "user123",
     initiallyEditing: true,
   },
 };
@@ -60,12 +60,12 @@ export const AllErrors: Story = {
     avatar: guitaristAvatar,
     phone: "+7 (999) 000-00-00",
     email: "invalid-email",
-    login: "ab",
+    name: "ab",
     initiallyEditing: true,
     errors: {
       phone: "Введите корректный номер телефона",
       email: "Введите корректный email",
-      login: "Логин должен содержать минимум 3 символа",
+      name: "Логин должен содержать минимум 3 символа",
       password: "Пароль должен содержать минимум 8 символов",
     },
   },

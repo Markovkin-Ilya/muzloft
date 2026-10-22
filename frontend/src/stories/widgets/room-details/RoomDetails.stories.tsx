@@ -12,10 +12,7 @@ const meta = {
     (Story) => (
       <StoryPageSetup base={storyBases[0]} path="/bases/grunge-moscow/yellow">
         <Routes>
-          <Route
-            path="/bases/:baseId/:roomId"
-            element={<Story />}
-          />
+          <Route path="/bases/:baseId/:roomId" element={<Story />} />
           <Route path="*" element={null} />
         </Routes>
       </StoryPageSetup>

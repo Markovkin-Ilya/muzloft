@@ -1,4 +1,5 @@
 import { FC, useState, useRef, useMemo, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "@services/store";
 import { useDispatch } from "@services/store";
 import { selectUser } from "@services/user/slice";
@@ -6,6 +7,7 @@ import { update } from "@services/user/actions";
 
 import { ProfileEditUI } from "./ui";
 import type { TProfileEditUIProps } from "./ui";
+
 
 export type TProfileEditProps = Omit<
   TProfileEditUIProps,
@@ -23,6 +25,7 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
   initiallyEditing = false,
 }) => {
   const user = useSelector(selectUser);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [isEditing, setIsEditing] = useState(initiallyEditing);
@@ -33,6 +36,10 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
     password: "",
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleLogout = () => {
+    navigate(`/profile/logout`)
+  }
 
   const handleSubmit = useCallback(() => {
     dispatch(
@@ -103,6 +110,7 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
       isEditing={isEditing}
       isFormChanged={isFormChanged}
       onEdit={() => setIsEditing(true)}
+      onLogout={handleLogout}
       onSave={handleSubmit}
       onCancel={handleCancel}
       avatarRef={fileInputRef}

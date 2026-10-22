@@ -13,6 +13,7 @@ export type TProfileEditUIProps = {
   isEditing: boolean;
   isFormChanged?: boolean;
   onEdit?: () => void;
+  onLogout?: () => void;
   onSave?: () => void;
   onCancel?: () => void;
   avatarRef?: React.RefObject<HTMLInputElement | null>;

@@ -1,57 +1,63 @@
 import { FC } from "react";
 import styles from "./ProfileEditUI.module.css";
-import { ButtonUI } from "@shared/ui/button";
-import { SearchUI } from "@shared/ui/search";
-import pencilIcon from "@assets/images/icons/pancil.svg";
+import { Button } from "@shared/ui/button";
+import { Input } from "@shared/ui/input";
+import pencilIcon from "@assets/images/icons/pencil.svg";
+import logoutIcon from "@assets/images/icons/logout.svg";
 import { TProfileEditUIProps } from "./type";
 
 export const ProfileEditUI: FC<TProfileEditUIProps> = ({
   avatar,
   phone = "",
   email = "",
-  login = "",
+  name = "",
   password = "",
   errors = {},
   isEditing,
   isFormChanged,
   onEdit,
+  onLogout,
   onSave,
   onCancel,
   avatarRef,
   onAvatarClick,
   onPhoneChange,
   onEmailChange,
-  onLoginChange,
+  onNameChange,
   onPasswordChange,
   onFileChange,
 }) => {
   const avatarInitial =
-    login.trim().charAt(0).toLocaleUpperCase("ru-RU") || "?";
+    name.trim().charAt(0).toLocaleUpperCase("ru-RU") || "?";
 
   return (
     <div className={styles.profile}>
       <div className={styles.header}>
-        <div
+        <button
+          type="button"
           className={`${styles.avatarWrapper} ${isEditing ? styles.editing : ""}`}
           onClick={onAvatarClick}
+          disabled={!isEditing}
+          aria-label="Изменить аватар"
         >
           {avatar ? (
-            <img src={avatar} alt={login} className={styles.avatar} />
+            <img src={avatar} alt={name} className={styles.avatar} />
           ) : (
             <span className={styles.avatarFallback} aria-hidden="true">
               {avatarInitial}
             </span>
           )}
           {isEditing && (
-            <div className={styles.overlay}>
+            <span className={styles.overlay}>
               <img
                 src={pencilIcon}
-                alt="Изменить аватар"
+                alt=""
+                aria-hidden="true"
                 className={styles.overlayIcon}
               />
-            </div>
+            </span>
           )}
-        </div>
+        </button>
         <input
           ref={avatarRef}
           type="file"
@@ -59,14 +65,14 @@ export const ProfileEditUI: FC<TProfileEditUIProps> = ({
           style={{ display: "none" }}
           onChange={onFileChange}
         />
-        <span className={styles.login}>{login}</span>
+        <span className={styles.login}>{name}</span>
       </div>
 
       <div className={styles.fields}>
         <div className={styles.field}>
           <span className={styles.label}>Телефон</span>
           {isEditing ? (
-            <SearchUI
+            <Input
               size="small"
               value={phone}
               onChange={onPhoneChange}
@@ -81,7 +87,7 @@ export const ProfileEditUI: FC<TProfileEditUIProps> = ({
         <div className={styles.field}>
           <span className={styles.label}>Почта</span>
           {isEditing ? (
-            <SearchUI
+            <Input
               size="small"
               value={email}
               onChange={onEmailChange}
@@ -96,22 +102,22 @@ export const ProfileEditUI: FC<TProfileEditUIProps> = ({
         <div className={styles.field}>
           <span className={styles.label}>Логин</span>
           {isEditing ? (
-            <SearchUI
+            <Input
               size="small"
-              value={login}
-              onChange={onLoginChange}
+              value={name}
+              onChange={onNameChange}
               placeholder="Введите логин"
-              error={errors.login}
+              error={errors.name}
             />
           ) : (
-            <span className={styles.value}>{login}</span>
+            <span className={styles.value}>{name}</span>
           )}
         </div>
 
         <div className={styles.field}>
           <span className={styles.label}>Пароль</span>
           {isEditing ? (
-            <SearchUI
+            <Input
               size="small"
               value={password}
               onChange={onPasswordChange}
@@ -128,22 +134,30 @@ export const ProfileEditUI: FC<TProfileEditUIProps> = ({
       <div className={styles.footer}>
         {isEditing ? (
           <>
-            <ButtonUI size="small" onClick={onSave} disabled={!isFormChanged}>
+            <Button size="large" onClick={onSave} disabled={!isFormChanged}>
               Сохранить
-            </ButtonUI>
-            <ButtonUI size="small" onClick={onCancel}>
+            </Button>
+            <Button size="large" onClick={onCancel}>
               Отмена
-            </ButtonUI>
+            </Button>
           </>
         ) : (
-          <ButtonUI size="large" onClick={onEdit}>
+          <>
+            <Button size="large" onClick={onLogout}>
+              Выйти
+              <img
+                src={logoutIcon}
+                className={styles.icon}
+              />
+            </Button>
+          <Button size="large" onClick={onEdit}>
             Редактировать
             <img
               src={pencilIcon}
-              alt="Редактировать"
-              className={styles.pencilIcon}
+              className={styles.icon}
             />
-          </ButtonUI>
+          </Button>
+          </>
         )}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { ButtonUI } from "@shared/ui/button";
+import { Button } from "@shared/ui/button";
 import styles from "./instrument.module.css";
 import { TInstrumentUIProps } from "./type";
 
@@ -61,7 +61,7 @@ export const InstrumentUI: FC<TInstrumentUIProps> = ({
           </div>
         )}
         {currentButtonState && (
-          <ButtonUI
+          <Button
             size="small"
             className={`${styles.bookButton} ${styles[`${currentButtonState}Button`]}`}
             onClick={handleBookClick}
@@ -72,7 +72,7 @@ export const InstrumentUI: FC<TInstrumentUIProps> = ({
             }
           >
             {buttonText[currentButtonState]}
-          </ButtonUI>
+          </Button>
         )}
       </div>
       <div className={styles.imageContainer}>

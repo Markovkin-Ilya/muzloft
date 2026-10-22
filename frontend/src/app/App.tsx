@@ -13,6 +13,7 @@ import { ProfilePage } from "@pages/profile";
 import { RepetitionsPage } from "@pages/repetitions";
 import { LoginPage } from "@pages/login";
 import { RegisterPage } from "@pages/register";
+import { LogoutPage } from "@pages/logout";
 import { InstrumentSelection } from "@features/instrument-selection";
 import { ProtectedRoute } from "./router/ProtectedRoute";
 import { Modal } from "@shared/ui/modal";
@@ -36,10 +37,11 @@ const App = () => {
     }
   }, [dispatch, isAuthChecked]);
 
-  const isStandaloneAuthRoute = ["/login", "/register"].includes(
-    location.pathname,
-  );
-
+  const isStandaloneAuthRoute = [
+    "/login",
+    "/register",
+    "/profile/logout",
+  ].includes(location.pathname);
   if (isStandaloneAuthRoute) {
     return (
       <div className={styles.authApp}>
@@ -52,6 +54,7 @@ const App = () => {
             path="/register"
             element={<ProtectedRoute onlyUnAuth component={<RegisterPage />} />}
           />
+          <Route path="/profile/logout" element={<LogoutPage />} />
         </Routes>
       </div>
     );

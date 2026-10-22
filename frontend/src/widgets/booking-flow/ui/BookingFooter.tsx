@@ -27,7 +27,11 @@ export const BookingFooter: FC<TBookingFooterProps> = ({
 }) => (
   <footer className={styles.footer}>
     {finalAction ? (
-      <Button className={styles.finalActionButton} size="large" onClick={finalAction.onClick}>
+      <Button
+        className={styles.finalActionButton}
+        size="large"
+        onClick={finalAction.onClick}
+      >
         {finalAction.text}
       </Button>
     ) : (

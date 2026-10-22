@@ -1,7 +1,30 @@
 import { FC } from "react";
-import { ButtonUI } from "./ui/button";
-import { TButtonUIProps } from "./ui/type";
+import styles from "./button.module.css";
+import { TButtonProps } from "./type";
 
-export type { TButtonUIProps };
+const sizeMap: Record<NonNullable<TButtonProps["size"]>, string> = {
+  large: styles.large,
+  small: styles.small,
+};
 
-export const Button: FC<TButtonUIProps> = (props) => <ButtonUI {...props} />;
+export const Button: FC<TButtonProps> = ({
+  size = "small",
+  children,
+  onClick,
+  disabled,
+  className,
+  icon,
+  type,
+}) => {
+  return (
+    <button
+      className={`${styles.button} ${sizeMap[size]} ${className || ""}`}
+      onClick={onClick}
+      disabled={disabled}
+      type={type}
+    >
+      {icon && <span className={styles.icon}>{icon}</span>}
+      {children}
+    </button>
+  );
+};
