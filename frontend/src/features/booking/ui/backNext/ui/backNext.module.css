@@ -5,7 +5,6 @@
 }
 
 .price {
-  margin: 0;
   color: var(--text-primary-color);
   font-weight: 600;
   font-size: clamp(20px, 4vw, 30px);

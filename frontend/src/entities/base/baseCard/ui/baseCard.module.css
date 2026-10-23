@@ -65,18 +65,6 @@
   border-radius: 10px;
 }
 
-.ratingHigh {
-  background-color: transparent;
-}
-
-.ratingMedium {
-  background-color: transparent;
-}
-
-.ratingLow {
-  background-color: transparent;
-}
-
 .starIcon {
   width: 26px;
   height: 26px;

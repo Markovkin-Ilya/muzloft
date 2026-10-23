@@ -16,7 +16,6 @@
 }
 
 .text {
-  margin: 0;
   padding-bottom: 10px;
   font-weight: 600;
   font-size: clamp(19px, 6vw, 30px);
@@ -24,7 +23,6 @@
 }
 
 .error {
-  margin: 0;
   padding-bottom: 10px;
   color: var(--colors-interface-error);
   text-align: center;

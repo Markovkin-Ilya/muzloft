@@ -1,5 +1,6 @@
 import { FC, WheelEvent } from "react";
 import { Button } from "@shared/ui/button";
+import { ExpandableText } from "@shared/ui/expandable-text";
 import styles from "./RoomDetailsUI.module.css";
 import { TRoomDetailsUIProps } from "./type";
 
@@ -35,7 +36,9 @@ export const RoomDetailsUI: FC<TRoomDetailsUIProps> = ({
       <div className={styles.content}>
         <h1 className={styles.title}>{room.title}</h1>
 
-        <p className={styles.description}>{room.description}</p>
+        <ExpandableText className={styles.description}>
+          {room.description}
+        </ExpandableText>
 
         {room.image.length > 0 && (
           <div

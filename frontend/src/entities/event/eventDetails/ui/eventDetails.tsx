@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { ExpandableText } from "@shared/ui/expandable-text";
 import styles from "./eventDetails.module.css";
 import { TEventDetailsUIProps } from "./type";
 
@@ -30,7 +31,7 @@ export const EventDetailsUI: FC<TEventDetailsUIProps> = ({ event }) => (
       </p>
     )}
 
-    <div className={styles.text}>
+    <ExpandableText className={styles.text}>
       {event.text
         .split(/\n\s*\n/)
         .map((paragraph) => paragraph.trim())
@@ -38,6 +39,6 @@ export const EventDetailsUI: FC<TEventDetailsUIProps> = ({ event }) => (
         .map((paragraph, index) => (
           <p key={`${index}-${paragraph}`}>{paragraph}</p>
         ))}
-    </div>
+    </ExpandableText>
   </article>
 );

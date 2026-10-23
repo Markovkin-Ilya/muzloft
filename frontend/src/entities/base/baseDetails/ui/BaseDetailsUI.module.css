@@ -20,7 +20,6 @@
 }
 
 .title {
-  margin: 0;
   color: var(--background);
   font-weight: 800;
   font-size: clamp(24px, 8vw, 34px);
@@ -29,17 +28,16 @@
 }
 
 .address {
-  margin: 0;
-  color: var(--text-inactive-color);
-  font-weight: 600;
-  font-size: 14px;
+  color: var(--text-secondary-color);
+  font-weight: 500;
+  font-size: clamp(14px, 4vw, 18px);
 }
 
 .description {
   margin: 0;
   color: var(--text-primary-color);
   font-weight: 500;
-  font-size: clamp(14px, 1.5vw, 18px);
+  font-size: clamp(14px, 4vw, 18px);
   line-height: 1.3;
   text-align: justify;
   overflow-wrap: anywhere;
@@ -49,10 +47,9 @@
   display: flex;
   align-items: center;
   max-width: 100%;
-  color: var(--text-primary-color);
-  font-weight: 700;
-  font-size: clamp(14px, 1.5vw, 18px);
-  text-decoration: none;
+  color: var(--text-secondary-color);
+  font-weight: 500;
+  font-size: clamp(14px, 5vw, 18px);
   overflow-wrap: anywhere;
 }
 
@@ -82,10 +79,9 @@
 }
 
 .sectionTitle {
-  margin: 0;
   color: var(--text-inactive-color);
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: clamp(14px, 4vw, 18px);
 }
 
 .rooms,
@@ -111,7 +107,7 @@
   flex-direction: column;
   align-items: center;
   align-self: flex-start;
-  padding: 3px 10px;
+  padding: 7px 15px;
   color: var(--text-primary-color);
   font-family: var(--main-font-family);
   line-height: 1;
@@ -124,8 +120,8 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-color: var(--colors-interface-success);
-  border-radius: 12px;
+  background-color: var(--background);
+  border-radius: 20px;
   content: "";
   transition: opacity 0.2s;
 }
@@ -135,15 +131,7 @@
   z-index: 1;
 }
 
-.rating:disabled {
-  cursor: not-allowed;
-}
-
-.rating:disabled::before {
-  opacity: 0.5;
-}
-
-.rating:hover:not(:disabled)::before {
+.rating:hover::before {
   opacity: 0.8;
 }
 
@@ -154,31 +142,21 @@
 }
 
 .ratingValue {
-  font-weight: 700;
-  font-size: 24px;
+  font-weight: 600;
+  font-size: clamp(18px, 5vw, 26px);
 }
 
 .starIcon {
-  width: 26px;
-  height: 24px;
+  width: clamp(18px, 5vw, 26px);
+  height: clamp(18px, 5vw, 26px);
 }
 
 .reviewCount {
-  font-weight: 300;
-  font-size: 16px;
+  font-weight: 400;
+  font-size: clamp(12px, 4vw, 18px);
 }
 
 @media (width <= 480px) {
-  .description {
-    font-size: 14px;
-    line-height: 1.25;
-    text-align: left;
-  }
-
-  .phone {
-    font-size: 15px;
-  }
-
   .images {
     gap: 8px;
   }
@@ -192,10 +170,6 @@
 }
 
 @media (width >= 768px) {
-  .description {
-    line-height: 1.4;
-  }
-
   .image {
     flex-basis: 45%;
     width: 45%;
