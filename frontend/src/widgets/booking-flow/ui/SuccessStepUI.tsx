@@ -9,7 +9,12 @@ export type TSuccessStepUIProps = {
 export const SuccessStepUI: FC<TSuccessStepUIProps> = ({ bookingNumber }) => (
   <section className={styles.card}>
     <h2 className={styles.title}>Ваша репетиция успешно забронирована!</h2>
-    <img className={styles.check} src={checkmarkIcon} alt="" aria-hidden="true" />
+    <img
+      className={styles.check}
+      src={checkmarkIcon}
+      alt=""
+      aria-hidden="true"
+    />
     <div className={styles.bookingInfo}>
       <p className={styles.label}>Бронь</p>
       <p className={styles.number}>{bookingNumber}</p>

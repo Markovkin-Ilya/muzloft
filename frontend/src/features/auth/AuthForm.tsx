@@ -320,15 +320,9 @@ export const AuthForm = ({ mode }: TAuthFormProps) => {
               </p>
               <p>
                 Забыли пароль?{" "}
-                <button
-                  className={styles.disabledLink}
-                  type="button"
-                  disabled
-                  aria-disabled="true"
-                  title="Восстановление пароля скоро будет доступно"
-                >
+                <Link to="/newpassword" replace state={location.state}>
                   Восстановить пароль
-                </button>
+                </Link>
               </p>
             </>
           )}

@@ -87,7 +87,6 @@ export const addRepetition = createAsyncThunk(
   async (repetitionData: TRepetition) => repetitionData,
 );
 
-// Репетиция попадает в user.repetitions только после успешного ответа сервера
 export const bookRepetition = createAsyncThunk(
   "user/bookRepetition",
   async (
