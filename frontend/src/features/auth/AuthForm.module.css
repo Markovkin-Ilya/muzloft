@@ -121,7 +121,7 @@
   display: grid;
   gap: 8px;
   margin-top: 30px;
-  color: #a0a0bd;
+  color: var(--text-secondary-color);
   font-size: clamp(12px, 3.5vw, 16px);
   text-align: center;
 }
@@ -130,8 +130,7 @@
   margin: 0;
 }
 
-.links a,
-.disabledLink {
+.links a {
   padding: 0;
   color: var(--colors-interface-accent);
   font: inherit;
@@ -144,12 +143,6 @@
   text-decoration: underline;
 }
 
-.disabledLink {
-  color: #6f6f8a;
-  cursor: not-allowed;
-}
-
-.disabledLink:focus-visible,
 .links a:focus-visible {
   outline: 2px solid var(--colors-interface-accent);
   outline-offset: 3px;

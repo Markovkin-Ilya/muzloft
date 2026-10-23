@@ -1,9 +1,4 @@
-import {
-  FC,
-  useEffect,
-  useRef,
-  WheelEvent as ReactWheelEvent,
-} from "react";
+import { FC, useEffect, useRef, WheelEvent as ReactWheelEvent } from "react";
 import styles from "./menu.module.css";
 import { TMenuProps } from "./type";
 
@@ -90,4 +85,3 @@ export const Menu: FC<TMenuProps> = ({
     </nav>
   );
 };
-

@@ -8,7 +8,6 @@ import { update } from "@services/user/actions";
 import { ProfileEditUI } from "./ui";
 import type { TProfileEditUIProps } from "./ui";
 
-
 export type TProfileEditProps = Omit<
   TProfileEditUIProps,
   "isEditing" | "isFormChanged"
@@ -38,8 +37,8 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleLogout = () => {
-    navigate(`/profile/logout`)
-  }
+    navigate(`/profile/logout`);
+  };
 
   const handleSubmit = useCallback(() => {
     dispatch(

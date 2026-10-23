@@ -23,7 +23,9 @@ export const Logout = () => {
   return (
     <main className={styles.page}>
       <div className={styles.logout}>
-        <p className={styles.text}>Вы действительно хотите выйти из аккаунта?</p>
+        <p className={styles.text}>
+          Вы действительно хотите выйти из аккаунта?
+        </p>
         {hasError && (
           <p role="alert" className={styles.error}>
             Проблемы с работой сервера, повторите попытку позже

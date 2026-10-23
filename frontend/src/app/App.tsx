@@ -14,6 +14,7 @@ import { RepetitionsPage } from "@pages/repetitions";
 import { LoginPage } from "@pages/login";
 import { RegisterPage } from "@pages/register";
 import { LogoutPage } from "@pages/logout";
+import { NewPasswordPage } from "@pages/new-password";
 import { InstrumentSelection } from "@features/instrument-selection";
 import { ProtectedRoute } from "./router/ProtectedRoute";
 import { Modal } from "@shared/ui/modal";
@@ -40,6 +41,7 @@ const App = () => {
   const isStandaloneAuthRoute = [
     "/login",
     "/register",
+    "/newpassword",
     "/profile/logout",
   ].includes(location.pathname);
   if (isStandaloneAuthRoute) {
@@ -53,6 +55,12 @@ const App = () => {
           <Route
             path="/register"
             element={<ProtectedRoute onlyUnAuth component={<RegisterPage />} />}
+          />
+          <Route
+            path="/newpassword"
+            element={
+              <ProtectedRoute onlyUnAuth component={<NewPasswordPage />} />
+            }
           />
           <Route path="/profile/logout" element={<LogoutPage />} />
         </Routes>

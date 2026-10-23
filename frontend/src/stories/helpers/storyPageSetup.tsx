@@ -27,6 +27,9 @@ export type TStoryAuthResponse = {
 export type TStoryAuthResponses = {
   login?: TStoryAuthResponse;
   register?: TStoryAuthResponse;
+  forgotPassword?: TStoryAuthResponse;
+  verifyResetCode?: TStoryAuthResponse;
+  resetPassword?: TStoryAuthResponse;
 };
 
 type TStoryPageSetupProps = PropsWithChildren<{
@@ -137,18 +140,26 @@ export const StoryPageSetup: FC<TStoryPageSetupProps> = ({
         );
       }
 
+      const passwordResetRoute = pathname.match(
+        /\/password-reset(?:\/(verify|reset))?\/?$/,
+      );
       const authRoute = pathname.match(
         /\/auth\/(login|register|token|user|logout)\/?$/,
       );
-      if (authRoute) {
-        const authResponse =
-          authRoute[1] === "login"
+      if (passwordResetRoute || authRoute) {
+        const configuredResponse = passwordResetRoute
+          ? passwordResetRoute[1] === "verify"
+            ? authResponses?.verifyResetCode
+            : passwordResetRoute[1] === "reset"
+              ? authResponses?.resetPassword
+              : authResponses?.forgotPassword
+          : authRoute?.[1] === "login"
             ? authResponses?.login
-            : authRoute[1] === "register"
+            : authRoute?.[1] === "register"
               ? authResponses?.register
               : undefined;
         const response =
-          authResponse ??
+          configuredResponse ??
           ({
             status: 501,
             body: {

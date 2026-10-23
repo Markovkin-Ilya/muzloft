@@ -27,8 +27,7 @@ export const ProfileEditUI: FC<TProfileEditUIProps> = ({
   onPasswordChange,
   onFileChange,
 }) => {
-  const avatarInitial =
-    name.trim().charAt(0).toLocaleUpperCase("ru-RU") || "?";
+  const avatarInitial = name.trim().charAt(0).toLocaleUpperCase("ru-RU") || "?";
 
   return (
     <div className={styles.profile}>
@@ -100,13 +99,13 @@ export const ProfileEditUI: FC<TProfileEditUIProps> = ({
         </div>
 
         <div className={styles.field}>
-          <span className={styles.label}>Логин</span>
+          <span className={styles.label}>Имя</span>
           {isEditing ? (
             <Input
               size="small"
               value={name}
               onChange={onNameChange}
-              placeholder="Введите логин"
+              placeholder="Введите имя"
               error={errors.name}
             />
           ) : (
@@ -134,29 +133,23 @@ export const ProfileEditUI: FC<TProfileEditUIProps> = ({
       <div className={styles.footer}>
         {isEditing ? (
           <>
-            <Button size="large" onClick={onSave} disabled={!isFormChanged}>
-              Сохранить
-            </Button>
             <Button size="large" onClick={onCancel}>
               Отмена
+            </Button>
+            <Button size="large" onClick={onSave} disabled={!isFormChanged}>
+              Сохранить
             </Button>
           </>
         ) : (
           <>
             <Button size="large" onClick={onLogout}>
               Выйти
-              <img
-                src={logoutIcon}
-                className={styles.icon}
-              />
+              <img src={logoutIcon} className={styles.icon} />
             </Button>
-          <Button size="large" onClick={onEdit}>
-            Редактировать
-            <img
-              src={pencilIcon}
-              className={styles.icon}
-            />
-          </Button>
+            <Button size="large" onClick={onEdit}>
+              Редактировать
+              <img src={pencilIcon} className={styles.icon} />
+            </Button>
           </>
         )}
       </div>

@@ -234,7 +234,26 @@ export const forgotPasswordApi = (data: { email: string }) =>
       return Promise.reject(data);
     });
 
-export const resetPasswordApi = (data: { password: string; token: string }) =>
+type TVerifyResetCodeResponse = TServerResponse<{ resetToken: string }>;
+
+export const verifyResetCodeApi = (data: { token: string }) =>
+  fetch(`${URL}/password-reset/verify`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => checkResponse<TVerifyResetCodeResponse>(res))
+    .then((data) => {
+      if (data?.success) return data;
+      return Promise.reject(data);
+    });
+
+export const resetPasswordApi = (data: {
+  password: string;
+  resetToken: string;
+}) =>
   fetch(`${URL}/password-reset/reset`, {
     method: "POST",
     headers: {
