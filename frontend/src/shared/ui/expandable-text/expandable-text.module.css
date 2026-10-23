@@ -1,0 +1,25 @@
+.clipped {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  padding: 4px 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.arrow {
+  width: 24px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.arrowCollapsed {
+  transform: rotate(180deg);
+}

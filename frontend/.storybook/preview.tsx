@@ -4,6 +4,7 @@ import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "../src/services/store";
 import "@utils/variables.css";
+import "../src/index.css";
 import "@assets/fonts/fonts.css";
 
 const preview: Preview = {

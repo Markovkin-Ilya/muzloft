@@ -32,9 +32,7 @@ export const BaseCardUI: FC<TBaseCardUIProps> = ({
       <img src={image} alt={name} className={styles.image} />
     </div>
     <div className={styles.bottom}>
-      <div
-        className={`${styles.rating} ${rating >= 4.7 ? styles.ratingHigh : rating >= 4.3 ? styles.ratingMedium : styles.ratingLow}`}
-      >
+      <div className={styles.rating}>
         <span className={styles.ratingValue}>
           {rating.toFixed(1).replace(".", ",")}
         </span>

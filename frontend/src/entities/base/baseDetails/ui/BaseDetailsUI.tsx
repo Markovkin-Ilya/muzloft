@@ -1,5 +1,6 @@
 import { FC, WheelEvent } from "react";
 import { Button } from "@shared/ui/button";
+import { ExpandableText } from "@shared/ui/expandable-text";
 import styles from "./BaseDetailsUI.module.css";
 import { TBaseDetailsUIProps } from "./type";
 import starIcon from "@assets/images/icons/star.svg";
@@ -27,6 +28,7 @@ export const BaseDetailsUI: FC<TBaseDetailsUIProps> = ({
   onShowReviews,
 }) => {
   const reviewCount = base.comments.length;
+
   const handleGalleryWheel = (event: WheelEvent<HTMLDivElement>) => {
     if (event.ctrlKey) {
       return;
@@ -57,7 +59,9 @@ export const BaseDetailsUI: FC<TBaseDetailsUIProps> = ({
           <p className={styles.address}>{base.address}</p>
         </header>
 
-        <p className={styles.description}>{base.description}</p>
+        <ExpandableText className={styles.description}>
+          {base.description}
+        </ExpandableText>
 
         <div className={styles.phone}>
           <p>Телефон:&nbsp;</p>
