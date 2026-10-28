@@ -2,7 +2,7 @@ import { getCookie } from "./cookie";
 import { getStoredRefreshToken, saveAuthTokens } from "./tokenStorage";
 import { TBase, TEvent, TUser, TOrder as TBookingOrder } from "./types";
 
-const URL = process.env.BURGER_API_URL;
+const URL = process.env.API_URL;
 
 export class ApiError extends Error {
   constructor(
