@@ -57,13 +57,14 @@ export const RepetitionUI: FC<TRepetitionUIProps> = ({
         {hasInstruments ? instrumentsLabel : "Без инструмента"}
       </Button>
       {showMap && (
-        <div onClick={onMap}>
-          <img
-            src={Icon}
-            alt="Кнопка показывает на карте репбазу"
-            className={styles.icon}
-          />
-        </div>
+        <button
+          type="button"
+          className={styles.mapBtn}
+          onClick={onMap}
+          aria-label="Показать на карте"
+        >
+          <img src={Icon} alt="Показать на карте" className={styles.mapIcon} />
+        </button>
       )}
     </div>
   </div>
