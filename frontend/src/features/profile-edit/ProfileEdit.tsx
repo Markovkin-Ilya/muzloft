@@ -20,6 +20,7 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
   phone = "",
   email = "",
   name = "",
+  region = "",
   errors = {},
   initiallyEditing = false,
 }) => {
@@ -32,6 +33,7 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
     phone: user?.phone || phone,
     email: user?.email || email,
     name: user?.name || name,
+    region: user?.region || region,
     password: "",
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -47,6 +49,7 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
         name: formData.name,
         password: formData.password,
         phone: formData.phone,
+        region: formData.region,
       }),
     );
     setIsEditing(false);
@@ -57,6 +60,7 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
       phone: user?.phone || phone,
       email: user?.email || email,
       name: user?.name || name,
+      region: user?.region || region,
       password: "",
     });
     setIsEditing(false);
@@ -83,18 +87,22 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
       formData.phone !== (user?.phone || phone) ||
       formData.email !== (user?.email || email) ||
       formData.name !== (user?.name || name) ||
+      formData.region !== (user?.region || region) ||
       !!formData.password,
     [
       formData.phone,
       formData.email,
       formData.name,
+      formData.region,
       formData.password,
       user?.phone,
       user?.email,
       user?.name,
+      user?.region,
       phone,
       email,
       name,
+      region,
     ],
   );
 
@@ -105,6 +113,7 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
       email={formData.email}
       name={formData.name}
       password={formData.password}
+      region={formData.region}
       errors={errors}
       isEditing={isEditing}
       isFormChanged={isFormChanged}
@@ -117,6 +126,7 @@ export const ProfileEdit: FC<TProfileEditProps> = ({
       onPhoneChange={(value) => handleInputChange("phone", value)}
       onEmailChange={(value) => handleInputChange("email", value)}
       onNameChange={(value) => handleInputChange("name", value)}
+      onRegionChange={(value) => handleInputChange("region", value)}
       onPasswordChange={(value) => handleInputChange("password", value)}
       onFileChange={handleFileChange}
     />

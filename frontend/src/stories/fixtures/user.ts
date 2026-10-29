@@ -8,6 +8,7 @@ export const storyUser: TUser = {
   avatar: guitaristAvatar,
   phone: "+7 (999) 123-45-67",
   email: "user@example.com",
+  region: "Москва",
   repetitions: [
     {
       _id: "repetition-1",
