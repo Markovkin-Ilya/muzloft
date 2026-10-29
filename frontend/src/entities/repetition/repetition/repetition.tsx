@@ -1,9 +1,15 @@
 import { FC, memo } from "react";
 import { TRepetitionProps } from "./type";
 import { RepetitionUI } from "./ui/repetition";
+import { openInYandexMaps } from "@utils/yandexMaps";
 
 export const Repetition: FC<TRepetitionProps> = memo(
   ({ repetition, onInstruments, onMap, instrumentsLabel, showMap }) => {
+    const handleMap = () => {
+      openInYandexMaps(repetition.address);
+      onMap?.();
+    };
+
     const slotDate = new Date(repetition.slot.date);
     const date = slotDate.toLocaleDateString("ru-RU", {
       day: "2-digit",
@@ -32,7 +38,7 @@ export const Repetition: FC<TRepetitionProps> = memo(
         price={totalPrice}
         payment={repetition.payment}
         onInstruments={onInstruments}
-        onMap={onMap}
+        onMap={handleMap}
         hasInstruments={repetition.instruments.length > 0}
         instrumentsLabel={instrumentsLabel}
         showMap={showMap}
