@@ -12,6 +12,7 @@ export const ProfileEditUI: FC<TProfileEditUIProps> = ({
   email = "",
   name = "",
   password = "",
+  region = "",
   errors = {},
   isEditing,
   isFormChanged,
@@ -25,6 +26,7 @@ export const ProfileEditUI: FC<TProfileEditUIProps> = ({
   onEmailChange,
   onNameChange,
   onPasswordChange,
+  onRegionChange,
   onFileChange,
 }) => {
   const avatarInitial = name.trim().charAt(0).toLocaleUpperCase("ru-RU") || "?";
@@ -110,6 +112,21 @@ export const ProfileEditUI: FC<TProfileEditUIProps> = ({
             />
           ) : (
             <span className={styles.value}>{name}</span>
+          )}
+        </div>
+
+        <div className={styles.field}>
+          <span className={styles.label}>Регион</span>
+          {isEditing ? (
+            <Input
+              size="small"
+              value={region}
+              onChange={onRegionChange}
+              placeholder="Введите регион"
+              error={errors.region}
+            />
+          ) : (
+            <span className={styles.value}>{region}</span>
           )}
         </div>
 

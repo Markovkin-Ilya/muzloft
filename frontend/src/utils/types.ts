@@ -3,6 +3,7 @@ export type TUser = {
   name: string;
   email: string;
   phone: string;
+  region: string; // регион пользователя
   avatar?: string;
   repetitions: TRepetition[]; // Данные о забронированных репетициях
 };
