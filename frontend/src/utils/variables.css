@@ -1,0 +1,17 @@
+:root {
+  --dark-background: #0f0f0f;
+  --text-primary-color: #ffffff;
+  --text-secondary-color: #a0a0bd;
+  --background: #cc1b3b;
+  --active-background: #861227;
+  --colors-interface-accent: #3b82f6;
+  --colors-interface-error: #ef4444;
+  --slot-tone-0: #2f9e44;
+  --slot-tone-1: #e8a317;
+  --slot-tone-2: #8b5cf6;
+  --slot-busy: #1a1a1a;
+  --text-inactive-color: #6b7280;
+  --offset-base-variable: 1px;
+  --main-font-family: "Geologica", sans-serif;
+  --lage-font-family: "Extenda", sans-serif;
+}

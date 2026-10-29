@@ -1,0 +1,101 @@
+.picker {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 700px;
+}
+
+.days {
+  width: 100%;
+}
+
+.days > nav {
+  width: 100%;
+  max-width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background-color: var(--dark-background);
+  border-radius: 24px;
+}
+
+.duration {
+  color: var(--text-primary-color);
+  font-weight: 500;
+  font-size: clamp(18px, 3.5vw, 25px);
+  font-family: var(--main-font-family);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: var(--text-primary-color);
+  font-weight: 500;
+  font-size: clamp(18px, 3.5vw, 25px);
+  font-family: var(--main-font-family);
+  list-style: none;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.hour {
+  padding: 10px 0;
+  color: var(--text-primary-color);
+  font-weight: 600;
+  font-size: clamp(15px, 4vw, 25px);
+  font-family: var(--main-font-family);
+  border: 5px solid transparent;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.hour.selected {
+  border-color: var(--text-primary-color);
+}
+
+.hour.busy {
+  color: var(--text-inactive-color);
+  background-color: var(--slot-busy);
+  cursor: not-allowed;
+}
+
+.tone0 {
+  background-color: var(--slot-tone-0);
+}
+
+.tone1 {
+  background-color: var(--slot-tone-1);
+}
+
+.tone2 {
+  background-color: var(--slot-tone-2);
+}
+
+.hour.busy.tone0,
+.hour.busy.tone1,
+.hour.busy.tone2 {
+  background-color: var(--slot-busy);
+}

@@ -1,0 +1,35 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 0 8px;
+}
+
+.price {
+  color: var(--text-primary-color);
+  font-weight: 600;
+  font-size: clamp(20px, 4vw, 30px);
+  font-family: var(--main-font-family);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.backbutton,
+.nextbutton {
+  flex: 1;
+  max-width: 220px;
+}
+
+@media (width <= 480px) {
+  .buttons {
+    gap: 10px;
+  }
+
+  .backbutton,
+  .nextbutton {
+    padding: 10px 12px;
+  }
+}

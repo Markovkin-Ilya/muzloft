@@ -1,0 +1,83 @@
+import { FC, useState, useRef } from "react";
+import styles from "./input.module.css";
+import { TInputProps } from "./type";
+
+export const Input: FC<TInputProps> = ({
+  value = "",
+  onChange,
+  placeholder = "",
+  disabled = false,
+  error,
+  size = "default",
+  type = "text",
+  icon,
+  onIconClick,
+  id,
+  name,
+  autoComplete,
+  required,
+  spellCheck,
+  minLength,
+  maxLength,
+  className,
+}) => {
+  const [focused, setFocused] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const isActive = focused && !disabled;
+  const isDisabled = disabled;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange?.(e.target.value);
+  };
+
+  const handleIconClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (disabled) return;
+    onIconClick?.();
+  };
+
+  const handleContainerClick = () => {
+    if (disabled) return;
+    inputRef.current?.focus();
+  };
+
+  return (
+    <div>
+      <div
+        className={`${styles.input} ${size === "small" ? styles.inputSmall : styles.inputDefault} ${isActive ? styles.inputStatusActive : ""} ${error ? styles.inputStatusError : ""} ${isDisabled ? styles.inputStatusDisabled : ""} ${className ?? ""}`}
+      >
+        <div className={styles.inputContainer} onClick={handleContainerClick}>
+          <input
+            ref={inputRef}
+            type={type}
+            id={id}
+            name={name}
+            className={`${styles.inputTextfield} ${isDisabled ? styles.inputTextfieldDisabled : ""}`}
+            value={value}
+            onChange={handleChange}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            disabled={isDisabled}
+            placeholder={placeholder}
+            autoComplete={autoComplete}
+            required={required}
+            spellCheck={spellCheck}
+            minLength={minLength}
+            maxLength={maxLength}
+            aria-invalid={error ? true : undefined}
+          />
+        </div>
+        {icon && (
+          <span
+            className={`${styles.inputIcon} ${isDisabled ? styles.inputIconDisabled : ""}`}
+            onClick={handleIconClick}
+          >
+            {icon}
+          </span>
+        )}
+      </div>
+      {error && <span className={styles.inputError}>{error}</span>}
+    </div>
+  );
+};

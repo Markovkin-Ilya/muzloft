@@ -2,6 +2,7 @@ const path = require('path'); // для того чтобы превратить
 const HTMLWebpackPlugins = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack'); //подключаем webpack для использования встроенного плагина EnvironmentPlugin
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 //в зависимости от того, какой скрипт мы запустили
 // переменная production получит либо false, либо true
@@ -87,6 +88,7 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx', '.tsx', '.ts', '.json'], // указываем файлы, с которыми будет работать webpack
+        plugins: [new TsconfigPathsPlugin()],
     },
     plugins: [
         new HTMLWebpackPlugins({
@@ -98,6 +100,7 @@ module.exports = {
         //Плагин позволяет установить переменные окружения, можно переопределить переменную из блока script файла package.json
         new webpack.EnvironmentPlugin({
             NODE_ENV: 'development', // значение по умолчанию 'development', если переменная process.env.NODE_ENV не передана при вызове сборки
+            API_URL: 'http://localhost:3000/api', // адрес бэкенда, если переменная API_URL не передана при вызове сборки
         }),
     ],
 }; 

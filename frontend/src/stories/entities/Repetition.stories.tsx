@@ -1,0 +1,63 @@
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import { RepetitionUI } from "@entities/repetition";
+
+const meta = {
+  title: "Entities/Repetition",
+  component: RepetitionUI,
+  tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
+} satisfies Meta<typeof RepetitionUI>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    date: "15.09.2026",
+    time: "17:00-20:00",
+    base: "GrungeMoscow",
+    address: "г.Москва, ул. Музыкальная, д.93",
+    room: "Green",
+    price: 4800.0,
+    payment: "online",
+    onInstruments: () => {},
+    onMap: () => {},
+  },
+};
+
+export const UnpaidCash: Story = {
+  args: {
+    date: "15.09.2026",
+    time: "17:00-20:00",
+    base: "GrungeMoscow",
+    address: "г.Москва, ул. Музыкальная, д.93",
+    room: "Green",
+    price: 4800.0,
+    payment: "cash",
+    onInstruments: () => {},
+    onMap: () => {},
+  },
+};
+
+export const WithoutInstruments: Story = {
+  args: {
+    ...UnpaidCash.args,
+    hasInstruments: false,
+  },
+};
+
+export const UnpaidCard: Story = {
+  args: {
+    date: "15.09.2026",
+    time: "17:00-20:00",
+    base: "GrungeMoscow",
+    address: "г.Москва, ул. Музыкальная, д.93",
+    room: "Green",
+    price: 4800.0,
+    payment: "card",
+    onInstruments: () => {},
+    onMap: () => {},
+  },
+};

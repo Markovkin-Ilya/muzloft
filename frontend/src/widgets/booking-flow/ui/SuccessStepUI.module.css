@@ -1,0 +1,55 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 700px;
+  padding: 16px;
+  color: var(--text-primary-color);
+  text-align: center;
+  background-color: var(--dark-background);
+  border-radius: 24px;
+}
+
+.title {
+  color: var(--background);
+  font-size: clamp(24px, 7vw, 45px);
+  font-family: var(--lage-font-family);
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.check {
+  width: clamp(80px, 15vw, 150px);
+  height: clamp(80px, 15vw, 150px);
+}
+
+.bookingInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.label {
+  font-weight: 600;
+  font-size: clamp(16px, 4vw, 26px);
+  font-family: var(--main-font-family);
+}
+
+.number {
+  color: var(--background);
+  font-size: clamp(30px, 8vw, 60px);
+  font-family: var(--lage-font-family);
+  line-height: 1;
+}
+
+.text {
+  margin: 10px 0 0;
+  font-weight: 600;
+  font-size: clamp(16px, 4vw, 26px);
+  font-family: var(--main-font-family);
+}

@@ -1,0 +1,1 @@
+export { RoomDetailsWidget } from "./RoomDetailsWidget";
