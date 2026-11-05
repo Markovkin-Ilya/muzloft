@@ -1,0 +1,1 @@
+export { getRoomPhotos } from "./getRoomPhotos";

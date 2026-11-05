@@ -71,6 +71,7 @@
   height: clamp(100px, 16vw, 150px);
   border-radius: 6px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .bookButton,

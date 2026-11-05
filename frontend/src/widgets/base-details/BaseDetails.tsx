@@ -39,6 +39,11 @@ export const BaseDetails: FC = () => {
           state: { background },
         })
       }
+      onPhotoSelect={(photoIndex) =>
+        navigate(`/bases/${base._id}/photos/${photoIndex}`, {
+          state: { background },
+        })
+      }
     />
   );
 };
