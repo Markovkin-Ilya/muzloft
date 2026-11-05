@@ -1,6 +1,7 @@
 import { FC, WheelEvent } from "react";
 import { Button } from "@shared/ui/button";
 import { ExpandableText } from "@shared/ui/expandable-text";
+import { getBasePhotos } from "../lib";
 import styles from "./BaseDetailsUI.module.css";
 import { TBaseDetailsUIProps } from "./type";
 import starIcon from "@assets/images/icons/star.svg";
@@ -26,8 +27,10 @@ export const BaseDetailsUI: FC<TBaseDetailsUIProps> = ({
   onRoomSelect,
   onRentInstruments,
   onShowReviews,
+  onPhotoSelect,
 }) => {
   const reviewCount = base.comments.length;
+  const photos = getBasePhotos(base);
 
   const handleGalleryWheel = (event: WheelEvent<HTMLDivElement>) => {
     if (event.ctrlKey) {
@@ -79,16 +82,23 @@ export const BaseDetailsUI: FC<TBaseDetailsUIProps> = ({
             aria-label="Фотографии комнат базы"
             onWheel={handleGalleryWheel}
           >
-            {base.rooms.flatMap((room) =>
-              room.image.map((image, index) => (
-                <img
-                  key={`${room._id}-${image}-${index}`}
-                  className={styles.image}
-                  src={image}
-                  alt={`${room.title} — фото ${index + 1}`}
-                />
-              )),
-            )}
+            {photos.map((photo, photoIndex) => (
+              <img
+                key={photo.key}
+                className={styles.image}
+                src={photo.src}
+                alt={photo.alt}
+                role="button"
+                tabIndex={0}
+                onClick={() => onPhotoSelect(photoIndex)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    onPhotoSelect(photoIndex);
+                  }
+                }}
+              />
+            ))}
           </div>
         )}
 

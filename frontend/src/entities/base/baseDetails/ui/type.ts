@@ -6,4 +6,5 @@ export type TBaseDetailsUIProps = {
   onRoomSelect: (roomId: string) => void;
   onRentInstruments: () => void;
   onShowReviews: () => void;
+  onPhotoSelect: (photoIndex: number) => void;
 };

@@ -1,1 +1,1 @@
-export { RoomDetailsWidget } from "./RoomDetailsWidget";
+export { RoomDetails } from "./RoomDetails";

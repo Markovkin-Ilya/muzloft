@@ -299,7 +299,7 @@ type TOrderDraft = {
 
 1. `BaseList` при монтировании диспатчит `fetchBases` и `fetchBaseDetails`. Карточка базы (`baseCard`) передает клик в маршрут `/bases/:baseId`.
 2. `BookingPage` диспатчит `fetchBaseDetails` и открывает `BookingFlow` с нужными `initialRoomId`.
-3. `RoomDetailsWidget` вызывает `selectRoom`, после чего обновляется выбранная комната в `bases`.
+3. `RoomDetails` вызывает `selectRoom`, после чего обновляется выбранная комната в `bases`.
 4. `EventsPage` диспатчит `fetchEvents`, а при открытии акции — `fetchEventDetails`.
 5. `RepetitionSelector` и `InstrumentSelection` читают репетиции через `selectRepetitions`.
 6. `Logout` диспатчит `logout`, который очищает токены и состояние пользователя.

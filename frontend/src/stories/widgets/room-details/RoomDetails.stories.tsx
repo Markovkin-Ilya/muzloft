@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { Route, Routes } from "react-router-dom";
-import { RoomDetailsWidget } from "@widgets/room-details";
+import { RoomDetails } from "@widgets/room-details";
 import { storyBases } from "../../fixtures/bases";
 import { StoryPageSetup } from "../../helpers/storyPageSetup";
 
 const meta = {
   title: "Widgets/RoomDetails",
-  component: RoomDetailsWidget,
+  component: RoomDetails,
   tags: ["autodocs"],
   decorators: [
     (Story) => (
@@ -18,7 +18,7 @@ const meta = {
       </StoryPageSetup>
     ),
   ],
-} satisfies Meta<typeof RoomDetailsWidget>;
+} satisfies Meta<typeof RoomDetails>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
