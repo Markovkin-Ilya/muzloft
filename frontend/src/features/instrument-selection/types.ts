@@ -17,6 +17,7 @@ export type TInstrumentCardProps = {
   buttonDisabled?: boolean;
   hideSlotPrice?: boolean;
   onBook?: () => void;
+  onPhotoSelect?: () => void;
 };
 
 export type TInstrumentSelectionCategory = {

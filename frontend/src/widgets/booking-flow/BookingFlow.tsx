@@ -1,7 +1,13 @@
 import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "@shared/ui/modal";
-import { clearOrderDraft, startOrderDraft } from "@services/bases/slice";
+import {
+  clearOrderDraft,
+  selectBookingProgress,
+  setBookingStepIndex,
+  setShowBookedInstruments,
+  startOrderDraft,
+} from "@services/bases/slice";
 import { bookRepetition } from "@services/user/actions";
 import { selectUser } from "@services/user/slice";
 import { useDispatch, useSelector } from "@services/store";
@@ -38,17 +44,20 @@ export const BookingFlow: FC<TBookingFlowProps> = ({
   const navigate = useNavigate();
   const user = useSelector(selectUser);
   const draft = useSelector(selectOrderDraft);
-  const [stepIndex, setStepIndex] = useState(0);
+  const { stepIndex, showBookedInstruments } = useSelector(
+    selectBookingProgress,
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingNumber, setBookingNumber] = useState("");
-  const [showBookedInstruments, setShowBookedInstruments] = useState(false);
 
   useEffect(() => {
     dispatch(startOrderDraft({ baseid: base._id, roomid: initialRoomId }));
-    return () => {
-      dispatch(clearOrderDraft());
-    };
   }, [dispatch, base._id, initialRoomId]);
+
+  const handleClose = () => {
+    dispatch(clearOrderDraft());
+    onClose();
+  };
 
   const steps = getBookingSteps({
     hasRoomStep: !initialRoomId,
@@ -65,7 +74,7 @@ export const BookingFlow: FC<TBookingFlowProps> = ({
     ? buildRepetition(base, draft, summary)
     : null;
   const goToStep = (target: TBookingStep) =>
-    setStepIndex(Math.max(steps.indexOf(target), 0));
+    dispatch(setBookingStepIndex(Math.max(steps.indexOf(target), 0)));
 
   const isNextDisabled =
     isSubmitting ||
@@ -107,19 +116,21 @@ export const BookingFlow: FC<TBookingFlowProps> = ({
       void handleSubmit();
       return;
     }
-    setStepIndex((index) => Math.min(index + 1, steps.length - 1));
+    dispatch(setBookingStepIndex(Math.min(stepIndex + 1, steps.length - 1)));
   };
 
   const stepProps = { base, draft };
 
   return (
     <Modal
-      onClose={onClose}
+      onClose={handleClose}
       dop={
         <BookingFooter
           currentStep={stepIndex + 1}
           price={summary?.total ?? 0}
-          onBack={() => setStepIndex((index) => Math.max(index - 1, 0))}
+          onBack={() =>
+            dispatch(setBookingStepIndex(Math.max(stepIndex - 1, 0)))
+          }
           onNext={handleNext}
           isNextDisabled={isNextDisabled}
           nextText={step === "confirmation" ? "Бронировать" : "Далее"}
@@ -127,12 +138,15 @@ export const BookingFlow: FC<TBookingFlowProps> = ({
             showBookedInstruments
               ? {
                   text: "К подтверждению",
-                  onClick: () => setShowBookedInstruments(false),
+                  onClick: () => dispatch(setShowBookedInstruments(false)),
                 }
               : step === "success"
                 ? {
                     text: "График репетиций",
-                    onClick: () => navigate("/repetitions"),
+                    onClick: () => {
+                      dispatch(clearOrderDraft());
+                      navigate("/repetitions");
+                    },
                   }
                 : undefined
           }
@@ -151,7 +165,7 @@ export const BookingFlow: FC<TBookingFlowProps> = ({
       {step === "confirmation" && !showBookedInstruments && (
         <ConfirmationStep
           {...stepProps}
-          onShowInstruments={() => setShowBookedInstruments(true)}
+          onShowInstruments={() => dispatch(setShowBookedInstruments(true))}
         />
       )}
       {step === "success" && <SuccessStepUI bookingNumber={bookingNumber} />}

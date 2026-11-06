@@ -180,6 +180,14 @@ const App = () => {
             }
           />
           <Route
+            path="/instruments/:instrumentId"
+            element={
+              <Modal onClose={() => navigate(-1)}>
+                <PhotoViewer />
+              </Modal>
+            }
+          />
+          <Route
             path="/repetitions/:repetitionId"
             element={
               <Modal onClose={() => navigate(-1)}>

@@ -24,4 +24,5 @@ export type TInstrumentProps = {
   repetitionDate?: Date;
   repetitionPrice?: number;
   hideSlotPrice?: boolean;
+  onPhotoSelect?: () => void;
 } & TInstrumentActionProps;

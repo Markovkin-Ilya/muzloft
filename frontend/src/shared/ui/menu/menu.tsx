@@ -10,6 +10,7 @@ export const Menu: FC<TMenuProps> = ({
 }) => {
   const viewportRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const isFirstAlignRef = useRef(true);
 
   const handleWheel = (event: ReactWheelEvent<HTMLDivElement>) => {
     const viewport = event.currentTarget;
@@ -31,7 +32,10 @@ export const Menu: FC<TMenuProps> = ({
       return;
     }
 
-    const alignActiveItem = () => {
+    const isInitialAlign = isFirstAlignRef.current;
+    isFirstAlignRef.current = false;
+
+    const alignActiveItem = (instant: boolean) => {
       const viewportBounds = viewport.getBoundingClientRect();
       const itemBounds = activeItem.getBoundingClientRect();
       const isLastItem = activeIndex === items.length - 1;
@@ -44,16 +48,20 @@ export const Menu: FC<TMenuProps> = ({
 
       viewport.scrollTo({
         left: targetLeft,
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? "auto"
-          : "smooth",
+        behavior:
+          instant ||
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches
+            ? "auto"
+            : "smooth",
       });
     };
 
-    alignActiveItem();
-    window.addEventListener("resize", alignActiveItem);
+    const handleResize = () => alignActiveItem(false);
 
-    return () => window.removeEventListener("resize", alignActiveItem);
+    alignActiveItem(isInitialAlign);
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, [activeIndex, items.length]);
 
   return (
