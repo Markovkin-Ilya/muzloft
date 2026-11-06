@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { TInstrumentButtonState } from "@entities/instrument";
 import {
   selectBaseDetails,
@@ -50,6 +50,8 @@ export const InstrumentSelection: FC<TInstrumentSelectionProps> = ({
 }) => {
   const { roomId, repetitionId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
   const baseDetails = useSelector(selectBaseDetails);
   const orderDraft = useSelector(selectOrderDraft);
   const repetitions = useSelector(selectRepetitions);
@@ -92,6 +94,34 @@ export const InstrumentSelection: FC<TInstrumentSelectionProps> = ({
     if (mode === "booking" && validRepetition) {
       dispatch(toggleOrderInstrument(instrumentId));
     }
+  };
+
+  const background = location.state?.background ?? location;
+  // индексы вкладок по режимам хранятся в записи истории: при возврате с фото вкладка восстанавливается
+  const categoryIndexes: Partial<Record<string, number>> =
+    location.state?.instrumentCategoryIndexes ?? {};
+
+  const handleCategoryChange = (index: number) => {
+    navigate(
+      {
+        pathname: location.pathname,
+        search: location.search,
+        hash: location.hash,
+      },
+      {
+        replace: true,
+        state: {
+          ...location.state,
+          instrumentCategoryIndexes: { ...categoryIndexes, [mode]: index },
+        },
+      },
+    );
+  };
+
+  const handlePhotoSelect = (instrumentId: string) => {
+    navigate(`/instruments/${instrumentId}`, {
+      state: { background },
+    });
   };
 
   const getInstrumentCardProps = (
@@ -145,7 +175,11 @@ export const InstrumentSelection: FC<TInstrumentSelectionProps> = ({
 
   instrumentCards.forEach(({ instrument, ...cardProps }) => {
     const categoryInstruments = categoryMap.get(instrument.category) ?? [];
-    categoryInstruments.push({ instrument, ...cardProps });
+    categoryInstruments.push({
+      instrument,
+      ...cardProps,
+      onPhotoSelect: () => handlePhotoSelect(instrument._id),
+    });
     categoryMap.set(instrument.category, categoryInstruments);
   });
 
@@ -157,5 +191,11 @@ export const InstrumentSelection: FC<TInstrumentSelectionProps> = ({
     }),
   );
 
-  return <InstrumentSelectionView categories={categories} />;
+  return (
+    <InstrumentSelectionView
+      categories={categories}
+      initialCategoryIndex={categoryIndexes[mode]}
+      onCategoryChange={handleCategoryChange}
+    />
+  );
 };

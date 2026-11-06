@@ -1,0 +1,1 @@
+export { getInstrumentPhotos } from "./getInstrumentPhotos";

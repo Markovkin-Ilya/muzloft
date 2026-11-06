@@ -8,4 +8,5 @@ export type TInstrumentUIProps = {
   buttonState?: TInstrumentButtonState;
   buttonDisabled?: boolean;
   onBook?: () => void;
+  onPhotoSelect?: () => void;
 };

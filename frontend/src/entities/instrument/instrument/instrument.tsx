@@ -11,6 +11,7 @@ export const Instrument: FC<TInstrumentProps> = memo(
     buttonState,
     buttonDisabled,
     onBook,
+    onPhotoSelect,
   }) => {
     const repetitionSlot = repetitionDate
       ? instrument.slots?.find(
@@ -27,6 +28,7 @@ export const Instrument: FC<TInstrumentProps> = memo(
         buttonState={buttonState}
         buttonDisabled={buttonDisabled}
         onBook={onBook}
+        onPhotoSelect={onPhotoSelect}
       />
     );
   },
