@@ -6,8 +6,11 @@ import { TInstrumentSelectionViewProps } from "./type";
 
 export const InstrumentSelectionView: FC<TInstrumentSelectionViewProps> = ({
   categories,
+  initialCategoryIndex = 0,
+  onCategoryChange,
 }) => {
-  const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
+  const [activeCategoryIndex, setActiveCategoryIndex] =
+    useState(initialCategoryIndex);
   const activeIndex = Math.min(
     activeCategoryIndex,
     Math.max(categories.length - 1, 0),
@@ -17,6 +20,11 @@ export const InstrumentSelectionView: FC<TInstrumentSelectionViewProps> = ({
     label: name,
     to: name,
   }));
+
+  const handleSelect = (index: number) => {
+    setActiveCategoryIndex(index);
+    onCategoryChange?.(index);
+  };
 
   if (categories.length === 0) {
     return (
@@ -32,7 +40,7 @@ export const InstrumentSelectionView: FC<TInstrumentSelectionViewProps> = ({
         <Menu
           items={menuItems}
           activeIndex={activeIndex}
-          onSelect={setActiveCategoryIndex}
+          onSelect={handleSelect}
         />
       )}
       <div className={styles.list}>
@@ -47,6 +55,7 @@ export const InstrumentSelectionView: FC<TInstrumentSelectionViewProps> = ({
               buttonDisabled={instrumentProps.buttonDisabled}
               onBook={instrumentProps.onBook}
               hideSlotPrice={instrumentProps.hideSlotPrice}
+              onPhotoSelect={instrumentProps.onPhotoSelect}
             />
           ) : (
             <Instrument
@@ -55,6 +64,7 @@ export const InstrumentSelectionView: FC<TInstrumentSelectionViewProps> = ({
               repetitionDate={instrumentProps.repetitionDate}
               repetitionPrice={instrumentProps.repetitionPrice}
               hideSlotPrice={instrumentProps.hideSlotPrice}
+              onPhotoSelect={instrumentProps.onPhotoSelect}
             />
           ),
         )}

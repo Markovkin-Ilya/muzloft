@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, KeyboardEvent, useEffect, useState } from "react";
 import { Button } from "@shared/ui/button";
 import styles from "./instrument.module.css";
 import { TInstrumentUIProps } from "./type";
@@ -17,6 +17,7 @@ export const InstrumentUI: FC<TInstrumentUIProps> = ({
   buttonState,
   buttonDisabled = false,
   onBook,
+  onPhotoSelect,
 }) => {
   const [currentButtonState, setCurrentButtonState] = useState(buttonState);
 
@@ -31,6 +32,13 @@ export const InstrumentUI: FC<TInstrumentUIProps> = ({
     } else if (currentButtonState === "booked") {
       onBook?.();
       setCurrentButtonState("available");
+    }
+  };
+
+  const handleImageKeyDown = (event: KeyboardEvent<HTMLImageElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      onPhotoSelect?.();
     }
   };
 
@@ -76,7 +84,15 @@ export const InstrumentUI: FC<TInstrumentUIProps> = ({
         )}
       </div>
       <div className={styles.imageContainer}>
-        <img className={styles.image} src={image} alt={title} />
+        <img
+          className={`${styles.image} ${onPhotoSelect ? styles.clickableImage : ""}`}
+          src={image}
+          alt={title}
+          role={onPhotoSelect ? "button" : undefined}
+          tabIndex={onPhotoSelect ? 0 : undefined}
+          onClick={() => onPhotoSelect?.()}
+          onKeyDown={onPhotoSelect ? handleImageKeyDown : undefined}
+        />
       </div>
     </div>
   );

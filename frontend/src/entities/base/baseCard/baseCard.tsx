@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { TBaseCardProps } from "./type";
 import { BaseCardUI } from "./ui/baseCard";
+import { openInYandexMaps } from "@utils/yandexMaps";
 
 export const BaseCard: FC<TBaseCardProps> = ({
   name,
@@ -15,6 +16,7 @@ export const BaseCard: FC<TBaseCardProps> = ({
   };
 
   const handleMap = () => {
+    openInYandexMaps(address);
     onMap?.();
   };
 

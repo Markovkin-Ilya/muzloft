@@ -1,6 +1,7 @@
 import { FC, WheelEvent } from "react";
 import { Button } from "@shared/ui/button";
 import { ExpandableText } from "@shared/ui/expandable-text";
+import { getRoomPhotos } from "../lib";
 import styles from "./RoomDetailsUI.module.css";
 import { TRoomDetailsUIProps } from "./type";
 
@@ -9,7 +10,9 @@ export const RoomDetailsUI: FC<TRoomDetailsUIProps> = ({
   priceRange,
   onBook,
   onShowInstruments,
+  onPhotoSelect,
 }) => {
+  const photos = getRoomPhotos(room);
   const handleGalleryWheel = (event: WheelEvent<HTMLDivElement>) => {
     if (event.ctrlKey) {
       return;
@@ -46,12 +49,21 @@ export const RoomDetailsUI: FC<TRoomDetailsUIProps> = ({
             aria-label={`Фотографии комнаты ${room.title}`}
             onWheel={handleGalleryWheel}
           >
-            {room.image.map((image, index) => (
+            {photos.map((photo, photoIndex) => (
               <img
-                key={`${image}-${index}`}
+                key={photo.key}
                 className={styles.image}
-                src={image}
-                alt={`${room.title} — фото ${index + 1}`}
+                src={photo.src}
+                alt={photo.alt}
+                role="button"
+                tabIndex={0}
+                onClick={() => onPhotoSelect(photoIndex)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    onPhotoSelect(photoIndex);
+                  }
+                }}
               />
             ))}
           </div>

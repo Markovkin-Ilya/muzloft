@@ -4,11 +4,13 @@ export type TProfileEditUIProps = {
   email?: string;
   name?: string;
   password?: string;
+  region?: string;
   errors?: {
     phone?: string;
     email?: string;
     name?: string;
     password?: string;
+    region?: string;
   };
   isEditing: boolean;
   isFormChanged?: boolean;
@@ -22,5 +24,6 @@ export type TProfileEditUIProps = {
   onEmailChange?: (value: string) => void;
   onNameChange?: (value: string) => void;
   onPasswordChange?: (value: string) => void;
+  onRegionChange?: (value: string) => void;
   onFileChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };

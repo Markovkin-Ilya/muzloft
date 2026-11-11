@@ -5,6 +5,7 @@ import {
   logoutApi,
   registerUserApi,
   TRegisterData,
+  TUpdateUserData,
   TLoginData,
   TCreateOrderData,
   createOrderApi,
@@ -77,7 +78,7 @@ export const register = createAsyncThunk(
 
 export const update = createAsyncThunk(
   "user/update",
-  async (data: TRegisterData) => {
+  async (data: TUpdateUserData) => {
     return updateUserApi(data);
   },
 );

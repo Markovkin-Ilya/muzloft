@@ -178,7 +178,6 @@ export type TRegisterData = {
   email: string;
   name: string;
   password: string;
-  phone?: string;
 };
 
 type TAuthResponse = TServerResponse<{
@@ -282,7 +281,16 @@ export const getUserApi = () => {
   });
 };
 
-export const updateUserApi = (user: Partial<TRegisterData>) =>
+export type TUpdateUserData = {
+  email?: string;
+  name?: string;
+  password?: string;
+  phone?: string;
+  region?: string;
+  avatar?: string;
+};
+
+export const updateUserApi = (user: TUpdateUserData) =>
   fetchWithRefresh<TUserResponse>(`${URL}/auth/user`, {
     method: "PATCH",
     headers: {

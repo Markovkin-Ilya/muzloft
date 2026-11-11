@@ -1,0 +1,1 @@
+export { getBasePhotos } from "./getBasePhotos";

@@ -5,4 +5,5 @@ export type TRoomDetailsUIProps = {
   priceRange: { min: number; max: number } | null;
   onBook: () => void;
   onShowInstruments: () => void;
+  onPhotoSelect: (photoIndex: number) => void;
 };

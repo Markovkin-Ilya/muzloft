@@ -12,7 +12,18 @@ type TBasesState = {
   baseId: string | null;
   baseDetails: TBase | null;
   orderDraft: TOrderDraft | null;
+  bookingProgress: TBookingProgress;
   room: TRoom | null;
+};
+
+export type TBookingProgress = {
+  stepIndex: number;
+  showBookedInstruments: boolean;
+};
+
+const initialBookingProgress: TBookingProgress = {
+  stepIndex: 0,
+  showBookedInstruments: false,
 };
 
 export const initialState: TBasesState = {
@@ -20,6 +31,7 @@ export const initialState: TBasesState = {
   baseId: null,
   baseDetails: null,
   orderDraft: null,
+  bookingProgress: initialBookingProgress,
   room: null,
 };
 
@@ -42,13 +54,28 @@ export const basesSlice = createSlice({
       state,
       action: PayloadAction<{ baseid: string; roomid?: string | null }>,
     ) => {
+      const { baseid, roomid } = action.payload;
+      const current = state.orderDraft;
+
+      // черновик того же бронирования сохраняется при уходе на фото и возврате
+      if (current?.baseid === baseid && current.roomid === (roomid ?? null)) {
+        return;
+      }
+
       state.orderDraft = {
-        baseid: action.payload.baseid,
-        roomid: action.payload.roomid ?? null,
+        baseid,
+        roomid: roomid ?? null,
         slot: null,
         instrumentsId: [],
         payment: null,
       };
+      state.bookingProgress = initialBookingProgress;
+    },
+    setBookingStepIndex: (state, action: PayloadAction<number>) => {
+      state.bookingProgress.stepIndex = action.payload;
+    },
+    setShowBookedInstruments: (state, action: PayloadAction<boolean>) => {
+      state.bookingProgress.showBookedInstruments = action.payload;
     },
     setOrderDraftRoom: (state, action: PayloadAction<string>) => {
       if (!state.orderDraft || state.orderDraft.roomid === action.payload) {
@@ -100,6 +127,7 @@ export const basesSlice = createSlice({
     },
     clearOrderDraft: (state) => {
       state.orderDraft = null;
+      state.bookingProgress = initialBookingProgress;
     },
     clearBase: (state) => {
       state.baseId = null;
@@ -135,6 +163,7 @@ export const basesSlice = createSlice({
     selectBaseId: (state) => state.baseId,
     selectBaseDetails: (state) => state.baseDetails,
     selectOrderDraft: (state) => state.orderDraft,
+    selectBookingProgress: (state) => state.bookingProgress,
     selectRoom: (state, roomId?: string | null) =>
       roomId
         ? (state.baseDetails?.rooms.find((room) => room._id === roomId) ?? null)
@@ -147,6 +176,7 @@ export const {
   selectBaseId,
   selectBaseDetails,
   selectOrderDraft,
+  selectBookingProgress,
   selectRoom,
 } = basesSlice.selectors;
 export const {
@@ -154,6 +184,8 @@ export const {
   setBaseId,
   setBaseDetails,
   startOrderDraft,
+  setBookingStepIndex,
+  setShowBookedInstruments,
   setOrderDraftRoom,
   setOrderDraftSlot,
   setOrderDraftPayment,

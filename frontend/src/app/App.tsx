@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { BaseDetails } from "@widgets/base-details";
+import { PhotoViewer } from "@widgets/photo-viewer";
 import { EventDetails } from "@widgets/event-details";
 import { AppHeader } from "@widgets/app-header";
 import { AppNavigation } from "@widgets/app-navigation";
-import { RoomDetailsWidget } from "@widgets/room-details";
+import { RoomDetails } from "@widgets/room-details";
 import { CommentsPage } from "@pages/comments";
 import { EventsPage } from "@pages/events";
 import { BasesPage } from "@pages/bases";
@@ -142,7 +143,7 @@ const App = () => {
             path="/bases/:baseId/:roomId"
             element={
               <Modal onClose={() => navigate(-1)}>
-                <RoomDetailsWidget />
+                <RoomDetails />
               </Modal>
             }
           />
@@ -159,6 +160,30 @@ const App = () => {
             element={
               <Modal onClose={() => navigate(-1)}>
                 <CommentsPage />
+              </Modal>
+            }
+          />
+          <Route
+            path="/bases/:baseId/photos/:index"
+            element={
+              <Modal onClose={() => navigate(-1)}>
+                <PhotoViewer />
+              </Modal>
+            }
+          />
+          <Route
+            path="/bases/:baseId/:roomId/photos/:index"
+            element={
+              <Modal onClose={() => navigate(-1)}>
+                <PhotoViewer />
+              </Modal>
+            }
+          />
+          <Route
+            path="/instruments/:instrumentId"
+            element={
+              <Modal onClose={() => navigate(-1)}>
+                <PhotoViewer />
               </Modal>
             }
           />

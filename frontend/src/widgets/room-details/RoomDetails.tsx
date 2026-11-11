@@ -4,7 +4,7 @@ import { RoomDetailsUI } from "@entities/room";
 import { selectRoom } from "@services/bases/slice";
 import { useSelector } from "@services/store";
 
-export const RoomDetailsWidget: FC = () => {
+export const RoomDetails: FC = () => {
   const { baseId, roomId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,6 +41,11 @@ export const RoomDetailsWidget: FC = () => {
       }
       onShowInstruments={() =>
         navigate(`/bases/${baseId}/${room._id}/instruments`, {
+          state: { background },
+        })
+      }
+      onPhotoSelect={(photoIndex) =>
+        navigate(`/bases/${baseId}/${room._id}/photos/${photoIndex}`, {
           state: { background },
         })
       }
