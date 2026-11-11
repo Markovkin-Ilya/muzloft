@@ -56,6 +56,16 @@
   overflow-wrap: anywhere;
 }
 
+.copyable {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
 .label {
   color: var(--text-inactive-color);
   font-weight: 400;
